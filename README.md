@@ -28,3 +28,25 @@
 ## 4. 개발이슈
 
 ---
+
+### git 명령어
+
+vscode에서 ctrl + shift + p하면 git 명령도 검색할 수 있어요!
+
+워킹트리 : 우리가 컴퓨터에서 작업하고 있는 공간(프로젝트 받은 폴더)  
+원격저장소 : github repository
+
+- git pull  
+  github에서 우리 프로젝트 최신판 다운받기
+  > git pull from --> 다운받을 브랜치 선택가능
+- git push  
+  워킹트리에서 commit한 사항을 원격저장소에 반영합니다.
+
+- git merge [branch name]  
+  지정한 브랜치의 커밋사항을 내가 지금 위치한 브랜치 & 워킹트리에 반영합니다.
+
+- git branch [branch name]  
+  새 이름으로 브랜치를 생성합니다.
+
+- git checkout [branch name]  
+  지정한 브랜치로 이동합니다.
