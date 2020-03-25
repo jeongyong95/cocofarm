@@ -4,7 +4,11 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
+
+import com.jbnu.cocofarm.domain.asisstant.Role;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,10 +23,10 @@ import lombok.Setter;
 public class User {
 
     @Id
-    @Column(nullable = false, length = 100, updatable = false)
+    @Column(nullable = false, updatable = false)
     private Long id;
 
-    @Column(nullable = false, updatable = false)
+    @Column(length = 100, nullable = false, updatable = false)
     private String email;
 
     @Column(nullable = false, length = 50)
@@ -45,4 +49,8 @@ public class User {
 
     @Column(nullable = false, updatable = false)
     private Date registeredDate;
+
+    @Column
+    @Enumerated(EnumType.STRING)
+    private Role role;
 }

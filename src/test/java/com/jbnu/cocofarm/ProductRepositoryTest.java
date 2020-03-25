@@ -18,13 +18,9 @@ public class ProductRepositoryTest {
 
     @Test
     public void insertTest() {
-        List<Product> products = new ArrayList<Product>();
-        for (int i = 0; i < 10; i++) {
-            Product product = new Product();
-            product.setName("애플 아이패드 " + i);
-            products.add(product);
-        }
-        repo.saveAll(products);
+        Product product = new Product();
+        product.setName("id 테스트2");
+        repo.save(product);
 
     }
 

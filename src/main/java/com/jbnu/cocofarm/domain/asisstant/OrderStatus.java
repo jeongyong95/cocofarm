@@ -2,10 +2,8 @@ package com.jbnu.cocofarm.domain.asisstant;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
 public enum OrderStatus {
     ready(0, "배송준비중", "배송을 준비하고 있습니다."), delivery(1, "배송중", "주문하신 상품이 고객님께 배송중입니다."),
