@@ -38,13 +38,13 @@ public class User {
     @Column(nullable = false)
     private Long contact;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String adressZipCode;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String addressCity;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String addressState;
 
     @Column(nullable = false, updatable = false)

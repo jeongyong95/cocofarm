@@ -20,6 +20,7 @@ import lombok.Setter;
 @Setter
 @Entity
 public class Review {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

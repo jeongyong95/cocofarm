@@ -7,7 +7,7 @@
   <th:block th:replace="fragments/header :: header"></th:block>
 
   <body id="page-top" th:align="center">
-    <div><a href="/index"><h1>코코팜</h1></a></div>
+    <div><h1>코코팜</h1></div>
     <hr />
     <div id="wrapper">
       <div id="contents-wrapper">
@@ -16,22 +16,9 @@
           <th:block th:replace="fragments/navigation :: navigation"></th:block>
           <hr />
           <th:block layout:fragment="contents">
-            <form th:action="login" method="POST">
-              <div>
-                <th th:text="이메일"></th>
-                <input type="text" id="email" placeholder="이메일을 입력하세요." />
-              </div>
-              <div>
-                <th th:text="비밀번호"></th>
-                <input
-                  type="password"
-                  id="password"
-                  placeholder="비밀번호를 입력하세요."
-                />
-              </div>
-              <div><input type="submit" value="로그인"></div>
-            </form>
-            <hr />
+            <!-- 컨텐츠 영역 -->
+            <a href="/login">로그인</a>
+            <a href="/join">회원가입</a>
           </th:block>
           <hr />
         </div>

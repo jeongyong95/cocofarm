@@ -1,9 +1,62 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>회원가입</title>
-  </head>
-  <body></body>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+  <!-- 페이지 공통 header -->
+  <th:block th:replace="fragments/header :: header"></th:block>
+
+  <body id="page-top" th:align="center">
+    <div><a href="/index"><h1>코코팜</h1></a></div>
+    <hr />
+    <div id="wrapper">
+      <div id="contents-wrapper">
+        <div id="contents">
+          <!-- 상단 네비게이션 바 -->
+          <th:block th:replace="fragments/navigation :: navigation"></th:block>
+          <hr />
+          <th:block layout:fragment="contents">
+            <form th:action="joinAction" method="POST">
+              <div>
+                <th th:text="아이디"></th>
+                <input type="text" id="id" placeholder="아이디를 입력하세요." />
+                <hr>
+              </div>
+              <div>
+                <th th:text="이메일"></th>
+                <input type="email" id="email" placeholder="이메일을 입력하세요." />
+                <hr>
+              </div>
+              <div>
+                <th th:text="비밀번호"></th>
+                <input
+                  type="password"
+                  id="password"
+                  placeholder="비밀번호를 입력하세요."
+                />
+                <hr>
+              </div>
+              <div>
+                <th th:text="이름"></th>
+                <input type="text" id="name" placeholder="이름을 입력하세요." />
+                <hr>
+              </div>
+              <div>
+                <th th:text="전화번호"></th>
+                <input type="tel" id="contact" placeholder="연락처를 입력하세요." />
+                <hr>
+              </div>
+              <div><input type="submit" value="가입하기"></div>
+            </form>
+            <hr />
+          </th:block>
+          <hr />
+        </div>
+        <!-- 페이지 공통 footer -->
+        <th:block th:replace="fragments/footer :: footer"></th:block>
+      </div>
+    </div>
+    <!-- 페이지 공통 script -->
+    <th:block th:replace="fragments/script :: script"></th:block>
+  </body>
 </html>
