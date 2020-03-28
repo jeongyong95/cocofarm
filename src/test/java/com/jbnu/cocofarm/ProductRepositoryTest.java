@@ -1,7 +1,5 @@
 package com.jbnu.cocofarm;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 import com.jbnu.cocofarm.domain.Product;
 import com.jbnu.cocofarm.repository.ProductRepository;
