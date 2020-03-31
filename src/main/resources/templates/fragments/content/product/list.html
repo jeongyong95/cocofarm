@@ -1,0 +1,53 @@
+<div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content">
+        <section class="content-header">
+            <div class="container-fluid">
+              <div class="row mb-2">
+                <div class="col-sm-6">
+                  <h1>E-commerce</h1>
+                </div>
+                <div class="col-sm-6">
+                  <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">E-commerce</li>
+                  </ol>
+                </div>
+              </div>
+           </div><!-- /.container-fluid -->
+        </section>
+        <div class="row">
+            <div class="col-md-4" th:each="product : ${productList}">
+                <div class="card card-outline">
+                    <div class="card-body">
+                        <!-- image -->
+                        <div class="text-center">
+                            <a th:href="@{'/product/view/detail/' + ${product.id}}">
+                                <img class="img-fluid" th:src="@{'/static/' + ${product.imageUrl}}" alt="Product picture">
+                            </a>
+                        </div>
+                        <!-- main -->
+                        <a th:href="@{/product/view/detail}">
+                            <h3 class="text-dark profile-username text-center" th:text="${product.name}"></h3>
+                            <p class="text-muted text-center" th:text="${product.size}"></p>
+                            <p class="text-dark text-center" th:text="${product.price}"></p>
+                        </a>
+                        <!-- sub -->
+                        <ul class="list-group list-group-unbordered mb-3">
+                            <li class="list-group-item">
+                                <i class="fas fa-reply"></i> <b>Review</b> <a class="float-right">1,322</a>
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fas fa-star"></i> <b>Star</b> <a class="float-right">2,549</a>
+                            </li>
+                        </ul>
+                        <!-- badge -->
+                        <span class="right badge badge-danger">주문 폭주</span>
+                        <span class="right badge badge-warning">한정 수량</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</div>

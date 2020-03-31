@@ -42,7 +42,7 @@ public class Basket {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany
-    @JoinColumn(name = "product_id")
-    private Product product;
+    // @OneToMany
+    // @JoinColumn(name = "product_id")
+    // private Product product;
 }

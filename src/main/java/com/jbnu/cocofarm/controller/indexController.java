@@ -1,7 +1,7 @@
 package com.jbnu.cocofarm.controller;
 
 import com.jbnu.cocofarm.domain.User;
-import com.jbnu.cocofarm.repository.UserRepository;
+import com.jbnu.cocofarm.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,13 +13,19 @@ import org.springframework.web.servlet.ModelAndView;
 public class indexController {
 
     @Autowired
-    private UserRepository userRepo;
+    private UserService userservice;
 
-    @GetMapping(value = "/index")
-    public ModelAndView index(ModelAndView modelAndView) {
-        modelAndView.setViewName("index");
-        return modelAndView;
+    @GetMapping(value = "/")
+    public String main(ModelAndView modelAndView) {
+        modelAndView.addObject("template", "fragments/content/main");
+        return "index";
     }
+
+    // @GetMapping(value = "/index")
+    // public ModelAndView index(ModelAndView modelAndView) {
+    // modelAndView.setViewName("index");
+    // return modelAndView;
+    // }
 
     @GetMapping(value = "/login")
     public ModelAndView login(ModelAndView modelAndView) {
