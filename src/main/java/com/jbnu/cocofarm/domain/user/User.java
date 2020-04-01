@@ -1,4 +1,4 @@
-package com.jbnu.cocofarm.domain;
+package com.jbnu.cocofarm.domain.user;
 
 import java.util.Date;
 

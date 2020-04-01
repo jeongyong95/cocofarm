@@ -1,6 +1,6 @@
 package com.jbnu.cocofarm.service;
 
-import com.jbnu.cocofarm.domain.User;
+import com.jbnu.cocofarm.domain.user.User;
 
 /**
  * UserService

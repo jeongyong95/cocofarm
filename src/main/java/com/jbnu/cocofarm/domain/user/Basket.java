@@ -1,4 +1,4 @@
-package com.jbnu.cocofarm.domain;
+package com.jbnu.cocofarm.domain.user;
 
 import java.util.Date;
 
@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import lombok.Getter;
@@ -42,7 +41,4 @@ public class Basket {
     @JoinColumn(name = "user_id")
     private User user;
 
-    // @OneToMany
-    // @JoinColumn(name = "product_id")
-    // private Product product;
 }

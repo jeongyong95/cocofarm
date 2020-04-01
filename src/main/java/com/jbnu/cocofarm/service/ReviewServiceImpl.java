@@ -3,8 +3,8 @@ package com.jbnu.cocofarm.service;
 import java.util.List;
 import java.util.Optional;
 
-import com.jbnu.cocofarm.domain.Review;
-import com.jbnu.cocofarm.repository.ReviewRepository;
+import com.jbnu.cocofarm.domain.user.Review;
+import com.jbnu.cocofarm.domain.user.ReviewRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

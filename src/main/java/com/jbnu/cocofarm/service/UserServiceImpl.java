@@ -2,8 +2,8 @@ package com.jbnu.cocofarm.service;
 
 import java.util.Optional;
 
-import com.jbnu.cocofarm.domain.User;
-import com.jbnu.cocofarm.repository.UserRepository;
+import com.jbnu.cocofarm.domain.user.User;
+import com.jbnu.cocofarm.domain.user.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

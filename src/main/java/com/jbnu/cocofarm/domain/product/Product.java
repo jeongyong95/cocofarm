@@ -1,4 +1,4 @@
-package com.jbnu.cocofarm.domain;
+package com.jbnu.cocofarm.domain.product;
 
 import java.util.Date;
 
@@ -27,23 +27,23 @@ public class Product {
     @Column(length = 100, nullable = false)
     private String name;
 
-    // @Column(nullable = true)
-    // private String description;
+    @Column(nullable = true)
+    private String description;
 
-    // @Column(nullable = false)
-    // private Long price;
+    @Column(nullable = false)
+    private Long price;
 
-    // @Column(nullable = true)
-    // private Long discount;
+    @Column(nullable = true)
+    private Long discount;
 
-    // @Column(nullable = false)
-    // private Long stock;
+    @Column(nullable = false)
+    private Long stock;
 
-    // @Column(updatable = false)
-    // private Date createTimestamp;
+    @Column(updatable = false)
+    private Date createTimestamp;
 
-    // @Column(updatable = true)
-    // private Date updateTimestamp;
+    @Column(updatable = true)
+    private Date updateTimestamp;
 
     @ManyToOne
     @JoinColumn(name = "category_id")

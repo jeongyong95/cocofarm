@@ -1,8 +1,6 @@
-package com.jbnu.cocofarm.repository;
+package com.jbnu.cocofarm.domain.product;
 
 import java.util.List;
-
-import com.jbnu.cocofarm.domain.Product;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

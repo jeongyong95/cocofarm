@@ -1,4 +1,4 @@
-package com.jbnu.cocofarm.domain;
+package com.jbnu.cocofarm.domain.product;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

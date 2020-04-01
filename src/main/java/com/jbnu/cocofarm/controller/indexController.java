@@ -1,6 +1,6 @@
 package com.jbnu.cocofarm.controller;
 
-import com.jbnu.cocofarm.domain.User;
+import com.jbnu.cocofarm.domain.user.User;
 import com.jbnu.cocofarm.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;

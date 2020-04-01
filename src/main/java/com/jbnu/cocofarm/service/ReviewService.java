@@ -2,7 +2,7 @@ package com.jbnu.cocofarm.service;
 
 import java.util.List;
 
-import com.jbnu.cocofarm.domain.Review;
+import com.jbnu.cocofarm.domain.user.Review;
 
 /**
  * ReivewService

@@ -2,7 +2,7 @@ package com.jbnu.cocofarm.service;
 
 import java.util.List;
 
-import com.jbnu.cocofarm.domain.Product;
+import com.jbnu.cocofarm.domain.product.Product;
 
 /**
  * ProductService
