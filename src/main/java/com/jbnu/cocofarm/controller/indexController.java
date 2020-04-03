@@ -16,16 +16,11 @@ public class indexController {
     private UserService userservice;
 
     @GetMapping(value = "/")
-    public String main(ModelAndView modelAndView) {
+    public ModelAndView main(ModelAndView modelAndView) {
         modelAndView.addObject("template", "fragments/content/main");
-        return "index";
+        modelAndView.setViewName("index");
+        return modelAndView;
     }
-
-    // @GetMapping(value = "/index")
-    // public ModelAndView index(ModelAndView modelAndView) {
-    // modelAndView.setViewName("index");
-    // return modelAndView;
-    // }
 
     @GetMapping(value = "/login")
     public ModelAndView login(ModelAndView modelAndView) {

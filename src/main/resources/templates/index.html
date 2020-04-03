@@ -1,32 +1,41 @@
 <!DOCTYPE html>
-<html
-  xmlns:th="http://www.thymeleaf.org"
-  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
->
-  <!-- 페이지 공통 header -->
-  <th:block th:replace="fragments/header :: header"></th:block>
-
-  <body id="page-top" th:align="center">
-    <div><h1>코코팜</h1></div>
-    <hr />
-    <div id="wrapper">
-      <div id="contents-wrapper">
-        <div id="contents">
-          <!-- 상단 네비게이션 바 -->
-          <th:block th:replace="fragments/navigation :: navigation"></th:block>
-          <hr />
-          <th:block layout:fragment="contents">
-            <!-- 컨텐츠 영역 -->
-            <a href="/login">로그인</a>
-            <a href="/join">회원가입</a>
-          </th:block>
-          <hr />
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <th:block th:include="fragments/common/head"></th:block>
+</head>
+<body>
+    
+    <!-- Search Wrapper -->
+    <div class="search-wrapper">
+      <!-- Close Btn -->
+      <div class="close-btn"><i class="fa fa-times" aria-hidden="true"></i></div>
+  
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <form action="#" method="post">
+              <input type="search" name="search" placeholder="Type any keywords...">
+              <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+            </form>
+          </div>
         </div>
-        <!-- 페이지 공통 footer -->
-        <th:block th:replace="fragments/footer :: footer"></th:block>
       </div>
     </div>
-    <!-- 페이지 공통 script -->
-    <th:block th:replace="fragments/script :: script"></th:block>
-  </body>
+
+    <!-- Navbar -->
+    <th:block th:include="fragments/common/navbar"></th:block>
+    <br>
+    <br>
+
+    <!-- Content Wrapper. Contains page content -->
+    <th:block th:include="${template}"></th:block>
+    <!-- /.content-wrapper -->
+
+    <th:block th:include="fragments/common/footer"></th:block>
+
+  </div>
+  <!-- ./wrapper -->
+
+  <th:block th:include="fragments/common/script"></th:block>
+</body>
 </html>
