@@ -1,5 +1,6 @@
 package com.jbnu.cocofarm.controller;
 
+import com.jbnu.cocofarm.domain.asisstant.Role;
 import com.jbnu.cocofarm.domain.user.User;
 import com.jbnu.cocofarm.service.UserService;
 
@@ -28,11 +29,9 @@ public class indexController {
         return modelAndView;
     }
 
-    @PostMapping(value = "/loginAccess")
+    @PostMapping(value = "/loginAction")
     public ModelAndView loginAccess(ModelAndView modelAndView, String email, String password) {
-        User accessUser = new User();
-        accessUser.setEmail(email);
-        accessUser.setPassword(password);
+
         return modelAndView;
     }
 
@@ -42,8 +41,16 @@ public class indexController {
         return modelAndView;
     }
 
-    @PostMapping(value = "/joinAccess")
-    public ModelAndView joinAccess(ModelAndView modelAndView) {
+    @PostMapping(value = "/joinAction")
+    public ModelAndView joinAccess(ModelAndView modelAndView, User user) {
+        Boolean isAlreadyJoiner = userservice.isAlreadyJoined(user.getEmail());
+        if (isAlreadyJoiner) {
+            modelAndView.setViewName("redirect:/join");
+            System.out.println("이미 가입한 회원입니다.");
+            return modelAndView;
+        }
+        userservice.saveUser(user);
+        modelAndView.setViewName("login");
         return modelAndView;
     }
 

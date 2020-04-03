@@ -37,4 +37,14 @@ public class UserServiceImpl implements UserService {
             System.out.println("회원탈퇴 성공");
         });
     }
+
+    @Override
+    public Boolean isAlreadyJoined(String email) {
+        User myUser = repo.findByEmail(email);
+        if (myUser.getEmail() == email) {
+            return true;
+        }
+        return false;
+    }
+
 }

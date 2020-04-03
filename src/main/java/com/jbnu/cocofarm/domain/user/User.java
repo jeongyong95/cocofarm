@@ -32,7 +32,7 @@ public class User {
     @Column(nullable = false, length = 50)
     private String password;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 10)
     private String name;
 
     @Column(nullable = false)
@@ -50,7 +50,7 @@ public class User {
     @Column(nullable = false, updatable = false)
     private Date registeredDate;
 
-    @Column
-    @Enumerated(EnumType.STRING)
-    private Role role;
+    // @Column
+    // @Enumerated(EnumType.STRING)
+    // private Role role;
 }
