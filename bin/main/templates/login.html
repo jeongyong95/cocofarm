@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>코코팜 | 로그인</title>
-  </head>
-  <body th:align="center">
-      <h1>로그인</h1>
-    <th:block>
-      <form th:action="@{loginAction}" method="POST">
-          <th th:text="이메일"></th>
-          <input type="email" name="email" required>
-          <th th:text="비밀번호"></th>
-          <input type="password" name="password" required>
-          <hr>
-          <input type="submit" value="로그인">
-          <input type="button" value="아이디/비밀번호 찾기">
-      </form>
-    </th:block>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>코코팜 | 로그인</title>
+</head>
+
+<body th:align="center">
+  <h1>로그인</h1>
+  <th:block>
+    <form th:action="@{loginAction}" method="POST">
+      <th th:text="이메일"></th>
+      <input type="email" name="email" required>
+      <th th:text="비밀번호"></th>
+      <input type="password" name="password" required>
+      <hr>
+      <input type="submit" value="로그인">
+      <input type="button" value="아이디/비밀번호 찾기">
+      <hr>
+      <a href="join">회원가입</a>
+    </form>
+  </th:block>
+</body>
+
 </html>

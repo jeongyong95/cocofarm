@@ -7,11 +7,16 @@ import com.jbnu.cocofarm.domain.user.User;
  */
 public interface UserService {
 
-    void saveUser(User user);
+    void createUser(User user);
 
     void updateUser(User user);
 
     void deleteUser(Long id);
 
-    Boolean isAlreadyJoined(String email);
+    User getUser(String email);
+
+    Boolean checkLogin(String email, String password);
+
+    Boolean isAlreadyJoined(User user);
+
 }

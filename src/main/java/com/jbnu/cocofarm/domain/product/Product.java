@@ -1,6 +1,6 @@
 package com.jbnu.cocofarm.domain.product;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -39,11 +42,11 @@ public class Product {
     @Column(nullable = false)
     private Long stock;
 
-    @Column(updatable = false)
-    private Date createTimestamp;
+    @CreatedDate
+    private LocalDateTime createdTimestamp;
 
-    @Column(updatable = true)
-    private Date updateTimestamp;
+    @LastModifiedDate
+    private LocalDateTime updatedTimestamp;
 
     @ManyToOne
     @JoinColumn(name = "category_id")

@@ -1,6 +1,6 @@
 package com.jbnu.cocofarm.domain.user;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,8 +36,11 @@ public class Review {
     @Column
     private String content;
 
-    @Column
-    private Date createDate;
+    @CreatedDate
+    private LocalDateTime createdTimestamp;
+
+    @LastModifiedDate
+    private LocalDateTime updatedTimestamp;
 
     @Column
     private Integer starPoint;

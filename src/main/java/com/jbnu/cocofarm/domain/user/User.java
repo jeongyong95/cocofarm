@@ -1,14 +1,19 @@
 package com.jbnu.cocofarm.domain.user;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import com.jbnu.cocofarm.domain.asisstant.Role;
+
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,6 +28,7 @@ import lombok.Setter;
 public class User {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false, updatable = false)
     private Long id;
 
@@ -47,10 +53,13 @@ public class User {
     @Column(nullable = true)
     private String addressState;
 
-    @Column(nullable = false, updatable = false)
-    private Date registeredDate;
+    @CreatedDate
+    private LocalDateTime createdTimestamp;
 
-    // @Column
-    // @Enumerated(EnumType.STRING)
-    // private Role role;
+    @LastModifiedDate
+    private LocalDateTime updatedTimestamp;
+
+    @Column
+    @Enumerated(EnumType.STRING)
+    private Role role;
 }
