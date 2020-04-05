@@ -49,13 +49,13 @@ public class User {
     private Long contact;
 
     @Column(nullable = true)
-    private String adressZipCode;
+    private String postcode;
 
     @Column(nullable = true)
-    private String addressCity;
+    private String address;
 
     @Column(nullable = true)
-    private String addressState;
+    private String detailAdress;
 
     @CreatedDate
     private LocalDateTime createdTimestamp;

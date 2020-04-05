@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.jbnu.cocofarm.domain.user.Basket;
+
 @Entity
 public class ProductDetail {
 
@@ -21,8 +23,11 @@ public class ProductDetail {
     @Column
     private Integer stockNumber;
 
-    @OneToOne
+    @OneToOne(mappedBy = "productDetail")
     private Product product;
+
+    @OneToMany(mappedBy = "productDetail")
+    List<Basket> basketList = new ArrayList<>();
 
     @OneToMany(mappedBy = "productDetail")
     List<OrderDetail> orderDetailList = new ArrayList<>();

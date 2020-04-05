@@ -23,7 +23,7 @@ import lombok.Setter;
 @Setter
 @Entity
 public class Product {
-    // categoryId는 외래키로 받을 거임. 추후에 작업함
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -38,7 +38,7 @@ public class Product {
     private String description;
 
     @Column(nullable = false)
-    private Long price;
+    private Integer price;
 
     @CreatedDate
     private LocalDateTime createdTimestamp;

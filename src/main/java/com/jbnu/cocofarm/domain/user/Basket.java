@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.jbnu.cocofarm.domain.product.ProductDetail;
+
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -41,7 +43,9 @@ public class Basket {
     private LocalDateTime updatedTimestamp;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
     private User user;
+
+    @ManyToOne
+    private ProductDetail productDetail;
 
 }

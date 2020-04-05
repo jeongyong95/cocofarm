@@ -45,7 +45,6 @@ public class Review {
     @Column
     private Integer starPoint;
 
-    @JoinColumn(name = "user_id")
     @ManyToOne
     private User user;
 }
