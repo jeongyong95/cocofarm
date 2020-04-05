@@ -1241,6 +1241,7 @@ textarea:focus {
   background-color: #f3f5f8;
   font-size: 12px;
   font-style: italic;
+  line-height: 170%;
   margin-bottom: 15px;
   border: none;
   border-left: 3px solid #f3f5f8;

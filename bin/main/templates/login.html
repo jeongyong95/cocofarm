@@ -1,27 +1,98 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="ko">
-
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>코코팜 | 로그인</title>
+  <th:block th:include="fragments/common/head"></th:block>
 </head>
+<body>
+    
+    <!-- Search Wrapper -->
+    <div class="search-wrapper">
+      <!-- Close Btn -->
+      <div class="close-btn"><i class="fa fa-times" aria-hidden="true"></i></div>
+  
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <form action="#" method="post">
+              <input type="search" name="search" placeholder="Type any keywords...">
+              <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<body th:align="center">
-  <h1>로그인</h1>
-  <th:block>
-    <form th:action="@{loginAction}" method="POST">
-      <th th:text="이메일"></th>
-      <input type="email" name="email" required>
-      <th th:text="비밀번호"></th>
-      <input type="password" name="password" required>
-      <hr>
-      <input type="submit" value="로그인">
-      <input type="button" value="아이디/비밀번호 찾기">
-      <hr>
-      <a href="join">회원가입</a>
-    </form>
-  </th:block>
+    <!-- Navbar -->
+    <th:block th:include="fragments/common/navbar"></th:block>
+    <br>
+    <br>
+
+    <!-- Content Wrapper. Contains page content -->
+    <!-- ##### Breadcumb Area Start ##### -->
+    <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb3.jpg);">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="breadcumb-text text-center">
+                        <h2>Log in</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Breadcumb Area End ##### -->
+
+    
+
+        
+
+        <!-- Receipe Content Area -->
+        <div class="receipe-content-area" >
+            <div class="container">
+       
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-heading text-left">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" >
+                    <div class="col-12">
+                        <div class="contact-form-area">
+                            <form th:action="@{loginAction}" method="post">
+                                <div class="row">
+
+                                    <div class="col-12 ">
+                                        <input type="email" class="form-control" name="email" placeholder="E-mail">
+                                    </div>
+
+                                    <div class="col-12 ">
+                                        <input type="password" class="form-control" name="password" placeholder="Password">
+                                    </div>
+
+                                    
+                                    <div class="col-12 col-lg-3">
+                                        <button class="btn delicious-btn mt-30" type="submit">Log in</button>
+                                    </div>
+                                    
+                                    <div class="col-12 col-lg-3">
+                                      <button class="btn delicious-btn mt-30" type ="button" onclick="location.href = 'join.html'">Forget E-mail</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- /.content-wrapper -->
+
+    <th:block th:include="fragments/common/footer"></th:block>
+
+  </div>
+  <!-- ./wrapper -->
+
+  <th:block th:include="fragments/common/script"></th:block>
 </body>
-
 </html>
