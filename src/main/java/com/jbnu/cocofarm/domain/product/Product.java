@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -27,6 +28,9 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column
+    private Integer code;
+
     @Column(length = 100, nullable = false)
     private String name;
 
@@ -35,12 +39,6 @@ public class Product {
 
     @Column(nullable = false)
     private Long price;
-
-    @Column(nullable = true)
-    private Long discount;
-
-    @Column(nullable = false)
-    private Long stock;
 
     @CreatedDate
     private LocalDateTime createdTimestamp;
@@ -51,4 +49,7 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
+
+    @OneToOne
+    private ProductDetail productDetail;
 }
