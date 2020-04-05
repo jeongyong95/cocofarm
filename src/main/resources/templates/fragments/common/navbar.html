@@ -25,7 +25,7 @@
         <!-- Nav End -->
 
         <!-- Logo -->
-        <a class="nav-brand" href="index.html"
+        <a class="nav-brand" href="/"
           ><img src="../static/img/core-img/logo.png" alt=""
         /></a>
 
@@ -58,9 +58,17 @@
         <div class="classy-menu">
           <!-- Nav Start -->
           <div class="classynav">
-            <ul>
-              <li><a href="login">로그인</a></li>
+           
+            <ul th:if = "${session.user} != null">
+              
+              <li><a href="logout">로그아웃</a></li>
               <li><a href="receipe-post">장바구니</a></li>
+            </ul>
+
+            <ul th:unless = "${session.user} != null"  > 
+               
+              <li><a href="login">로그인</a></li>
+              <li><a href="join">회원가입</a></li>
             </ul>
           </div>
         </div>

@@ -30,6 +30,7 @@ public class indexController {
     @GetMapping(value = "/login")
     public ModelAndView login(ModelAndView modelAndView) {
         modelAndView.setViewName("login");
+        
         return modelAndView;
     }
 
@@ -66,6 +67,15 @@ public class indexController {
         user.setCreatedTimestamp(LocalDateTime.now());
         userservice.createUser(user);
         modelAndView.setViewName("login");
+        return modelAndView;
+    }
+
+    @GetMapping(value = "/logout")
+    public ModelAndView logout(ModelAndView modelAndView, HttpSession session) {
+        
+        session.invalidate();
+        modelAndView.setViewName("login");
+        
         return modelAndView;
     }
 }

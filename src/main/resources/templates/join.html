@@ -1,38 +1,134 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>코코팜 | 회원가입</title>
-  </head>
-  <body th:align="center">
-    <h1>회원가입</h1>
-    <form th:action="@{joinAction}" method="POST">
-      <th th:text="이메일"></th>
-      <input type="email" name="email" required />
-      <br />
-      <th th:text="비밀번호"></th>
-      <input type="password" name="password" required />
-      <hr />
-      <th th:text="이름"></th>
-      <input type="text" name="name" required />
-      <br />
-      <th th:text="연락처"></th>
-      <input type="tel" name="contact" required />
-      <hr />
-      <th th:text="시도"></th>
-      <input type="text" name="addressState" required />
-      <hr />
-      <th th:text="시군구"></th>
-      <input type="text" name="addressCity" required />
-      <hr />
-      <th th:text="상세주소"></th>
-      <input type="text" name="adressZipCode" required />
-      <hr />
-      <th th:text="이용목적"></th>
-      <input type="hidden" value="@{buyer}" />
-      <button type="submit">가입하기</button>
-    </form>
-    <hr />
-  </body>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <th:block th:include="fragments/common/head"></th:block>
+</head>
+
+<body>
+
+    <!-- Search Wrapper -->
+    <div class="search-wrapper">
+        <!-- Close Btn -->
+        <div class="close-btn"><i class="fa fa-times" aria-hidden="true"></i></div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <form action="#" method="post">
+                        <input type="search" name="search" placeholder="Type any keywords...">
+                        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <th:block th:include="fragments/common/navbar"></th:block>
+    <br>
+    <br>
+
+    <!-- Content Wrapper. Contains page content -->
+    <!-- ##### Breadcumb Area Start ##### -->
+    <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb3.jpg);">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="breadcumb-text text-center">
+                        <h2>Join</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Breadcumb Area End ##### -->
+
+    <!-- Receipe Content Area -->
+    <div class="receipe-content-area">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading text-left">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="contact-form-area">
+                        <form th:action="@{joinAction}" method="post">
+                            <div class="row">
+
+                                <div class="col-12 ">
+                                    <input type="email" class="form-control" name="email"
+                                        placeholder="E-mail">
+                                </div>
+
+                                <div class="col-12 ">
+                                    <input type="password" class="form-control" name="password"
+                                        placeholder="Password">
+                                </div>
+
+                                <div class="col-12 ">
+                                    <input type="text" class="form-control" name="name" placeholder="Name">
+                                </div>
+
+                                <div class="col-12">
+                                    <input type="number" class="form-control" name="contact"
+                                        placeholder="PhoneNumber">
+                                </div>
+
+                                <div class="col-12 col-lg-6">
+                                    <select class="form-control" name="addressState">
+                                        <option value="" selected disabled>State</option>
+                                        <option value="1">Categories 2</option>
+                                        <option value="1">Categories 3</option>
+                                        <option value="1">Categories 4</option>
+                                        <option value="1">Categories 5</option>
+                                    </select>
+
+                                </div>
+                                <div class="col-lg-6">
+                                    <select class="form-control" name="addressCity">
+                                        <option value="" selected disabled>City</option>
+                                        <option value="1">Categories 2</option>
+                                        <option value="1">Categories 3</option>
+                                        <option value="1">Categories 4</option>
+                                        <option value="1">Categories 5</option>
+                                    </select>
+                                    <br>
+                                </div>
+
+                                <div class="col-12">
+                                    <br>
+                                    <input type="text" class="form-control" name="adressZipCode"
+                                        placeholder="Detail">
+                                </div>
+
+                                <th th:text="이용목적" ></th>
+                                <input type="hidden" value="@{buyer}" />
+
+                                <div class="col-12">
+                                    <button class="btn delicious-btn mt-30" type="submit">Join</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.content-wrapper -->
+
+    <th:block th:include="fragments/common/footer"></th:block>
+
+    </div>
+    <!-- ./wrapper -->
+
+    <th:block th:include="fragments/common/script"></th:block>
+</body>
+
 </html>
