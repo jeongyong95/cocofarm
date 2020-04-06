@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 
 import com.jbnu.cocofarm.domain.asisstant.Role;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -58,6 +59,7 @@ public class User {
     private String detailAdress;
 
     @CreatedDate
+    @CreationTimestamp
     private LocalDateTime createdTimestamp;
 
     @LastModifiedDate

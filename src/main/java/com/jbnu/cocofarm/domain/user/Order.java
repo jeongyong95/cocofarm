@@ -1,5 +1,6 @@
 package com.jbnu.cocofarm.domain.user;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +13,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.jbnu.cocofarm.domain.product.OrderDetail;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.annotation.CreatedDate;
 
 @Entity
 public class Order {
@@ -38,6 +42,10 @@ public class Order {
 
     @Column
     private String payMethod;
+
+    @CreatedDate
+    @CreationTimestamp
+    private LocalDateTime createdTimestamp;
 
     @ManyToOne
     private User user;

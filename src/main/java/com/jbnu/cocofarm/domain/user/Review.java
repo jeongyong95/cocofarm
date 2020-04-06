@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -37,6 +38,7 @@ public class Review {
     private String content;
 
     @CreatedDate
+    @CreationTimestamp
     private LocalDateTime createdTimestamp;
 
     @LastModifiedDate

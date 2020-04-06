@@ -1,7 +1,5 @@
 package com.jbnu.cocofarm.controller;
 
-import java.time.LocalDateTime;
-
 import javax.servlet.http.HttpSession;
 
 import com.jbnu.cocofarm.domain.asisstant.Role;
@@ -30,7 +28,7 @@ public class indexController {
     @GetMapping(value = "/login")
     public ModelAndView login(ModelAndView modelAndView) {
         modelAndView.setViewName("login");
-        
+
         return modelAndView;
     }
 
@@ -64,7 +62,6 @@ public class indexController {
             modelAndView.setViewName("redirect:/join");
             return modelAndView;
         }
-        user.setCreatedTimestamp(LocalDateTime.now());
         userservice.createUser(user);
         modelAndView.setViewName("login");
         return modelAndView;
@@ -72,10 +69,10 @@ public class indexController {
 
     @GetMapping(value = "/logout")
     public ModelAndView logout(ModelAndView modelAndView, HttpSession session) {
-        
+
         session.invalidate();
         modelAndView.setViewName("login");
-        
+
         return modelAndView;
     }
 }

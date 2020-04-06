@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -41,6 +42,7 @@ public class Product {
     private Integer price;
 
     @CreatedDate
+    @CreationTimestamp
     private LocalDateTime createdTimestamp;
 
     @LastModifiedDate

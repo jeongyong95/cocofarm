@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 
 import com.jbnu.cocofarm.domain.product.ProductDetail;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -37,6 +38,7 @@ public class Basket {
     private Long count;
 
     @CreatedDate
+    @CreationTimestamp
     private LocalDateTime createdTimestamp;
 
     @LastModifiedDate
