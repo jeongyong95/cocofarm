@@ -30,5 +30,5 @@ public class ProductDetail {
     List<Basket> basketList = new ArrayList<>();
 
     @OneToMany(mappedBy = "productDetail")
-    List<OrderDetail> orderDetailList = new ArrayList<>();
+    List<OrdersDetail> ordersDetailList = new ArrayList<>();
 }

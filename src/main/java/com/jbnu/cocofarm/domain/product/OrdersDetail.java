@@ -6,11 +6,11 @@ import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.ManyToOne;
 
-import com.jbnu.cocofarm.domain.user.Order;
+import com.jbnu.cocofarm.domain.user.Orders;
 
 @Entity
-@IdClass(OrderDetailId.class)
-public class OrderDetail {
+@IdClass(OrdersDetailId.class)
+public class OrdersDetail {
 
     @Column
     private Integer quantity;
@@ -21,5 +21,5 @@ public class OrderDetail {
 
     @Id
     @ManyToOne
-    private Order order;
+    private Orders orders;
 }

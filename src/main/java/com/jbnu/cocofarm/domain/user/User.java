@@ -70,5 +70,5 @@ public class User {
     private Role role;
 
     @OneToMany(mappedBy = "user")
-    List<Order> orderList = new ArrayList<>();
+    List<Orders> ordersList = new ArrayList<>();
 }

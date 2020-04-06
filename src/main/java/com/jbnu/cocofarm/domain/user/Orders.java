@@ -12,13 +12,13 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import com.jbnu.cocofarm.domain.product.OrderDetail;
+import com.jbnu.cocofarm.domain.product.OrdersDetail;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 
 @Entity
-public class Order {
+public class Orders {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -50,6 +50,6 @@ public class Order {
     @ManyToOne
     private User user;
 
-    @OneToMany(mappedBy = "order")
-    List<OrderDetail> orderDetailList = new ArrayList<>();
+    @OneToMany(mappedBy = "orders")
+    List<OrdersDetail> ordersDetailList = new ArrayList<>();
 }
