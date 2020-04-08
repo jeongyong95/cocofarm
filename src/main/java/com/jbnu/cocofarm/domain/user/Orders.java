@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -47,9 +48,9 @@ public class Orders {
     @CreationTimestamp
     private LocalDateTime createdTimestamp;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
-    @OneToMany(mappedBy = "orders")
+    @OneToMany(mappedBy = "orders", fetch = FetchType.LAZY)
     List<OrdersDetail> ordersDetailList = new ArrayList<>();
 }

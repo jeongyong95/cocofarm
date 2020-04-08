@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,12 +24,12 @@ public class ProductDetail {
     @Column
     private Integer stockNumber;
 
-    @OneToOne(mappedBy = "productDetail")
+    @OneToOne(mappedBy = "productDetail", fetch = FetchType.LAZY)
     private Product product;
 
-    @OneToMany(mappedBy = "productDetail")
+    @OneToMany(mappedBy = "productDetail", fetch = FetchType.LAZY)
     List<Basket> basketList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "productDetail")
+    @OneToMany(mappedBy = "productDetail", fetch = FetchType.LAZY)
     List<OrdersDetail> ordersDetailList = new ArrayList<>();
 }

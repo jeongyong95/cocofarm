@@ -2,6 +2,7 @@ package com.jbnu.cocofarm.domain.product;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.ManyToOne;
@@ -16,10 +17,10 @@ public class OrdersDetail {
     private Integer quantity;
 
     @Id
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private ProductDetail productDetail;
 
     @Id
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Orders orders;
 }
