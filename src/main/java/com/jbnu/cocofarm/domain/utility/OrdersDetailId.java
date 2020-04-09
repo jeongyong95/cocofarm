@@ -1,4 +1,4 @@
-package com.jbnu.cocofarm.domain.product;
+package com.jbnu.cocofarm.domain.utility;
 
 import java.io.Serializable;
 

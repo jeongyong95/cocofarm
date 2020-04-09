@@ -1,6 +1,5 @@
 package com.jbnu.cocofarm.domain.user;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,12 +13,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.jbnu.cocofarm.domain.product.OrdersDetail;
-
-import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.data.annotation.CreatedDate;
+import com.jbnu.cocofarm.domain.utility.BaseTime;
 
 @Entity
-public class Orders {
+public class Orders extends BaseTime {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -43,10 +40,6 @@ public class Orders {
 
     @Column
     private String payMethod;
-
-    @CreatedDate
-    @CreationTimestamp
-    private LocalDateTime createdTimestamp;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;

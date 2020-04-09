@@ -1,7 +1,5 @@
 package com.jbnu.cocofarm.domain.product;
 
-import java.time.LocalDateTime;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,9 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
-import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
+import com.jbnu.cocofarm.domain.utility.BaseTime;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,7 +20,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Product {
+public class Product extends BaseTime {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -41,13 +37,6 @@ public class Product {
 
     @Column(nullable = false)
     private Integer price;
-
-    @CreatedDate
-    @CreationTimestamp
-    private LocalDateTime createdTimestamp;
-
-    @LastModifiedDate
-    private LocalDateTime updatedTimestamp;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")

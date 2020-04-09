@@ -8,6 +8,7 @@ import javax.persistence.IdClass;
 import javax.persistence.ManyToOne;
 
 import com.jbnu.cocofarm.domain.user.Orders;
+import com.jbnu.cocofarm.domain.utility.OrdersDetailId;
 
 @Entity
 @IdClass(OrdersDetailId.class)

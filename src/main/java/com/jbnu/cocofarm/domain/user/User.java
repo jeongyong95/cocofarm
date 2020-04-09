@@ -1,6 +1,5 @@
 package com.jbnu.cocofarm.domain.user;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,10 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.jbnu.cocofarm.domain.asisstant.Role;
-
-import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
+import com.jbnu.cocofarm.domain.utility.BaseTime;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,7 +24,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class User {
+public class User extends BaseTime {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -44,7 +40,7 @@ public class User {
     @Column(nullable = false, length = 10)
     private String name;
 
-    @Column
+    @Column(columnDefinition = "Integer default 1")
     private Integer status;
 
     @Column(nullable = false)
@@ -58,13 +54,6 @@ public class User {
 
     @Column(nullable = true)
     private String detailAdress;
-
-    @CreatedDate
-    @CreationTimestamp
-    private LocalDateTime createdTimestamp;
-
-    @LastModifiedDate
-    private LocalDateTime updatedTimestamp;
 
     @Column
     @Enumerated(EnumType.STRING)
