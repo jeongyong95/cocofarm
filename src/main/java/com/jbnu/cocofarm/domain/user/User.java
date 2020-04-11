@@ -5,15 +5,12 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.jbnu.cocofarm.domain.asisstant.Role;
 import com.jbnu.cocofarm.domain.utility.BaseTime;
 
 import lombok.Getter;
@@ -54,10 +51,6 @@ public class User extends BaseTime {
 
     @Column(nullable = true)
     private String detailAdress;
-
-    @Column
-    @Enumerated(EnumType.STRING)
-    private Role role;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     List<Orders> ordersList = new ArrayList<>();

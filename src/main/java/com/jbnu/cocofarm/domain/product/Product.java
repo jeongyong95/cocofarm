@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.jbnu.cocofarm.domain.user.Review;
+import com.jbnu.cocofarm.domain.user.Seller;
 import com.jbnu.cocofarm.domain.utility.BaseTime;
 
 import lombok.Getter;
@@ -46,6 +47,9 @@ public class Product extends BaseTime {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private Category category;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Seller seller;
 
     @OneToOne(fetch = FetchType.LAZY)
     private ProductDetail productDetail;

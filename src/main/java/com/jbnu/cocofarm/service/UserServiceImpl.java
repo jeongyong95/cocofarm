@@ -36,6 +36,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User getUser(String email) {
+        Optional<User> findedUser = repo.findByEmail(email);
+        return findedUser.get();
+    }
+
+    @Override
     public Boolean checkLogin(String email, String password) {
         Optional<User> findedUser = repo.findByEmail(email);
         User user = new User();
@@ -50,16 +56,6 @@ public class UserServiceImpl implements UserService {
         }
         System.out.println("아이디가 존재하지 않습니다.");
         return false;
-    }
-
-    @Override
-    public User getUser(String email) {
-        Optional<User> findedUser = repo.findByEmail(email);
-        if (findedUser.isPresent()) {
-            return findedUser.get();
-        }
-        System.out.println("존재하지 않는 회원입니다.");
-        return null;
     }
 
     @Override

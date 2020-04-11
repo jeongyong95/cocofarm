@@ -25,15 +25,11 @@
         <!-- Nav End -->
 
         <!-- Logo -->
-        <a class="nav-brand" href="/"
-          ><img src="../static/img/core-img/logo.png" alt=""
-        /></a>
+        <a class="nav-brand" href="/"><img src="../static/img/core-img/logo.png" alt="" /></a>
 
         <!-- Navbar Toggler -->
         <div class="classy-navbar-toggler">
-          <span class="navbarToggler"
-            ><span></span><span></span><span></span
-          ></span>
+          <span class="navbarToggler"><span></span><span></span><span></span></span>
         </div>
 
         <!-- Menu -->
@@ -58,15 +54,15 @@
         <div class="classy-menu">
           <!-- Nav Start -->
           <div class="classynav">
-           
-            <ul th:if = "${session.user} != null">
-              
+
+            <ul th:if="${session.user} != null">
+
               <li><a href="logout">로그아웃</a></li>
               <li><a href="receipe-post">장바구니</a></li>
             </ul>
 
-            <ul th:unless = "${session.user} != null"  > 
-               
+            <ul th:unless="${session.user} != null">
+
               <li><a href="login">로그인</a></li>
               <li><a href="join">회원가입</a></li>
             </ul>

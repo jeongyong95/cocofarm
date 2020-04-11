@@ -2,7 +2,6 @@ package com.jbnu.cocofarm.controller;
 
 import javax.servlet.http.HttpSession;
 
-import com.jbnu.cocofarm.domain.asisstant.Role;
 import com.jbnu.cocofarm.domain.user.User;
 import com.jbnu.cocofarm.service.UserService;
 

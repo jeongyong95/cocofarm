@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>판매자 페이지</title>
+</head>
+
+<body>
+    <form th:action="@{loginSellerAction}" method="POST">
+        <th th:text="'사업자 번호'"></th>
+        <input type="text" name="sellerCode" placeholder="사업자 번호를 입력하세요">
+        <Br></Br>
+        <th th:text="비밀번호"></th>
+        <input type="password" name="password" placeholder="비밀번호를 입력하세요">
+        <hr>
+        <input type="submit" value="로그인">
+    </form>
+    <a href="joinSeller">가입하러 가기</a>
+</body>
+
+</html>

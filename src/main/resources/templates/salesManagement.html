@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>판매 관리 페이지</title>
+</head>
+
+<body>
+    <th th:text="${session.loginedSeller.getSellerCode()}"></th>
+    <hr>
+    <th:block th:each="product : ${Session.loginedSeller.productList}">
+        <th th:text="${product.getName}"></th>
+    </th:block>
+</body>
+
+</html>
