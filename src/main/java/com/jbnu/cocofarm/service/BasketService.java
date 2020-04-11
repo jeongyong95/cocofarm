@@ -5,4 +5,9 @@ package com.jbnu.cocofarm.service;
  */
 public interface BasketService {
 
+    void registerBasket();
+
+    void updateBasket();
+
+    void deleteBasket();
 }

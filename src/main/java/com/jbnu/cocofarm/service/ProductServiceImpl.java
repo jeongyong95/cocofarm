@@ -19,7 +19,7 @@ public class ProductServiceImpl implements ProductService {
     private ProductRepository repo;
 
     @Override
-    public void saveProduct(Product product) {
+    public void registerProduct(Product product) {
         repo.save(product);
         System.out.println("상품등록 성공");
     }

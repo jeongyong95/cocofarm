@@ -15,6 +15,13 @@ import javax.persistence.OneToMany;
 import com.jbnu.cocofarm.domain.product.OrdersDetail;
 import com.jbnu.cocofarm.domain.utility.BaseTime;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 public class Orders extends BaseTime {
 

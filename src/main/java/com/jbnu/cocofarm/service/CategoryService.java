@@ -5,4 +5,10 @@ package com.jbnu.cocofarm.service;
  */
 public interface CategoryService {
 
+    void registerCategory();
+
+    void updateCategory();
+
+    void deleteCategory();
+
 }

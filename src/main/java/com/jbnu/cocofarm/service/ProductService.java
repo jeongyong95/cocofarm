@@ -8,7 +8,7 @@ import com.jbnu.cocofarm.domain.product.Product;
  * ProductService
  */
 public interface ProductService {
-    void saveProduct(Product product);
+    void registerProduct(Product product);
 
     void updateProduct(Product product);
 

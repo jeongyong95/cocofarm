@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.jbnu.cocofarm.domain.product.Product;
 import com.jbnu.cocofarm.domain.utility.BaseTime;
 
 import lombok.Getter;
@@ -17,9 +18,10 @@ import lombok.Setter;
 /**
  * Review
  */
-@NoArgsConstructor
+
 @Getter
 @Setter
+@NoArgsConstructor
 @Entity
 public class Review extends BaseTime {
 
@@ -38,4 +40,7 @@ public class Review extends BaseTime {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Product product;
 }

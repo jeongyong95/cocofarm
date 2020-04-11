@@ -7,7 +7,7 @@ import com.jbnu.cocofarm.domain.user.User;
  */
 public interface UserService {
 
-    void createUser(User user);
+    void registerUser(User user);
 
     void updateUser(User user);
 

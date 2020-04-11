@@ -62,7 +62,7 @@ public class indexController {
             modelAndView.setViewName("redirect:/join");
             return modelAndView;
         }
-        userservice.createUser(user);
+        userservice.registerUser(user);
         modelAndView.setViewName("login");
         return modelAndView;
     }

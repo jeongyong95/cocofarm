@@ -19,7 +19,7 @@ public class ReviewServiceImpl implements ReviewService {
     private ReviewRepository repo;
 
     @Override
-    public void saveReview(Review review) {
+    public void registerReview(Review review) {
         repo.save(review);
         System.out.println("리뷰저장 성공");
     }

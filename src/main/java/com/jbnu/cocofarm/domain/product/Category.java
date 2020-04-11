@@ -23,9 +23,9 @@ import lombok.Setter;
  * Category
  */
 
-@NoArgsConstructor
 @Getter
 @Setter
+@NoArgsConstructor
 @Entity
 public class Category {
     @Id

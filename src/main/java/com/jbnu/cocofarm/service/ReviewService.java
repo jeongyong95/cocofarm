@@ -8,7 +8,7 @@ import com.jbnu.cocofarm.domain.user.Review;
  * ReivewService
  */
 public interface ReviewService {
-    void saveReview(Review review);
+    void registerReview(Review review);
 
     void updateReview(Review review);
 
