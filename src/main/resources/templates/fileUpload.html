@@ -9,10 +9,9 @@
 <body>
     <h1>파일 업로드</h1>
     <hr>
-    <form th:action="@{fileToBucket}" method="post" enctype="multipart/form-data">
-        제목 : <input type="text" name="title"> <br>
-        파일 : <input type="file" name="file"> <br>
-        <button>등록하기</button>
+    <form th:action="@{uploadAction}" method="post" enctype="multipart/form-data">
+        파일 : <input type="file" name="files"> <br>
+        <button>업로드</button>
     </form>
 </body>
 

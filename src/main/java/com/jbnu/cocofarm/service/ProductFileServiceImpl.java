@@ -3,13 +3,14 @@ package com.jbnu.cocofarm.service;
 import com.jbnu.cocofarm.domain.utility.ProductFile;
 import com.jbnu.cocofarm.domain.utility.ProductFileRepository;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 @Service
 public class ProductFileServiceImpl implements ProductFileService {
 
-    @Autowired
     private ProductFileRepository repo;
 
     @Override

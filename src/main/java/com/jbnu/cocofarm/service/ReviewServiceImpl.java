@@ -6,16 +6,17 @@ import java.util.Optional;
 import com.jbnu.cocofarm.domain.user.Review;
 import com.jbnu.cocofarm.domain.user.ReviewRepository;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import lombok.AllArgsConstructor;
 
 /**
  * ReviewServiceImpl
  */
+@AllArgsConstructor
 @Service
 public class ReviewServiceImpl implements ReviewService {
 
-    @Autowired
     private ReviewRepository repo;
 
     @Override

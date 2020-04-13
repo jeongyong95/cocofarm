@@ -1,4 +1,4 @@
-// package com.jbnu.cocofarm;
+// package com.jbnu.cocofarm.config;
 
 // import org.springframework.context.annotation.Bean;
 // import org.springframework.context.annotation.Configuration;

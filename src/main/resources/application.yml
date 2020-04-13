@@ -16,7 +16,7 @@ spring:
   # JPA setting
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: none
     generate-ddl: true
     properties:
       hibernate:

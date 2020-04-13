@@ -50,7 +50,7 @@ public class User extends BaseTime {
     private String address;
 
     @Column(nullable = true)
-    private String detailAdress;
+    private String detailAddress;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     List<Orders> ordersList = new ArrayList<>();

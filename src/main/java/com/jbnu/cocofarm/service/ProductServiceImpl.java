@@ -4,19 +4,22 @@ import java.util.List;
 import java.util.Optional;
 
 import com.jbnu.cocofarm.domain.product.Product;
+import com.jbnu.cocofarm.domain.product.ProductDetailRepository;
 import com.jbnu.cocofarm.domain.product.ProductRepository;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import lombok.AllArgsConstructor;
 
 /**
  * ProductServiceImpl
  */
+@AllArgsConstructor
 @Service
 public class ProductServiceImpl implements ProductService {
 
-    @Autowired
     private ProductRepository repo;
+    private ProductDetailRepository productDetailRepo;
 
     @Override
     public void registerProduct(Product product) {

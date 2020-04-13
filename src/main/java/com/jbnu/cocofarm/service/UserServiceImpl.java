@@ -5,16 +5,17 @@ import java.util.Optional;
 import com.jbnu.cocofarm.domain.user.User;
 import com.jbnu.cocofarm.domain.user.UserRepository;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import lombok.AllArgsConstructor;
 
 /**
  * UserServiceImpl
  */
+@AllArgsConstructor
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Autowired
     private UserRepository repo;
 
     @Override
