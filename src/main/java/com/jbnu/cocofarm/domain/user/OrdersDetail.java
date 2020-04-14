@@ -1,4 +1,4 @@
-package com.jbnu.cocofarm.domain.product;
+package com.jbnu.cocofarm.domain.user;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.ManyToOne;
 
-import com.jbnu.cocofarm.domain.user.Orders;
+import com.jbnu.cocofarm.domain.product.ProductDetail;
 import com.jbnu.cocofarm.domain.utility.OrdersDetailId;
 
 @Entity

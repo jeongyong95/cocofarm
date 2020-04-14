@@ -1,18 +1,211 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns="http://www.thymeleaf.org">
+
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>판매 관리 페이지</title>
+    <th:block th:include="fragments/common/head"></th:block>
 </head>
 
 <body>
-    <th th:text="${session.loginedSeller.getSellerCode()}"></th>
-    <!-- <hr>
-    <th:block th:each="product : ${Session.loginedSeller.productList}">
-        <th th:text="${product.getName}"></th>
-    </th:block> -->
+
+
+    <!-- ##### Breadcumb Area Start ##### -->
+    <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb5.jpg);">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="breadcumb-text text-center">
+                        <h2>Elements</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Breadcumb Area End ##### -->
+
+    <!-- ##### Elements Area Start ##### -->
+    <section class="elements-area section-padding-80-0">
+        <div class="container">
+            <div class="row">
+
+
+
+                <!-- ********** Progress Bars & Accordions ********** -->
+                <div class="col-12">
+                    <div class="elements-title mb-80">
+                        <h2>Accordians &amp; Tabs</h2>
+                    </div>
+                </div>
+
+                <!-- ##### Accordians ##### -->
+                <div class="col-12">
+                    <div class="row">
+
+
+                        <div class="col-12 col-lg-3">
+                            <div class="accordions mb-80" id="accordion" role="tablist" aria-multiselectable="true">
+
+                                <!-- Single Accordian Area -->
+                                <div class="panel single-accordion">
+                                    <h6><a role="button" class="" aria-expanded="true" aria-controls="collapseOne"
+                                            data-toggle="collapse" data-parent="#accordion" href="#collapseOne">판매상품 목록
+                                            <span class="accor-open"><i class="fa fa-plus"
+                                                    aria-hidden="true"></i></span>
+                                            <span class="accor-close"><i class="fa fa-minus"
+                                                    aria-hidden="true"></i></span>
+                                        </a></h6>
+
+                                </div>
+
+                                <div class="panel single-accordion">
+                                    <h6>
+                                        <a role="button" class="collapsed" aria-expanded="true"
+                                            aria-controls="collapseTwo" data-parent="#accordion" data-toggle="collapse"
+                                            href="#collapseTwo">주문 조희
+                                            <span class="accor-open"><i class="fa fa-plus"
+                                                    aria-hidden="true"></i></span>
+                                            <span class="accor-close"><i class="fa fa-minus"
+                                                    aria-hidden="true"></i></span>
+                                        </a></h6>
+
+                                </div>
+
+                                <div class="panel single-accordion">
+                                    <h6>
+                                        <a role="button" aria-expanded="true" aria-controls="collapseThree"
+                                            class="collapsed" data-parent="#accordion" data-toggle="collapse"
+                                            href="#collapseThree">배송조회
+                                            <span class="accor-open"><i class="fa fa-plus"
+                                                    aria-hidden="true"></i></span>
+                                            <span class="accor-close"><i class="fa fa-minus"
+                                                    aria-hidden="true"></i></span>
+                                        </a>
+                                    </h6>
+
+                                </div>
+
+                                <div class="panel single-accordion">
+                                    <h6>
+                                        <a role="button" aria-expanded="true" aria-controls="collapseFour"
+                                            class="collapsed" data-parent="#accordion" data-toggle="collapse"
+                                            href="#collapseFour">매출 내역
+                                            <span class="accor-open"><i class="fa fa-plus"
+                                                    aria-hidden="true"></i></span>
+                                            <span class="accor-close"><i class="fa fa-minus"
+                                                    aria-hidden="true"></i></span>
+                                        </a>
+                                    </h6>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-9">
+                            <div class="accordions mb-80" id="accordion" role="tablist" aria-multiselectable="true">
+
+
+                                <div id="collapseOne" class="accordion-content collapse show">
+                                    <h5>판매상품 목록</h5>
+                                    <div class="row">
+                                        <div class="col-12">
+
+                                            <div class="row align-items-center mt-90">
+                                                <!-- Single Cool Fact -->
+                                                <div class="col-12 col-sm-6 col-lg-3">
+                                                    <div class="single-cool-fact">
+                                                        <h6>카테고리</h6>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Single Cool Fact -->
+                                                <div class="col-12 col-sm-6 col-lg-3">
+                                                    <div class="single-cool-fact">
+                                                        <h6>상품이름</h6>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Single Cool Fact -->
+                                                <div class="col-12 col-sm-6 col-lg-3">
+                                                    <div class="single-cool-fact">
+                                                        <h6>가격</h6>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Single Cool Fact -->
+                                                <div class="col-12 col-sm-6 col-lg-3">
+                                                    <div class="single-cool-fact">
+                                                        <h6>재고</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row align-items-center mt-90">
+
+                                                <th:block th:each="product : ${productList}">
+
+
+                                                    <!-- Single Cool Fact -->
+                                                    <div class="col-12 col-sm-6 col-lg-3">
+                                                        <div class="single-cool-fact">
+                                                            <td th:text="${product.getCategory()}"> </td>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Single Cool Fact -->
+                                                    <div class="col-12 col-sm-6 col-lg-3">
+                                                        <div class="single-cool-fact">
+                                                            <td th:text="${product.getName()}"> </td>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Single Cool Fact -->
+                                                    <div class="col-12 col-sm-6 col-lg-3">
+                                                        <div class="single-cool-fact">
+                                                            <td th:text="${product.getPrice()}"> </td>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Single Cool Fact -->
+                                                    <div class="col-12 col-sm-6 col-lg-3">
+                                                        <div class="single-cool-fact">
+                                                            <!-- <td th:text="${product.getProductDetail().getStockNumber}"> </td> -->
+                                                        </div>
+                                                    </div>
+
+                                                </th:block>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+
+                                    <div id="collapseTwo" class="accordion-content collapse">
+                                        <p>주문 조회</p>
+                                    </div>
+
+                                    <div id="collapseThree" class="accordion-content collapse">
+                                        <p>배송 조회</p>
+                                    </div>
+
+                                    <div id="collapseFour" class="accordion-content collapse">
+                                        <p>매출 내역</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </section>
+
+
+    <th:block th:include="fragments/common/script"></th:block>
 </body>
 
 </html>

@@ -4,7 +4,6 @@
 
 <head>
     <th:block th:include="fragments/common/head"></th:block>
-    <script src="https://cdn.ckeditor.com/ckeditor5/11.0.1/classic/ckeditor.js"></script>
 </head>
 
 <body>
@@ -81,19 +80,9 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <!-- <textarea cols="80" name="description">
-                                    </textarea> -->
-                                    <textarea id="editor1" name="description"></textarea>
-
-                                    <script type="text/javascript">
-
-                                        CKEDITOR.replace('editor1', {});
-                                    </script>
+                                    <textarea id="editor" name="description"></textarea>
                                 </div>
                             </div>
-                            <!-- <div>
-                                <input type="hidden" name="seller" value="${session.loginedSeller}">
-                            </div> -->
                             <div class="col-12">
                                 <button class="btn delicious-btn mt-30" type="submit">등록</button>
                             </div>
@@ -111,7 +100,7 @@
     </!DOCTYPE>
     <!-- ./wrapper -->
 
-    <th:block th:include="fragments/common/script"></th:block>
+    <th:block th:include="fragments/common/editor"></th:block>
 </body>
 
 </html>

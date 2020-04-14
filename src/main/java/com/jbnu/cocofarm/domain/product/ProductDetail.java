@@ -13,7 +13,15 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.jbnu.cocofarm.domain.user.Basket;
+import com.jbnu.cocofarm.domain.user.OrdersDetail;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 public class ProductDetail {
 

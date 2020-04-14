@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <th:block th:include="fragments/common/head"></th:block>
+</head>
+
+<body th:object="${}">
+    <!-- Search Wrapper -->
+    <div class="search-wrapper">
+        <!-- Close Btn -->
+        <div class="close-btn"><i class="fa fa-times" aria-hidden="true"></i></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <form action="#" method="post">
+                        <input type="search" name="search" placeholder="Type any keywords...">
+                        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Navbar -->
+    <th:block th:include="fragments/common/navbar"></th:block>
+    <br>
+    <br>
+    <!-- Content Wrapper. Contains page content -->
+    <!-- ##### Breadcumb Area Start ##### -->
+    <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb3.jpg);">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="breadcumb-text text-center">
+                        <h2>판매 상품 등록</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Breadcumb Area End ##### -->
+    <!-- Receipe Content Area -->
+    <div class="receipe-content-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading text-left">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="contact-form-area">
+                        <form action="registerProductAction" method="post" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div>
+                                        파일 : <input type="file" name="files"> <br>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 col-lg-6">
+                                            <select class="form-control" name="category">
+                                                <option value="" selected disabled>카테고리</option>
+                                                <option value="1">과일</option>
+                                                <option value="1">채소</option>
+                                                <option value="1">공산품</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-12 col-lg-6">
+                                            <input type="text" class="form-control" name="name" placeholder="상품 이름">
+                                        </div>
+                                        <div class="col-12 col-lg-6">
+                                            <input type="number" class="form-control" name="stockNumber"
+                                                placeholder="수량">
+                                        </div>
+                                        <div class="col-12 col-lg-6">
+                                            <input type="number" class="form-control" name="price" placeholder="가격">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <textarea id="editor" name="description"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn delicious-btn mt-30" type="submit">등록</button>
+                            </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- /.content-wrapper -->
+
+    <th:block th:include="fragments/common/footer"></th:block>
+
+    </!DOCTYPE>
+    <!-- ./wrapper -->
+
+    <th:block th:include="fragments/common/editor"></th:block>
+</body>
+
+</html>

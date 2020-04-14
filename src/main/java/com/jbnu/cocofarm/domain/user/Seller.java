@@ -29,6 +29,9 @@ public class Seller extends BaseTime {
     private Long id;
 
     @Column
+    private String name;
+
+    @Column
     private String sellerCode;
 
     @Column

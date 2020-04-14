@@ -36,21 +36,21 @@ spring:
 # 운영 모드에서는 true로 해야 합니다.
 
 # Spring Cloud setting
-cloud:
-  aws:
-    # 자격증명
-    credentials:
-      access-key: 
-      secret-key: 
+# cloud:
+#   aws:
+#     # 자격증명
+#     credentials:
+#       access-key: 
+#       secret-key: 
 
-    # 버킷 설정
-    # s3: 얘 왜 안되냐ㅠㅠ
-    #   bucket: cocofarmbucket
+#     # 버킷 설정
+#     # s3: 얘 왜 안되냐ㅠㅠ
+#     #   bucket: cocofarmbucket
 
-    # 리전 설정 : 서울
-    region:
-      static: ap-northeast-2
+#     # 리전 설정 : 서울
+#     region:
+#       static: ap-northeast-2
 
-    stack:
-      auto: false
+#     stack:
+#       auto: false
     

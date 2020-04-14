@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <th:block th:include="fragments/common/head"></th:block>
+</head>
+
+<body>
+
+    <!-- Search Wrapper -->
+    <div class="search-wrapper">
+        <!-- Close Btn -->
+        <div class="close-btn"><i class="fa fa-times" aria-hidden="true"></i></div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <form action="#" method="post">
+                        <input type="search" name="search" placeholder="Type any keywords...">
+                        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <th:block th:include="fragments/common/navbar"></th:block>
+    <br>
+    <br>
+
+    <!-- Content Wrapper. Contains page content -->
+    <!-- ##### Breadcumb Area Start ##### -->
+    <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb3.jpg);">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="breadcumb-text text-center">
+                        <h2>판매자 로그인</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Breadcumb Area End ##### -->
+
+
+
+
+
+    <!-- Receipe Content Area -->
+    <div class="receipe-content-area">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading text-left">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="contact-form-area">
+                        <form th:action="@{loginSellerAction}" method="post">
+                            <div class="row">
+
+                                <div class="col-12 ">
+                                    <input type="text" class="form-control" name="sellerCode" placeholder="사업자 번호">
+                                </div>
+
+                                <div class="col-12 ">
+                                    <input type="password" class="form-control" name="password" placeholder="Password">
+                                </div>
+
+
+                                <div class="col-12 col-lg-3">
+                                    <button class="btn delicious-btn mt-30" type="submit">Log in</button>
+                                </div>
+
+                                <div class="col-12 col-lg-3">
+                                    <button class="btn delicious-btn mt-30" type="button"
+                                        onclick="location.href = 'joinSeller'">Join</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.content-wrapper -->
+
+    <th:block th:include="fragments/common/footer"></th:block>
+
+    </div>
+    <!-- ./wrapper -->
+
+    <th:block th:include="fragments/common/script"></th:block>
+</body>
+
+</html>

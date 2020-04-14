@@ -1,20 +1,13 @@
 package com.jbnu.cocofarm.controller;
 
-import java.io.File;
-import java.io.IOException;
-
 import javax.servlet.http.HttpSession;
 
-import com.jbnu.cocofarm.domain.product.Product;
 import com.jbnu.cocofarm.domain.user.Seller;
-import com.jbnu.cocofarm.service.ProductService;
 import com.jbnu.cocofarm.service.SellerService;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import lombok.AllArgsConstructor;
@@ -24,16 +17,10 @@ import lombok.AllArgsConstructor;
 public class SellerController {
 
     private SellerService service;
-    private ProductService productService;
 
-    @GetMapping(value = "/salesManagement")
-    public String salesManagement() {
-        return "salesManagement";
-    }
-
-    @GetMapping(value = "/loginSeller")
+    @GetMapping(value = { "/loginSeller", "/loginseller" })
     public ModelAndView loginSeller(ModelAndView modelAndView) {
-        modelAndView.setViewName("testLoginSeller");
+        modelAndView.setViewName("loginSeller");
         return modelAndView;
     }
 
@@ -51,9 +38,9 @@ public class SellerController {
         return modelAndView;
     }
 
-    @GetMapping(value = "/joinSeller")
+    @GetMapping(value = { "/joinSeller", "/joinseller" })
     public ModelAndView joinSeller(ModelAndView modelAndView) {
-        modelAndView.setViewName("testJoinSeller");
+        modelAndView.setViewName("joinSeller");
         return modelAndView;
     }
 
@@ -66,25 +53,7 @@ public class SellerController {
             return modelAndView;
         }
         service.registerSeller(seller);
-        modelAndView.setViewName("testLoginSeller");
-        return modelAndView;
-    }
-
-    @GetMapping(value = "/salesManagement/registerProduct")
-    public ModelAndView registerProduct(ModelAndView modelAndView) {
-        modelAndView.setViewName("registerProduct");
-        return modelAndView;
-    }
-
-    @PostMapping(value = "/salesManagement/registerProductAction")
-    public ModelAndView registerProductAction(ModelAndView modelAndView, @RequestPart MultipartFile files,
-            HttpSession session, Product product) throws IOException {
-        String saveDirectory = "/Users/jeongyong/Desktop/server/";
-        files.transferTo(new File(saveDirectory + files.getOriginalFilename()));
-
-        product.setSeller((Seller) session.getAttribute("loginedSeller"));
-        productService.registerProduct(product);
-        modelAndView.setViewName("redirect:/salesManagement");
+        modelAndView.setViewName("redirect:/loginSeller");
         return modelAndView;
     }
 
