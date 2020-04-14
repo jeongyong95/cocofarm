@@ -17,16 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 @RestController
 public class SellerController {
 
     private SellerService service;
     private ProductService productService;
-
-    public SellerController(SellerService service, ProductService productService) {
-        this.service = service;
-        this.productService = productService;
-    }
 
     @GetMapping(value = "/salesManagement")
     public String salesManagement() {

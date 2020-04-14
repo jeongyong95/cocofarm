@@ -10,14 +10,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 @RestController
 public class UserController {
 
     private UserService service;
-
-    public UserController(UserService service) {
-        this.service = service;
-    }
 
     @GetMapping(value = "/login")
     public ModelAndView login(ModelAndView modelAndView) {
