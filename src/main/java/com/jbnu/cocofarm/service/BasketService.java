@@ -1,13 +1,15 @@
 package com.jbnu.cocofarm.service;
 
+import com.jbnu.cocofarm.domain.user.Basket;
+
 /**
  * BasketService
  */
 public interface BasketService {
 
-    void registerBasket();
+    void registerBasket(Basket basket);
 
-    void updateBasket();
+    void updateBasket(Basket basket);
 
-    void deleteBasket();
+    void deleteBasket(Basket basket);
 }

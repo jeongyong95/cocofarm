@@ -30,7 +30,7 @@ public class Basket extends BaseTime {
     private Long id;
 
     @Column
-    private Long count;
+    private Integer count;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;

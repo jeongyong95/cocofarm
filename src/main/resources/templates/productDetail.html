@@ -31,66 +31,69 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-lg-6">
-                            <div class="container">
-                                <div class="row" th:object="${product}">
-                                    <div class="col-6">
-                                        <div class="blog-content">
-                                            <h5>상품 이름 : </h5>
+                        <form th:action="@{/productDetailView/buyProduct}" method="POST">
+                            <div class="col-lg-6">
+                                <div class="container">
+                                    <div class="row" th:object="${product}">
+                                        <div class="col-6">
+                                            <div class="blog-content">
+                                                <h5>상품 이름 : </h5>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="blog-content">
-                                            <h5 th:text="${product.getName()}"></h5>
+                                        <div class="col-6">
+                                            <div class="blog-content">
+                                                <h5 th:text="${product.getName()}"></h5>
+                                            </div>
                                         </div>
-                                    </div>
-
-                                    <div class="col-6">
-                                        <div class="blog-content">
-                                            <h5> 판매가 :</h5>
+                                        <div class="col-6">
+                                            <div class="blog-content">
+                                                <h5> 판매가 :</h5>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="blog-content">
-                                            <h5 th:text="${product.getPrice()}"></h5>
+                                        <div class="col-6">
+                                            <div class="blog-content">
+                                                <h5 th:text="${product.getPrice()}"></h5>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="blog-content">
-                                            <h5> 재고 : </h5>
+                                        <div class="col-6">
+                                            <div class="blog-content">
+                                                <h5> 재고 : </h5>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="blog-content">
-                                            <h5 th:text="${product.getProductDetail().getStockNumber()}"></h5>
+                                        <div class="col-6">
+                                            <div class="blog-content">
+                                                <h5 th:text="${product.getProductDetail().getStockNumber()}"></h5>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <!-- <div class="col-6">
-                                        <div class="blog-content">
-                                            <h5> 구매 수량 : </h5>
+                                        <div class="col-6">
+                                            <div class="blog-content">
+                                                <h5> 구매 수량 : </h5>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="blog-content">
-                                            <input type="number">
+                                        <div class="col-6">
+                                            <div class="blog-content">
+                                                <input type="number" name="count"
+                                                    max="${product.getProductDetail().getStockNumber()">
+                                                <input type="hidden" name="productDetailId"
+                                                    th:value="${product.getProductDetail().getId()}">
+                                            </div>
                                         </div>
-                                    </div> -->
-                                </div>
-                            </div>
-
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-6 ">
-                                        <button class="btn delicious-btn mt-30" type="submit">구매하기</button>
-                                    </div>
-                                    <div class="col-6 ">
-                                        <button class="btn delicious-btn mt-30" type="button"
-                                            onclick="location.href = 'joinSeller'">장바구니</button>
                                     </div>
                                 </div>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-6 ">
+                                            <button class="btn delicious-btn mt-30" type="submit">구매하기</button>
+                                        </div>
+                                        <div class="col-6 ">
+                                            <button formaction="/productDetailView/insertIntoBasket" formmethod="POST"
+                                                class="btn delicious-btn mt-30" type="submit">장바구니</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        </form>
+
                     </div>
                 </div>
 
@@ -105,9 +108,8 @@
                                 <span class="accor-close"><i class="fa fa-minus" aria-hidden="true"></i></span>
                             </a></h6>
                         <div id="collapseOne" class="accordion-content collapse show">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel lectus eu felis semper
-                                finibus ac eget ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
-                                vulputate id justo quis facilisis.</p>
+
+                            <p th:text="${product.getDescription()}"></p>
                         </div>
                     </div>
 

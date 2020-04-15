@@ -54,4 +54,7 @@ public class User extends BaseTime {
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     List<Orders> ordersList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    List<Basket> basketList = new ArrayList<>();
 }

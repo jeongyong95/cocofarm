@@ -76,4 +76,13 @@ public class ProductServiceImpl implements ProductService {
         return productRepo.findBySeller(seller);
     }
 
+    @Override
+    public ProductDetail searchProductDetailById(Long productDetailId) {
+        Optional<ProductDetail> resultProductDetail = productDetailRepo.findById(productDetailId);
+        if (resultProductDetail.isPresent()) {
+            return resultProductDetail.get();
+        }
+        return null;
+    }
+
 }

@@ -1,14 +1,16 @@
 package com.jbnu.cocofarm.service;
 
+import com.jbnu.cocofarm.domain.product.Category;
+
 /**
  * CategoryService
  */
 public interface CategoryService {
 
-    void registerCategory();
+    void registerCategory(Category category);
 
-    void updateCategory();
+    void updateCategory(Category category);
 
-    void deleteCategory();
+    void deleteCategory(Category category);
 
 }

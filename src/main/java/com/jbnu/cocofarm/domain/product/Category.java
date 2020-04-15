@@ -9,9 +9,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-
-import com.jbnu.cocofarm.domain.asisstant.RootCategory;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,10 +30,13 @@ public class Category {
     private Long id;
 
     @Column(nullable = false)
-    private RootCategory rootCategory;
+    private String categoryName;
 
-    @Column(nullable = false)
-    private String leafCategory;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Category rootCategory;
+
+    @OneToMany(mappedBy = "rootCategory", fetch = FetchType.LAZY)
+    List<Category> leafCategoryList = new ArrayList<>();
 
     @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
     List<Product> productList = new ArrayList<>();

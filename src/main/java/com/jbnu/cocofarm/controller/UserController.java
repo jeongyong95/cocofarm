@@ -1,7 +1,10 @@
 package com.jbnu.cocofarm.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
+import com.jbnu.cocofarm.domain.user.Basket;
 import com.jbnu.cocofarm.domain.user.User;
 import com.jbnu.cocofarm.service.UserService;
 
@@ -61,9 +64,20 @@ public class UserController {
     @GetMapping(value = "/logout")
     public ModelAndView logout(HttpSession session) {
         ModelAndView modelAndView = new ModelAndView();
+
         session.invalidate();
         modelAndView.setViewName("redirect:/index");
+        return modelAndView;
+    }
 
+    @GetMapping(value = "/basket")
+    public ModelAndView basket(HttpSession session) {
+        ModelAndView modelAndView = new ModelAndView();
+        User user = (User) session.getAttribute("loginedUser");
+        List<Basket> basketList = service.getMyBasket(user);
+
+        modelAndView.addObject("basketList", basketList);
+        modelAndView.setViewName("basket");
         return modelAndView;
     }
 }

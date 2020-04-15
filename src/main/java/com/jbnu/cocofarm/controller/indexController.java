@@ -36,17 +36,10 @@ public class indexController {
         return modelAndView;
     }
 
-    @GetMapping(value = { "/index/productDetailView", "/productDetailView" })
-    public ModelAndView productDetailView(Long productNumber) {
+    @GetMapping(value = "/productDetailView/{productId}")
+    public ModelAndView productDetailView(@PathVariable Long productId) {
         ModelAndView modelAndView = new ModelAndView();
-        Product product = productService.searchProductById(productNumber);
-
-        // if (product == null) {
-        // modelAndView.addObject("errorMessage", "찾는 상품이 없습니다.");
-        // modelAndView.setViewName("redirect:/index");
-        // return modelAndView;
-        // }
-
+        Product product = productService.searchProductById(productId);
         modelAndView.addObject("product", product);
         modelAndView.setViewName("productDetail");
         return modelAndView;

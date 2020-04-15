@@ -52,20 +52,19 @@
       <div class="row">
         <!-- Single Best Receipe Area -->
         <th:block th:each="product : ${productList}" th:if="${+productStat.count < 7}">
-          <form th:action="@{productView}" class="col-12 col-sm-6 col-lg-4">
+          <div class="col-12 col-sm-6 col-lg-4">
             <div class="single-best-receipe-area mb-30">
               <img src="../static/img/product-img/apple.jpg" alt="사과">
               <div class="receipe-content">
-                <a th:href="productDetailView">
+                <a th:href="@{/productDetailView/{productId}(productId=${product.getId()})}">
                   <td th:text="${product.getName()}"> </td>
                 </a>
-                <input type="number" name="productId" value="${product.getId()}">
                 <div>
                   <span class="product-price" th:text="${product.getPrice()}"></span><span class="product-won">원</span>
                 </div>
               </div>
             </div>
-          </form>
+          </div>
       </div>
       </th:block>
     </div>
