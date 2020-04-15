@@ -3,104 +3,174 @@
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
-    <th:block th:include="fragments/common/head"></th:block>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>상품 세부정보 - 코코팜</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="../../../static/style.css">
 </head>
 
-<body th:object="${}">
-    <!-- Search Wrapper -->
-    <div class="search-wrapper">
-        <!-- Close Btn -->
-        <div class="close-btn"><i class="fa fa-times" aria-hidden="true"></i></div>
+
+<body>
+
+    <th:block th:include="fragments/common/header"></th:block>
+
+    <!-- ##### Blog Area Start ##### -->
+    <div class="blog-area section-padding-80">
         <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <form action="#" method="post">
-                        <input type="search" name="search" placeholder="Type any keywords...">
-                        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Navbar -->
-    <th:block th:include="fragments/common/navbar"></th:block>
-    <br>
-    <br>
-    <!-- Content Wrapper. Contains page content -->
-    <!-- ##### Breadcumb Area Start ##### -->
-    <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb3.jpg);">
-        <div class="container h-100">
-            <div class="row h-100 align-items-center">
-                <div class="col-12">
-                    <div class="breadcumb-text text-center">
-                        <h2>판매 상품 등록</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- ##### Breadcumb Area End ##### -->
-    <!-- Receipe Content Area -->
-    <div class="receipe-content-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section-heading text-left">
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="contact-form-area">
-                        <form action="registerProductAction" method="post" enctype="multipart/form-data">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div>
-                                        파일 : <input type="file" name="files"> <br>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12 col-lg-6">
-                                            <select class="form-control" name="category">
-                                                <option value="" selected disabled>카테고리</option>
-                                                <option value="1">과일</option>
-                                                <option value="1">채소</option>
-                                                <option value="1">공산품</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-12 col-lg-6">
-                                            <input type="text" class="form-control" name="name" placeholder="상품 이름">
-                                        </div>
-                                        <div class="col-12 col-lg-6">
-                                            <input type="number" class="form-control" name="stockNumber"
-                                                placeholder="수량">
-                                        </div>
-                                        <div class="col-12 col-lg-6">
-                                            <input type="number" class="form-control" name="price" placeholder="가격">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <textarea id="editor" name="description"></textarea>
+            <div class="col-12">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-lg-6">
+                            <!-- Single Blog Area -->
+                            <div class="single-blog-area mb-80">
+                                <!-- Thumbnail -->
+                                <div class="blog-thumbnail">
+                                    <img src="../static/img/product-img/apple.jpg" alt="">
                                 </div>
                             </div>
-                            <div class="col-12">
-                                <button class="btn delicious-btn mt-30" type="submit">등록</button>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="container">
+                                <div class="row" th:object="${product}">
+                                    <div class="col-6">
+                                        <div class="blog-content">
+                                            <h5>상품 이름 : </h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="blog-content">
+                                            <h5 th:text="${product.getName()}"></h5>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="blog-content">
+                                            <h5> 판매가 :</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="blog-content">
+                                            <h5 th:text="${product.getPrice()}"></h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="blog-content">
+                                            <h5> 재고 : </h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="blog-content">
+                                            <h5 th:text="${product.getProductDetail().getStockNumber()}"></h5>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-6">
+                                        <div class="blog-content">
+                                            <h5> 구매 수량 : </h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="blog-content">
+                                            <input type="number">
+                                        </div>
+                                    </div> -->
+                                </div>
                             </div>
+
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-6 ">
+                                        <button class="btn delicious-btn mt-30" type="submit">구매하기</button>
+                                    </div>
+                                    <div class="col-6 ">
+                                        <button class="btn delicious-btn mt-30" type="button"
+                                            onclick="location.href = 'joinSeller'">장바구니</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    </form>
                 </div>
+
+                <!-- Buttons -->
+                <div class="accordions mb-80" id="accordion" role="tablist" aria-multiselectable="true">
+
+                    <!-- Single Accordian Area -->
+                    <div class="panel single-accordion">
+                        <h6><a role="button" class="" aria-expanded="true" aria-controls="collapseOne"
+                                data-toggle="collapse" data-parent="#accordion" href="#collapseOne">상세 정보
+                                <span class="accor-open"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                <span class="accor-close"><i class="fa fa-minus" aria-hidden="true"></i></span>
+                            </a></h6>
+                        <div id="collapseOne" class="accordion-content collapse show">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel lectus eu felis semper
+                                finibus ac eget ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+                                vulputate id justo quis facilisis.</p>
+                        </div>
+                    </div>
+
+                    <!-- Single Accordian Area -->
+                    <div class="panel single-accordion">
+                        <h6>
+                            <a role="button" class="collapsed" aria-expanded="true" aria-controls="collapseTwo"
+                                data-parent="#accordion" data-toggle="collapse" href="#collapseTwo">구매 안내
+                                <span class="accor-open"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                <span class="accor-close"><i class="fa fa-minus" aria-hidden="true"></i></span>
+                            </a>
+                        </h6>
+                        <div id="collapseTwo" class="accordion-content collapse">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel lectus eu felis semper
+                                finibus ac eget ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+                                vulputate id justo quis facilisis.</p>
+                        </div>
+                    </div>
+
+                    <!-- Single Accordian Area -->
+                    <div class="panel single-accordion">
+                        <h6>
+                            <a role="button" aria-expanded="true" aria-controls="collapseThree" class="collapsed"
+                                data-parent="#accordion" data-toggle="collapse" href="#collapseThree">상품 후기
+                                <span class="accor-open"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                <span class="accor-close"><i class="fa fa-minus" aria-hidden="true"></i></span>
+                            </a>
+                        </h6>
+                        <div id="collapseThree" class="accordion-content collapse">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel lectus eu felis semper
+                                finibus ac eget ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+                                vulputate id justo quis facilisis.</p>
+                        </div>
+                    </div>
+
+                    <!-- Single Accordian Area -->
+                    <div class="panel single-accordion">
+                        <h6>
+                            <a role="button" aria-expanded="true" aria-controls="collapseFour" class="collapsed"
+                                data-parent="#accordion" data-toggle="collapse" href="#collapseFour">상품 문의
+                                <span class="accor-open"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                <span class="accor-close"><i class="fa fa-minus" aria-hidden="true"></i></span>
+                            </a>
+                        </h6>
+                        <div id="collapseFour" class="accordion-content collapse">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel lectus eu felis semper
+                                finibus ac eget ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+                                vulputate id justo quis facilisis.</p>
+                        </div>
+                    </div>
+                </div>
+
+
+
             </div>
+
         </div>
     </div>
-    </div>
-    <!-- /.content-wrapper -->
+    <!-- ##### Blog Area End ##### -->
 
     <th:block th:include="fragments/common/footer"></th:block>
 
-    </!DOCTYPE>
-    <!-- ./wrapper -->
-
-    <th:block th:include="fragments/common/editor"></th:block>
+    <th:block th:include="fragments/common/script"></th:block>
 </body>
 
 </html>

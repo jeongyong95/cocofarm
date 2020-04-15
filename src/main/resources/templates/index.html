@@ -1,41 +1,80 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
 <head>
-  <th:block th:include="fragments/common/head"></th:block>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>코코팜</title>
+  <link rel="stylesheet" href="../../../static/style.css">
 </head>
+
 <body>
-    
-    <!-- Search Wrapper -->
-    <div class="search-wrapper">
-      <!-- Close Btn -->
-      <div class="close-btn"><i class="fa fa-times" aria-hidden="true"></i></div>
-  
-      <div class="container">
-        <div class="row">
-          <div class="col-12">
-            <form action="#" method="post">
-              <input type="search" name="search" placeholder="Type any keywords...">
-              <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-            </form>
+  <!-- header -->
+  <th:block th:include="fragments/common/header"></th:block>
+
+  <!-- content -->
+  <!-- ##### Hero Area Start ##### -->
+
+  <section class="hero-area">
+    <div class="hero-slides owl-carousel">
+      <!-- Single Hero Slide -->
+      <!-- 이 single hero slide 부분에 th:each 문 감싸면 좋을 듯 합니당 -->
+      <div class="single-hero-slide bg-img" style="background-image: url(img/bg-img/bg1.jpg);">
+        <div class="container h-100">
+          <div class="row h-100 align-items-center">
+            <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+              <div class="hero-slides-content" data-animation="fadeInUp" data-delay="100ms">
+                <h2 data-animation="fadeInUp" data-delay="300ms">프로모션 상품</h2>
+                <p data-animation="fadeInUp" data-delay="700ms">프로모션 상품 설명하기</p>
+                <a href="#" class="btn delicious-btn" data-animation="fadeInUp" data-delay="1000ms">더보기</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
+  </section>
+  <!-- ##### Hero Area End ##### -->
 
-    <!-- Navbar -->
-    <th:block th:include="fragments/common/navbar"></th:block>
-    <br>
-    <br>
+  <section class="best-receipe-area">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="section-heading">
+            <h3>신상품</h3>
+          </div>
+        </div>
+      </div>
 
-    <!-- Content Wrapper. Contains page content -->
-    <th:block th:include="${template}"></th:block>
-    <!-- /.content-wrapper -->
+      <div class="row">
+        <!-- Single Best Receipe Area -->
+        <th:block th:each="product : ${productList}" th:if="${+productStat.count < 7}">
+          <form th:action="@{productView}" class="col-12 col-sm-6 col-lg-4">
+            <div class="single-best-receipe-area mb-30">
+              <img src="../static/img/product-img/apple.jpg" alt="사과">
+              <div class="receipe-content">
+                <a th:href="productDetailView">
+                  <td th:text="${product.getName()}"> </td>
+                </a>
+                <input type="number" name="productId" value="${product.getId()}">
+                <div>
+                  <span class="product-price" th:text="${product.getPrice()}"></span><span class="product-won">원</span>
+                </div>
+              </div>
+            </div>
+          </form>
+      </div>
+      </th:block>
+    </div>
+    </div>
+  </section>
 
-    <th:block th:include="fragments/common/footer"></th:block>
-
-  </div>
-  <!-- ./wrapper -->
-
+  <!-- footer -->
+  <th:block th:include="fragments/common/footer"></th:block>
   <th:block th:include="fragments/common/script"></th:block>
 </body>
+
 </html>

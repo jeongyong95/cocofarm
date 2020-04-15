@@ -9,11 +9,13 @@ import com.jbnu.cocofarm.domain.user.Seller;
  * ProductService
  */
 public interface ProductService {
-    void registerProduct(Product product);
+    void registerProduct(Product product, Integer stockNumber);
 
     void updateProduct(Product product);
 
-    void deleteProduct(Long id);
+    void deleteProduct(Long productId);
+
+    Product searchProductById(Long productId);
 
     List<Product> getAllProducts();
 

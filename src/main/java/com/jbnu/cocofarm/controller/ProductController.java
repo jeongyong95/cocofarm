@@ -44,12 +44,12 @@ public class ProductController {
 
     @PostMapping(value = "/salesManagement/registerProductAction")
     public ModelAndView registerProductAction(ModelAndView modelAndView, @RequestPart MultipartFile files,
-            HttpSession session, Product product) throws IOException {
+            HttpSession session, Product product, Integer stockNumber) throws IOException {
         String saveDirectory = "/Users/jeongyong/Desktop/server/";
         files.transferTo(new File(saveDirectory + files.getOriginalFilename()));
 
         product.setSeller((Seller) session.getAttribute("loginedSeller"));
-        productService.registerProduct(product);
+        productService.registerProduct(product, stockNumber);
 
         modelAndView.setViewName("redirect:/salesManagement");
         return modelAndView;

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.jbnu.cocofarm.domain.product.Product;
+import com.jbnu.cocofarm.domain.product.ProductDetail;
 import com.jbnu.cocofarm.domain.product.ProductDetailRepository;
 import com.jbnu.cocofarm.domain.product.ProductRepository;
 import com.jbnu.cocofarm.domain.user.Seller;
@@ -23,8 +24,13 @@ public class ProductServiceImpl implements ProductService {
     private ProductDetailRepository productDetailRepo;
 
     @Override
-    public void registerProduct(Product product) {
+    public void registerProduct(Product product, Integer stockNumber) {
+        ProductDetail productDetail = new ProductDetail();
+        productDetail.setStockNumber(stockNumber);
         productRepo.save(product);
+        productDetail.setProduct(product);
+        productDetailRepo.save(productDetail);
+
         System.out.println("상품등록 성공");
     }
 
@@ -41,6 +47,16 @@ public class ProductServiceImpl implements ProductService {
             productRepo.delete(target);
             System.out.println("상품삭제 성공");
         });
+    }
+
+    @Override
+    public Product searchProductById(Long productId) {
+        Optional<Product> resultProduct = productRepo.findById(productId);
+        if (resultProduct.isPresent()) {
+            return resultProduct.get();
+        }
+        return null;
+
     }
 
     @Override

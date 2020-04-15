@@ -3,32 +3,18 @@
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
-    <th:block th:include="fragments/common/head"></th:block>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>판매자 로그인 - 코코팜</title>
+    <link rel="stylesheet" href="../../../static/style.css">
+   </head>
 </head>
 
 <body>
-
-    <!-- Search Wrapper -->
-    <div class="search-wrapper">
-        <!-- Close Btn -->
-        <div class="close-btn"><i class="fa fa-times" aria-hidden="true"></i></div>
-
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <form action="#" method="post">
-                        <input type="search" name="search" placeholder="Type any keywords...">
-                        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Navbar -->
-    <th:block th:include="fragments/common/navbar"></th:block>
-    <br>
-    <br>
+    <!-- Header -->
+    <th:block th:include="fragments/common/header"></th:block>
 
     <!-- Content Wrapper. Contains page content -->
     <!-- ##### Breadcumb Area Start ##### -->
@@ -44,10 +30,6 @@
         </div>
     </div>
     <!-- ##### Breadcumb Area End ##### -->
-
-
-
-
 
     <!-- Receipe Content Area -->
     <div class="receipe-content-area">
@@ -92,6 +74,7 @@
     </div>
     <!-- /.content-wrapper -->
 
+    <!-- Footer -->
     <th:block th:include="fragments/common/footer"></th:block>
 
     </div>

@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-  <th:block th:include="fragments/common/head"></th:block>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>로그인 - 코코팜</title>
+<!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="../../../static/style.css">
 </head>
 <body>
     
@@ -22,10 +27,8 @@
       </div>
     </div>
 
-    <!-- Navbar -->
-    <th:block th:include="fragments/common/navbar"></th:block>
-    <br>
-    <br>
+    <!-- header -->
+    <th:block th:include="fragments/common/header"></th:block>
 
     <!-- Content Wrapper. Contains page content -->
     <!-- ##### Breadcumb Area Start ##### -->
@@ -34,7 +37,7 @@
             <div class="row h-100 align-items-center">
                 <div class="col-12">
                     <div class="breadcumb-text text-center">
-                        <h2>Log in</h2>
+                        <h2>로그인</h2>
                     </div>
                 </div>
             </div>
@@ -73,11 +76,7 @@
 
                                     
                                     <div class="col-12 col-lg-3">
-                                        <button class="btn delicious-btn mt-30" type="submit">Log in</button>
-                                    </div>
-                                    
-                                    <div class="col-12 col-lg-3">
-                                      <button class="btn delicious-btn mt-30" type ="button" onclick="location.href = 'join.html'">Forget E-mail</button>
+                                        <button class="btn delicious-btn mt-30" type="submit">로그인</button>
                                     </div>
                                 </div>
                             </form>
