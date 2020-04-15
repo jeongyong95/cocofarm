@@ -73,7 +73,7 @@ public class UserController {
     @GetMapping(value = "/basket")
     public ModelAndView basket(HttpSession session) {
         ModelAndView modelAndView = new ModelAndView();
-        User user = (User) session.getAttribute("loginedUser");
+        User user = (User) session.getAttribute("user");
         List<Basket> basketList = service.getMyBasket(user);
 
         modelAndView.addObject("basketList", basketList);

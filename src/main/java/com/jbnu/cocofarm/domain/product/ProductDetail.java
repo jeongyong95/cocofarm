@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.jbnu.cocofarm.domain.user.Basket;
 import com.jbnu.cocofarm.domain.user.OrdersDetail;
 
@@ -32,12 +34,15 @@ public class ProductDetail {
     @Column
     private Integer stockNumber;
 
+    @JsonBackReference
     @OneToOne(fetch = FetchType.LAZY)
     private Product product;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "productDetail", fetch = FetchType.LAZY)
     List<Basket> basketList = new ArrayList<>();
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "productDetail", fetch = FetchType.LAZY)
     List<OrdersDetail> ordersDetailList = new ArrayList<>();
 }

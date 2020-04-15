@@ -67,14 +67,14 @@
                                 <!-- Single Cool Fact -->
                                 <div class="col-12 col-sm-6 col-lg-3">
                                     <div class="single-cool-fact">
-                                        <td th:text="${basket.getName()}"> </td>
+                                        <td th:text="${basket.getProductDetail().getProduct().getName()}"> </td>
                                     </div>
                                 </div>
 
                                 <!-- Single Cool Fact -->
                                 <div class="col-12 col-sm-6 col-lg-3">
                                     <div class="single-cool-fact">
-                                        <td th:text="${basket.getPrice()}"> </td>
+                                        <td th:text="${basket.getProductDetail().getProduct().getPrice()}"> </td>
                                     </div>
                                 </div>
 
@@ -88,7 +88,9 @@
                                 <!-- Single Cool Fact -->
                                 <div class="col-12 col-sm-6 col-lg-3">
                                     <div class="single-cool-fact">
-                                        <!-- <td th:text="${basket.getPrice() * product.getCount()}"> </td> -->
+                                        <td
+                                            th:text="${basket.getProductDetail().getProduct().getPrice() * basket.getCount()}">
+                                        </td>
                                     </div>
                                 </div>
 

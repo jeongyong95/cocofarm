@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.jbnu.cocofarm.domain.utility.BaseTime;
 
 import lombok.Getter;
@@ -47,9 +49,11 @@ public class Orders extends BaseTime {
     @Column
     private String payMethod;
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "orders", fetch = FetchType.LAZY)
     List<OrdersDetail> ordersDetailList = new ArrayList<>();
 }

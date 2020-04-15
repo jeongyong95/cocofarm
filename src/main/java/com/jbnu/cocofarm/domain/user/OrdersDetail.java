@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.jbnu.cocofarm.domain.product.ProductDetail;
 import com.jbnu.cocofarm.domain.utility.OrdersDetailId;
 
@@ -18,10 +19,12 @@ public class OrdersDetail {
     private Integer quantity;
 
     @Id
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     private ProductDetail productDetail;
 
     @Id
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     private Orders orders;
 }

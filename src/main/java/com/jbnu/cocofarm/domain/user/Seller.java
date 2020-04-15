@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.jbnu.cocofarm.domain.product.Product;
 import com.jbnu.cocofarm.domain.utility.BaseTime;
 
@@ -40,6 +41,7 @@ public class Seller extends BaseTime {
     @Column
     private String account;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "seller", fetch = FetchType.LAZY)
     List<Product> productList = new ArrayList<>();
 }

@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.jbnu.cocofarm.domain.user.Review;
 import com.jbnu.cocofarm.domain.user.Seller;
 import com.jbnu.cocofarm.domain.utility.BaseTime;
@@ -44,16 +46,19 @@ public class Product extends BaseTime {
     @Column(nullable = false)
     private Integer price;
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_id")
     private Category category;
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     private Seller seller;
 
+    @JsonManagedReference
     @OneToOne(mappedBy = "product", fetch = FetchType.LAZY)
     private ProductDetail productDetail;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
     List<Review> reviewList = new ArrayList<>();
 }

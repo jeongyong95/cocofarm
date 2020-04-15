@@ -12,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -32,12 +35,15 @@ public class Category {
     @Column(nullable = false)
     private String categoryName;
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     private Category rootCategory;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "rootCategory", fetch = FetchType.LAZY)
     List<Category> leafCategoryList = new ArrayList<>();
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
     List<Product> productList = new ArrayList<>();
 }

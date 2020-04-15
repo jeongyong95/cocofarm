@@ -44,4 +44,23 @@ public class indexController {
         modelAndView.setViewName("productDetail");
         return modelAndView;
     }
+
+    @GetMapping(value = "/searchProduct")
+    public ModelAndView searchProductByKeyword(String searchKeyword) {
+        ModelAndView modelAndView = new ModelAndView();
+        List<Product> productList = productService.searchProductByName(searchKeyword);
+
+        modelAndView.addObject("searchKeyword", searchKeyword);
+        modelAndView.addObject("productList", productList);
+        modelAndView.setViewName("searchProduct");
+        return modelAndView;
+    }
+
+    // @GetMapping(value = "/searchProduct")
+    // public List<Product> searchProductByKeyword(String searchKeyword) {
+    // List<Product> productList =
+    // productService.searchProductByName(searchKeyword);
+
+    // return productList;
+    // }
 }
