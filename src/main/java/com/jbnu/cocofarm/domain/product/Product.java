@@ -51,7 +51,7 @@ public class Product extends BaseTime {
     @ManyToOne(fetch = FetchType.LAZY)
     private Seller seller;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "product", fetch = FetchType.LAZY)
     private ProductDetail productDetail;
 
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)

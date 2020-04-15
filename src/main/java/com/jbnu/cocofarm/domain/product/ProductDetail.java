@@ -32,7 +32,7 @@ public class ProductDetail {
     @Column
     private Integer stockNumber;
 
-    @OneToOne(mappedBy = "productDetail", fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     private Product product;
 
     @OneToMany(mappedBy = "productDetail", fetch = FetchType.LAZY)
