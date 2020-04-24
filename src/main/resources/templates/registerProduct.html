@@ -3,7 +3,42 @@
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
-    <th:block th:include="fragments/common/head"></th:block>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>상품등록 - 코코팜</title>
+    <link rel="stylesheet" href="../../../static/style.css">
+    <style>
+        /* registerProduct 에서 추가한 디자인 */
+        .regitTable {
+            margin: 0 auto;
+        }
+
+        .regitTable-label {
+            margin: 0 5rem;
+            text-align: center;
+        }
+
+        .btnCenter {
+            text-align: center;
+        }
+
+        .dropdown1 {
+            height: 52px;
+            width: 100%;
+            background-color: #f3f5f8;
+            font-size: 12px;
+            font-style: italic;
+            line-height: 170%;
+            margin-bottom: 15px;
+            border: none;
+            padding: 15px 30px;
+            -webkit-animation-duration: 500ms;
+            text-decoration: 500ms;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -22,11 +57,6 @@
             </div>
         </div>
     </div>
-    <!-- Navbar -->
-    <!-- <th:block th:include="fragments/common/navbar"></th:block> -->
-    <br>
-    <br>
-    <!-- Content Wrapper. Contains page content -->
     <!-- ##### Breadcumb Area Start ##### -->
     <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb3.jpg);">
         <div class="container h-100">
@@ -51,55 +81,71 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <div class="contact-form-area">
-                        <form action="registerProductAction" method="post" enctype="multipart/form-data">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div>
-                                        파일 : <input type="file" name="files"> <br>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12 col-lg-6">
-                                            <select class="form-control" name=>
-                                                <option value="" selected disabled>카테고리</option>
+                    <form action="registerProductAction" method="post" enctype="multipart/form-data">
+                        <div class="contact-form-area">
+                            <table class="regitTable">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row"><label for="name" class="regitTable-label">상품명</label></th>
+                                        <td>
+                                            <input type="text" class="form-control" name="name"
+                                                placeholder="상품명을 입력하세요.">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"><label for="" class="regitTable-label">카테고리</label></th>
+                                        <td>
+                                            <select class="dropdown1" name=>
                                                 <option value="과일">과일</option>
                                                 <option value="채소">채소</option>
-                                                <option value="공산품">공산품</option>
+                                                <option value="가공식품">가공식품</option>
                                             </select>
-                                        </div>
-                                        <div class="col-12 col-lg-6">
-                                            <input type="text" class="form-control" name="name" placeholder="상품 이름">
-                                        </div>
-                                        <div class="col-12 col-lg-6">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"><label for="price" class="regitTable-label">판매가</label></th>
+                                        <td>
+                                            <input type="number" class="form-control" name="price"
+                                                placeholder="판매가를 입력하세요.">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"><label for="stockNumber" class="regitTable-label">재고수량</label>
+                                        </th>
+                                        <td>
                                             <input type="number" class="form-control" name="stockNumber"
-                                                placeholder="수량">
-                                        </div>
-                                        <div class="col-12 col-lg-6">
-                                            <input type="number" class="form-control" name="price" placeholder="가격">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <textarea id="editor" name="description"></textarea>
-                                </div>
-                            </div>
-                            <div class="col-12">
+                                                placeholder="재고수량을 입력하세요.">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"><label class="regitTable-label">상품이미지</label></th>
+                                        <td>
+                                            <input type="file" name="files">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"><label for="description" class="regitTable-label">상세설명</label>
+                                        </th>
+                                        <td>
+                                            <textarea id="editor" name="description"></textarea>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="btnCenter">
                                 <button class="btn delicious-btn mt-30" type="submit">등록</button>
                             </div>
-                    </div>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
     </div>
-    <!-- /.content-wrapper -->
 
+      <!-- footer -->
     <th:block th:include="fragments/common/footer"></th:block>
-
-    </!DOCTYPE>
-    <!-- ./wrapper -->
-
+    <th:block th:include="fragments/common/script"></th:block>
     <th:block th:include="fragments/common/editor"></th:block>
 </body>
 

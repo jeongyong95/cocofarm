@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.jbnu.cocofarm.domain.product.Product;
 import com.jbnu.cocofarm.domain.utility.BaseTime;
 
@@ -38,9 +39,11 @@ public class Review extends BaseTime {
     @Column
     private Integer starPoint;
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     private Product product;
 }

@@ -27,11 +27,11 @@
                             <div class="single-blog-area mb-80">
                                 <!-- Thumbnail -->
                                 <div class="blog-thumbnail">
-                                    <img src="../static/img/product-img/apple.jpg" alt="">
+                                    <img th:src=${product.getImageUrl()} width="400px" height="400px">
                                 </div>
                             </div>
                         </div>
-                        <form th:action="@{/productDetailView/buyProduct}" method="POST">
+                        <form th:action=" @{/productDetailView/buyProduct}" method="POST">
                             <div class="col-lg-6">
                                 <div class="container">
                                     <div class="row" th:object="${product}">
@@ -62,7 +62,8 @@
                                         </div>
                                         <div class="col-6">
                                             <div class="blog-content">
-                                                <h5 th:text="${product.getProductDetail().getStockNumber()}"></h5>
+                                                <h5 th:text="${product.getProductDetail().getStockNumber()}">
+                                                </h5>
                                             </div>
                                         </div>
                                         <div class="col-6">
@@ -123,8 +124,10 @@
                             </a>
                         </h6>
                         <div id="collapseTwo" class="accordion-content collapse">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel lectus eu felis semper
-                                finibus ac eget ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel lectus eu
+                                felis semper
+                                finibus ac eget ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing
+                                elit. Etiam
                                 vulputate id justo quis facilisis.</p>
                         </div>
                     </div>
@@ -139,8 +142,10 @@
                             </a>
                         </h6>
                         <div id="collapseThree" class="accordion-content collapse">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel lectus eu felis semper
-                                finibus ac eget ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel lectus eu
+                                felis semper
+                                finibus ac eget ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing
+                                elit. Etiam
                                 vulputate id justo quis facilisis.</p>
                         </div>
                     </div>
@@ -155,8 +160,10 @@
                             </a>
                         </h6>
                         <div id="collapseFour" class="accordion-content collapse">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel lectus eu felis semper
-                                finibus ac eget ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel lectus eu
+                                felis semper
+                                finibus ac eget ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing
+                                elit. Etiam
                                 vulputate id justo quis facilisis.</p>
                         </div>
                     </div>

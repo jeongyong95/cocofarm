@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import com.jbnu.cocofarm.domain.user.Basket;
 import com.jbnu.cocofarm.domain.user.BasketRepository;
+import com.jbnu.cocofarm.domain.user.OrdersTemp;
+import com.jbnu.cocofarm.domain.user.OrdersTempRepository;
 import com.jbnu.cocofarm.domain.user.User;
 import com.jbnu.cocofarm.domain.user.UserRepository;
 
@@ -21,6 +23,7 @@ public class UserServiceImpl implements UserService {
 
     private UserRepository userRepo;
     private BasketRepository basketRepo;
+    private OrdersTempRepository ordersTempRepo;
 
     @Override
     public void registerUser(User user) {
@@ -76,6 +79,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<Basket> getMyBasket(User user) {
         List<Basket> resultList = basketRepo.findByUser(user);
+        return resultList;
+    }
+
+    @Override
+    public List<OrdersTemp> getMyOrdersTemp(User user) {
+        List<OrdersTemp> resultList = ordersTempRepo.findByUser(user);
         return resultList;
     }
 

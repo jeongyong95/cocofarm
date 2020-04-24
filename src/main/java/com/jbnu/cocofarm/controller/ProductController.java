@@ -1,6 +1,5 @@
 package com.jbnu.cocofarm.controller;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -36,15 +35,18 @@ public class ProductController {
         return modelAndView;
     }
 
-    @GetMapping(value = "/salesManagement/registerProduct")
+    @GetMapping(value = { "/salesManagement/registerProduct", "/registerProduct" })
     public ModelAndView registerProduct(ModelAndView modelAndView) {
         modelAndView.setViewName("registerProduct");
         return modelAndView;
     }
 
-    @PostMapping(value = "/salesManagement/registerProductAction")
-    public ModelAndView registerProductAction(ModelAndView modelAndView, HttpSession session, Product product,
-            Integer stockNumber) throws IOException {
+    @PostMapping(value = { "/salesManagement/registerProductAction", "/registerProductAction" })
+    public ModelAndView registerProductAction(@RequestPart MultipartFile files, ModelAndView modelAndView,
+            HttpSession session, Product product, Integer stockNumber) throws IOException {
+        String baseUrl = "/static/uploadFile/" + product.getName() + ".jpg";
+        // files.transferTo(new File("/Users/jeongyong/Downloads/cocofarm-Jung (2)/src/main/resources" + baseUrl));
+        product.setImageUrl(baseUrl);
         product.setSeller((Seller) session.getAttribute("loginedSeller"));
         productService.registerProduct(product, stockNumber);
 

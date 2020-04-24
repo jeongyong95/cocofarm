@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.jbnu.cocofarm.domain.user.Basket;
 import com.jbnu.cocofarm.domain.user.OrdersDetail;
+import com.jbnu.cocofarm.domain.user.OrdersTemp;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -45,4 +46,8 @@ public class ProductDetail {
     @JsonManagedReference
     @OneToMany(mappedBy = "productDetail", fetch = FetchType.LAZY)
     List<OrdersDetail> ordersDetailList = new ArrayList<>();
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "productDetail", fetch = FetchType.LAZY)
+    List<OrdersTemp> orderTempList = new ArrayList<>();
 }

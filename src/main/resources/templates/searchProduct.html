@@ -33,7 +33,7 @@
           <!-- Single Best Receipe Area -->
           <div class="col-12 col-sm-6 col-lg-4">
             <div class="single-best-receipe-area mb-30">
-              <img src="../static/img/product-img/apple.jpg" alt="사과">
+              <img th:src=${product.getImageUrl()}>
               <div class="receipe-content">
                 <a th:href="@{/productDetailView/{productId}(productId=${product.getId()})}">
                   <h5 th:text="${product.getName()}"></h5>

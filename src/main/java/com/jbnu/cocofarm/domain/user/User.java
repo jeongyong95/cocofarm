@@ -60,4 +60,9 @@ public class User extends BaseTime {
     @JsonManagedReference
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     List<Basket> basketList = new ArrayList<>();
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    List<OrdersTemp> ordersTempList = new ArrayList<>();
+    
 }

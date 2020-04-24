@@ -22,7 +22,7 @@
 
 
 
-            <div id="collapseOne" class="accordion-content collapse show">
+            <div id="collapseOne" class="accordion-content collapse show" >
                 <h5>장바구니 목록</h5>
                 <div class="row">
                     <div class="col-12">
@@ -61,7 +61,7 @@
 
                         <div class="row align-items-center mt-90">
 
-                            <th:block th:each="basket : ${basketList}">
+                            <th:block th:each="basket : ${basketList}" >
 
 
                                 <!-- Single Cool Fact -->
@@ -89,8 +89,8 @@
                                 <div class="col-12 col-sm-6 col-lg-3">
                                     <div class="single-cool-fact">
                                         <td
-                                            th:text="${basket.getProductDetail().getProduct().getPrice() * basket.getCount()}">
-                                        </td>
+                                            th:text="${basket.getProductDetail().getProduct().getPrice() * basket.getCount()}" ></td>
+                                            
                                     </div>
                                 </div>
 
@@ -117,7 +117,9 @@
 
                         <div class="col-12 col-lg-3">
                             <div class="single-cool-fact">
-                                <h6>Total price</h6>
+                                <h6
+                                th:text="${totalPrice}"
+                                    ></h6>
 
                             </div>
                         </div>

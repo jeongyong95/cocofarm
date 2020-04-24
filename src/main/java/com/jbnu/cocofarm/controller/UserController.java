@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import com.jbnu.cocofarm.domain.user.Basket;
+import com.jbnu.cocofarm.domain.user.OrdersTemp;
 import com.jbnu.cocofarm.domain.user.User;
 import com.jbnu.cocofarm.service.UserService;
 
@@ -76,8 +77,46 @@ public class UserController {
         User user = (User) session.getAttribute("user");
         List<Basket> basketList = service.getMyBasket(user);
 
+        List<Basket> listMap = basketList;
+
+        int totalPrice = 0;
+
+        for (int i = 0; i < listMap.size(); i++) {
+
+            int p = listMap.get(i).getProductDetail().getProduct().getPrice();
+            int c = listMap.get(i).getCount();
+
+            totalPrice += (p * c);
+        }
+
+        modelAndView.addObject("totalPrice", totalPrice);
         modelAndView.addObject("basketList", basketList);
         modelAndView.setViewName("basket");
+        return modelAndView;
+    }
+
+    @GetMapping(value = "/orders")
+    public ModelAndView orders(HttpSession session) {
+        ModelAndView modelAndView = new ModelAndView();
+        User user = (User) session.getAttribute("user");
+        List<OrdersTemp> ordersTempList = service.getMyOrdersTemp(user);
+
+        List<OrdersTemp> listMap = ordersTempList;
+
+        int totalPrice = 0;
+
+        for (int i = 0; i < listMap.size(); i++) {
+
+            int p = listMap.get(i).getProductDetail().getProduct().getPrice();
+            int c = listMap.get(i).getCount();
+
+            totalPrice += (p * c);
+        }
+
+        modelAndView.addObject("user", user);
+        modelAndView.addObject("totalPrice", totalPrice);
+        modelAndView.addObject("ordersTempList", ordersTempList);
+        modelAndView.setViewName("orders");
         return modelAndView;
     }
 }

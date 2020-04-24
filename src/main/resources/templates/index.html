@@ -22,7 +22,8 @@
     <div class="hero-slides owl-carousel">
       <!-- Single Hero Slide -->
       <!-- 이 single hero slide 부분에 th:each 문 감싸면 좋을 듯 합니당 -->
-      <div class="single-hero-slide bg-img" style="background-image: url(img/bg-img/bg1.jpg);">
+      <div class="single-hero-slide bg-img"
+        style="background-image: url(https://cocofarmbucket.s3.ap-northeast-2.amazonaws.com/productImages/cocofarm.jpg);">
         <div class="container h-100">
           <div class="row h-100 align-items-center">
             <div class="col-12 col-md-9 col-lg-7 col-xl-6">
@@ -52,9 +53,9 @@
       <div class="row">
         <!-- Single Best Receipe Area -->
         <th:block th:each="product : ${productList}" th:if="${+productStat.count < 7}">
-          <div class="col-12 col-sm-6 col-lg-4">
+          <div th:align=center class="col-12 col-sm-6 col-lg-4">
             <div class="single-best-receipe-area mb-30">
-              <img src="../static/img/product-img/apple.jpg" alt="사과">
+              <img th:src=${product.getImageUrl()} width="200px" height="200px">
               <div class="receipe-content">
                 <a th:href="@{/productDetailView/{productId}(productId=${product.getId()})}">
                   <td th:text="${product.getName()}"> </td>

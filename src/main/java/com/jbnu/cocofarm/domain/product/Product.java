@@ -1,5 +1,6 @@
 package com.jbnu.cocofarm.domain.product;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +10,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -19,6 +19,9 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.jbnu.cocofarm.domain.user.Review;
 import com.jbnu.cocofarm.domain.user.Seller;
 import com.jbnu.cocofarm.domain.utility.BaseTime;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,21 +37,27 @@ public class Product extends BaseTime {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column
-    private Integer code;
-
     @Column(length = 100, nullable = false)
     private String name;
-
-    @Column(nullable = true)
-    private String description;
 
     @Column(nullable = false)
     private Integer price;
 
+    @Column(nullable = true)
+    private String description;
+
+    @Column(nullable = true)
+    private String imageUrl;
+
     @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     private Category category;
+
+    @CreationTimestamp
+    private LocalDateTime createDateTime;
+
+    @UpdateTimestamp
+    private LocalDateTime updateDateTime;
 
     @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
@@ -57,6 +66,9 @@ public class Product extends BaseTime {
     @JsonManagedReference
     @OneToOne(mappedBy = "product", fetch = FetchType.LAZY)
     private ProductDetail productDetail;
+
+    @Column
+    private Integer code;
 
     @JsonManagedReference
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
