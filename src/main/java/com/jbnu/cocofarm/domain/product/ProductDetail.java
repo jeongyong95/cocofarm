@@ -14,9 +14,9 @@ import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.jbnu.cocofarm.domain.user.Basket;
-import com.jbnu.cocofarm.domain.user.OrdersDetail;
-import com.jbnu.cocofarm.domain.user.OrdersTemp;
+import com.jbnu.cocofarm.domain.basket.Basket;
+import com.jbnu.cocofarm.domain.orders.OrdersDetail;
+import com.jbnu.cocofarm.domain.orders.OrdersTemp;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

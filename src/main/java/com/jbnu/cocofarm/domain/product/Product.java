@@ -16,8 +16,9 @@ import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.jbnu.cocofarm.domain.user.Review;
-import com.jbnu.cocofarm.domain.user.Seller;
+import com.jbnu.cocofarm.domain.category.Category;
+import com.jbnu.cocofarm.domain.review.Review;
+import com.jbnu.cocofarm.domain.seller.Seller;
 import com.jbnu.cocofarm.domain.utility.BaseTime;
 
 import org.hibernate.annotations.CreationTimestamp;

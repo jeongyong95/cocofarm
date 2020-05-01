@@ -12,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.jbnu.cocofarm.domain.basket.Basket;
+import com.jbnu.cocofarm.domain.orders.Orders;
+import com.jbnu.cocofarm.domain.orders.OrdersTemp;
 import com.jbnu.cocofarm.domain.utility.BaseTime;
 
 import lombok.Getter;
@@ -64,5 +67,5 @@ public class User extends BaseTime {
     @JsonManagedReference
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     List<OrdersTemp> ordersTempList = new ArrayList<>();
-    
+
 }

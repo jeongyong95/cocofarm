@@ -3,7 +3,7 @@ package com.jbnu.cocofarm.controller;
 import java.util.List;
 
 import com.jbnu.cocofarm.domain.product.Product;
-import com.jbnu.cocofarm.service.ProductService;
+import com.jbnu.cocofarm.service.product.ProductService;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -63,7 +63,5 @@ public class indexController {
 
     // return productList;
     // }
-
-
 
 }

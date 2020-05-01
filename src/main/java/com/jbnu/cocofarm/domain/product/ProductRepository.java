@@ -2,7 +2,8 @@ package com.jbnu.cocofarm.domain.product;
 
 import java.util.List;
 
-import com.jbnu.cocofarm.domain.user.Seller;
+import com.jbnu.cocofarm.domain.category.Category;
+import com.jbnu.cocofarm.domain.seller.Seller;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

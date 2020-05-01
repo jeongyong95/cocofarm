@@ -1,7 +1,7 @@
 package com.jbnu.cocofarm;
 
-import com.jbnu.cocofarm.domain.product.Category;
-import com.jbnu.cocofarm.domain.product.CategoryRepository;
+import com.jbnu.cocofarm.domain.category.Category;
+import com.jbnu.cocofarm.domain.category.CategoryRepository;
 
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
