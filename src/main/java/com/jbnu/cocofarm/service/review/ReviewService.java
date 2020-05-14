@@ -14,5 +14,7 @@ public interface ReviewService {
 
     void deleteReview(Long id);
 
+    List<Review> getReviewList(Long id);
+
     List<Review> searchReviewByStarPoint(Integer starPoint);
 }

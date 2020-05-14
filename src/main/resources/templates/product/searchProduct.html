@@ -33,15 +33,15 @@
           <!-- Single Best Receipe Area -->
           <div class="col-12 col-sm-6 col-lg-4">
             <div class="single-best-receipe-area mb-30">
-              <img th:src=${product.getImageUrl()}>
+              <img th:src=${product.imageUrl}>
               <div class="receipe-content">
-                <a th:href="@{/productDetailView/{productId}(productId=${product.getId()})}">
-                  <h5 th:text="${product.getName()}"></h5>
+                <a th:href="@{/product/productDetailView/{productId}(productId=${product.id})}">
+                  <h5 th:text="${product.name}"></h5>
                 </a>
                 <div>
-                  <span th:text="${product.getPrice()}"></span><span class="product-won">원</span>
+                  <span th:text="${product.price}"></span><span class="product-won">원</span>
                 </div>
-                <p th:text="${product.getDescription()}"></p>
+                <p th:text="${product.description}"></p>
               </div>
             </div>
           </div>

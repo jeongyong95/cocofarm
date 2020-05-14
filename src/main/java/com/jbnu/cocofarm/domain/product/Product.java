@@ -21,15 +21,11 @@ import com.jbnu.cocofarm.domain.review.Review;
 import com.jbnu.cocofarm.domain.seller.Seller;
 import com.jbnu.cocofarm.domain.utility.BaseTime;
 
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Getter
-@Setter
 @NoArgsConstructor
 @Entity
 public class Product extends BaseTime {
@@ -41,35 +37,42 @@ public class Product extends BaseTime {
     @Column(length = 100, nullable = false)
     private String name;
 
-    @Column(nullable = false)
-    private Integer price;
-
     @Column(nullable = true)
     private String description;
 
     @Column(nullable = true)
     private String imageUrl;
 
-    @JsonBackReference
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Category category;
+    @Column(nullable = false)
+    private Integer price;
 
-    @CreationTimestamp
-    private LocalDateTime createDateTime;
-
-    @UpdateTimestamp
-    private LocalDateTime updateDateTime;
+    @Column
+    private Integer code;
 
     @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     private Seller seller;
 
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Category category;
+
     @JsonManagedReference
     @OneToOne(mappedBy = "product", fetch = FetchType.LAZY)
     private ProductDetail productDetail;
 
-    @Column
-    private Integer code;
+    @Builder
+    public Product(String name, String description, String imageUrl, int price, int code, Seller seller,
+            Category category, ProductDetail productDetail) {
+        this.name = name;
+        this.description = description;
+        this.imageUrl = imageUrl;
+        this.price = price;
+        this.code = code;
+        this.seller = seller;
+        this.category = category;
+        this.productDetail = productDetail;
+    }
 
     @JsonManagedReference
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)

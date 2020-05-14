@@ -3,12 +3,15 @@ package com.jbnu.cocofarm.service.user;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import com.jbnu.cocofarm.domain.basket.Basket;
 import com.jbnu.cocofarm.domain.basket.BasketRepository;
 import com.jbnu.cocofarm.domain.orders.OrdersTemp;
 import com.jbnu.cocofarm.domain.orders.OrdersTempRepository;
 import com.jbnu.cocofarm.domain.user.User;
 import com.jbnu.cocofarm.domain.user.UserRepository;
+import com.jbnu.cocofarm.domain.user.UserDto.UserRequestDto;
 
 import org.springframework.stereotype.Service;
 
@@ -18,6 +21,7 @@ import lombok.AllArgsConstructor;
  * UserServiceImpl
  */
 @AllArgsConstructor
+@Transactional
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -26,8 +30,8 @@ public class UserServiceImpl implements UserService {
     private OrdersTempRepository ordersTempRepo;
 
     @Override
-    public void registerUser(User user) {
-        userRepo.save(user);
+    public void registerUser(UserRequestDto userRequestDto) {
+        userRepo.save(userRequestDto.toEntity());
     }
 
     @Override
@@ -50,12 +54,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Boolean checkLogin(String email, String password) {
-        Optional<User> findedUser = userRepo.findByEmail(email);
-        User user = new User();
+    public Boolean checkLogin(UserRequestDto userRequestDto) {
+        Optional<User> findedUser = userRepo.findByEmail(userRequestDto.getEmail());
         if (findedUser.isPresent()) {
-            user = findedUser.get();
-            if (!password.equals(user.getPassword())) {
+            if (!userRequestDto.getPassword().equals(findedUser.get().getPassword())) {
                 System.out.println("다르당");
                 return false;
             }
@@ -67,8 +69,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Boolean isAlreadyJoined(User user) {
-        Optional<User> joiner = userRepo.findByEmail(user.getEmail());
+    public Boolean isAlreadyJoined(String email) {
+        Optional<User> joiner = userRepo.findByEmail(email);
         if (joiner.isPresent()) {
             System.out.println("이미 존재하는 아이디입니다.");
             return true;

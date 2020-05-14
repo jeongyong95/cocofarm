@@ -1,5 +1,7 @@
 package com.jbnu.cocofarm.service.basket;
 
+import javax.transaction.Transactional;
+
 import com.jbnu.cocofarm.domain.basket.Basket;
 import com.jbnu.cocofarm.domain.basket.BasketRepository;
 
@@ -11,6 +13,7 @@ import lombok.AllArgsConstructor;
  * BasketServiceImpl
  */
 @AllArgsConstructor
+@Transactional
 @Service
 public class BasketServiceImpl implements BasketService {
 

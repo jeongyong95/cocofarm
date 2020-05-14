@@ -18,6 +18,7 @@ import com.jbnu.cocofarm.domain.basket.Basket;
 import com.jbnu.cocofarm.domain.orders.OrdersDetail;
 import com.jbnu.cocofarm.domain.orders.OrdersTemp;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -38,6 +39,12 @@ public class ProductDetail {
     @JsonBackReference
     @OneToOne(fetch = FetchType.LAZY)
     private Product product;
+
+    @Builder
+    public ProductDetail(int stockNumber, Product product) {
+        this.stockNumber = stockNumber;
+        this.product = product;
+    }
 
     @JsonManagedReference
     @OneToMany(mappedBy = "productDetail", fetch = FetchType.LAZY)

@@ -4,15 +4,16 @@ import java.util.List;
 
 import com.jbnu.cocofarm.domain.product.Product;
 import com.jbnu.cocofarm.domain.product.ProductDetail;
+import com.jbnu.cocofarm.domain.product.ProductDto.ProductRequestDto;
 import com.jbnu.cocofarm.domain.seller.Seller;
 
 /**
  * ProductService
  */
 public interface ProductService {
-    void registerProduct(Product product, Integer stockNumber);
+    void registerProduct(ProductRequestDto productRequestDto);
 
-    void updateProduct(Product product);
+    void updateProduct(ProductRequestDto productRequestDto);
 
     void deleteProduct(Long productId);
 

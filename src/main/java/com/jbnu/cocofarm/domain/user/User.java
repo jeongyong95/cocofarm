@@ -17,13 +17,13 @@ import com.jbnu.cocofarm.domain.orders.Orders;
 import com.jbnu.cocofarm.domain.orders.OrdersTemp;
 import com.jbnu.cocofarm.domain.utility.BaseTime;
 
+import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Getter
-@Setter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class User extends BaseTime {
 
@@ -41,11 +41,8 @@ public class User extends BaseTime {
     @Column(nullable = false, length = 10)
     private String name;
 
-    @Column(columnDefinition = "Integer default 1")
-    private Integer status;
-
     @Column(nullable = false)
-    private Long contact;
+    private String contact;
 
     @Column(nullable = true)
     private String postcode;
@@ -55,6 +52,18 @@ public class User extends BaseTime {
 
     @Column(nullable = true)
     private String detailAddress;
+
+    @Builder
+    public User(String email, String password, String name, String contact, String postcode, String address,
+            String detailAddress) {
+        this.email = email;
+        this.password = password;
+        this.name = name;
+        this.contact = contact;
+        this.postcode = postcode;
+        this.address = address;
+        this.detailAddress = detailAddress;
+    }
 
     @JsonManagedReference
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)

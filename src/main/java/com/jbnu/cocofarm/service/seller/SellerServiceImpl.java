@@ -2,6 +2,8 @@ package com.jbnu.cocofarm.service.seller;
 
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import com.jbnu.cocofarm.domain.seller.Seller;
 import com.jbnu.cocofarm.domain.seller.SellerRepository;
 
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Service;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
+@Transactional
 @Service
 public class SellerServiceImpl implements SellerService {
 

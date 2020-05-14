@@ -27,10 +27,14 @@ spring:
   thymeleaf:
     cache: false
 
-# 설정없이도 기본적인 작동은 합니다.
 # 개발모드로 수정하면서 내용 확인하고 싶다면
 # 'spring.thymeleaf.cache'를 false로 선언하시면 되고
 # 운영 모드에서는 true로 해야 합니다.
+
+# Spring Security setting
+logging:
+  level:
+    org.springframework.security: debug
 
 # Spring Cloud setting
 # cloud:

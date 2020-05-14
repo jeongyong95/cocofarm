@@ -1,5 +1,7 @@
 package com.jbnu.cocofarm.service.orders;
 
+import javax.transaction.Transactional;
+
 import com.jbnu.cocofarm.domain.orders.OrdersTemp;
 import com.jbnu.cocofarm.domain.orders.OrdersTempRepository;
 
@@ -11,6 +13,7 @@ import lombok.AllArgsConstructor;
  * OrdersTempServiceImpl
  */
 @AllArgsConstructor
+@Transactional
 @Service
 public class OrdersTempServiceImpl implements OrdersTempService {
 

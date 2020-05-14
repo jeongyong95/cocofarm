@@ -5,13 +5,14 @@ import java.util.List;
 import com.jbnu.cocofarm.domain.basket.Basket;
 import com.jbnu.cocofarm.domain.orders.OrdersTemp;
 import com.jbnu.cocofarm.domain.user.User;
+import com.jbnu.cocofarm.domain.user.UserDto.UserRequestDto;
 
 /**
  * UserService
  */
 public interface UserService {
 
-    void registerUser(User user);
+    void registerUser(UserRequestDto userRequestDto);
 
     void updateUser(User user);
 
@@ -19,9 +20,9 @@ public interface UserService {
 
     User getUser(String email);
 
-    Boolean checkLogin(String email, String password);
+    Boolean checkLogin(UserRequestDto userRequestDto);
 
-    Boolean isAlreadyJoined(User user);
+    Boolean isAlreadyJoined(String email);
 
     List<Basket> getMyBasket(User user);
 

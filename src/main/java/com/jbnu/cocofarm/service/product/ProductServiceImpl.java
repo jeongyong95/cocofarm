@@ -3,10 +3,13 @@ package com.jbnu.cocofarm.service.product;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import com.jbnu.cocofarm.domain.product.Product;
 import com.jbnu.cocofarm.domain.product.ProductDetail;
 import com.jbnu.cocofarm.domain.product.ProductDetailRepository;
 import com.jbnu.cocofarm.domain.product.ProductRepository;
+import com.jbnu.cocofarm.domain.product.ProductDto.ProductRequestDto;
 import com.jbnu.cocofarm.domain.seller.Seller;
 
 import org.springframework.stereotype.Service;
@@ -17,6 +20,7 @@ import lombok.AllArgsConstructor;
  * ProductServiceImpl
  */
 @AllArgsConstructor
+@Transactional
 @Service
 public class ProductServiceImpl implements ProductService {
 
@@ -24,19 +28,15 @@ public class ProductServiceImpl implements ProductService {
     private ProductDetailRepository productDetailRepo;
 
     @Override
-    public void registerProduct(Product product, Integer stockNumber) {
-        ProductDetail productDetail = new ProductDetail();
-        productDetail.setStockNumber(stockNumber);
-        productRepo.save(product);
-        productDetail.setProduct(product);
-        productDetailRepo.save(productDetail);
+    public void registerProduct(ProductRequestDto productRequestDto) {
+        productRepo.save(productRequestDto.toEntity());
 
         System.out.println("상품등록 성공");
     }
 
     @Override
-    public void updateProduct(Product product) {
-        productRepo.save(product);
+    public void updateProduct(ProductRequestDto productRequestDto) {
+        productRepo.save(productRequestDto.toEntity());
         System.out.println("상품수정 성공");
     }
 

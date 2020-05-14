@@ -55,13 +55,13 @@
         <th:block th:each="product : ${productList}" th:if="${+productStat.count < 7}">
           <div th:align=center class="col-12 col-sm-6 col-lg-4">
             <div class="single-best-receipe-area mb-30">
-              <img th:src=${product.getImageUrl()} width="200px" height="200px">
+              <img th:src=${product.imageUrl} width="200px" height="200px">
               <div class="receipe-content">
-                <a th:href="@{/productDetailView/{productId}(productId=${product.getId()})}">
-                  <td th:text="${product.getName()}"> </td>
+                <a th:href="@{/product/productDetailView/{productId}(productId=${product.id})}">
+                  <td th:text="${product.name}"> </td>
                 </a>
                 <div>
-                  <span class="product-price" th:text="${product.getPrice()}"></span><span class="product-won">원</span>
+                  <span class="product-price" th:text="${product.price}"></span><span class="product-won">원</span>
                 </div>
               </div>
             </div>

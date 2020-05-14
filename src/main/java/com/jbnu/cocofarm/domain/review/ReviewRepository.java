@@ -2,7 +2,6 @@ package com.jbnu.cocofarm.domain.review;
 
 import java.util.List;
 
-import com.jbnu.cocofarm.domain.product.Product;
 import com.jbnu.cocofarm.domain.user.User;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,7 +16,7 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
     List<Review> findByStarPointGreaterThanEqual(Integer starPoint);
 
     // 상품별 상품리뷰 조회
-    List<Review> findByProduct(Product product);
+    List<Review> findByProduct(Long id);
 
     // 구매자별 상품리뷰 조회
     List<Review> findByUser(User user);

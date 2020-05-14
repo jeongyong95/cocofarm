@@ -1,5 +1,7 @@
 package com.jbnu.cocofarm.service.category;
 
+import javax.transaction.Transactional;
+
 import com.jbnu.cocofarm.domain.category.Category;
 import com.jbnu.cocofarm.domain.category.CategoryRepository;
 
@@ -11,6 +13,7 @@ import lombok.AllArgsConstructor;
  * CategoryServiceImpl
  */
 @AllArgsConstructor
+@Transactional
 @Service
 public class CategoryServiceImpl implements CategoryService {
 

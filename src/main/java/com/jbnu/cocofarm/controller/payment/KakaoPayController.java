@@ -1,4 +1,4 @@
-package com.jbnu.cocofarm.controller;
+package com.jbnu.cocofarm.controller.payment;
 
 import com.jbnu.cocofarm.service.payment.KakaoPay;
 
@@ -19,12 +19,12 @@ public class KakaoPayController {
     @Setter(onMethod_ = @Autowired)
     private KakaoPay kakaopay;
 
-    @GetMapping("/kakaoPay")
+    @GetMapping("/payment/kakaoPay")
     public void kakaoPayGet() {
 
     }
 
-    @PostMapping("/kakaoPay")
+    @PostMapping("/payment/kakaoPay")
     public String kakaoPay() {
         log.info("kakaoPay post............................................");
 
@@ -32,7 +32,7 @@ public class KakaoPayController {
 
     }
 
-    @GetMapping("/kakaoPaySuccess")
+    @GetMapping("/payment/kakaoPaySuccess")
     public void kakaoPaySuccess(@RequestParam("pg_token") String pg_token, Model model) {
         log.info("kakaoPaySuccess get............................................");
         log.info("kakaoPaySuccess pg_token : " + pg_token);
