@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+    <head>
+        <th:block th:include="fragments/common/head"></th:block>
+
+        <title>상품수정 - 코코팜</title>
+        <style>
+            /* registerProduct 에서 추가한 디자인 */
+            .regitTable {
+                margin: 0 auto;
+            }
+    
+            .regitTable-label {
+                margin: 0 5rem;
+                text-align: center;
+            }
+    
+            .btnCenter {
+                text-align: center;
+            }
+    
+            .dropdown1 {
+                height: 52px;
+                width: 100%;
+                background-color: #f3f5f8;
+                font-size: 12px;
+                font-style: italic;
+                line-height: 170%;
+                margin-bottom: 15px;
+                border: none;
+                padding: 15px 30px;
+                -webkit-animation-duration: 500ms;
+                text-decoration: 500ms;
+            }
+        </style>
+    
+    </head>
+
+<body>
+    <!-- Search Wrapper -->
+    <div class="search-wrapper">
+        <!-- Close Btn -->
+        <div class="close-btn"><i class="fa fa-times" aria-hidden="true"></i></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <form action="#" method="post">
+                        <input type="search" name="search" placeholder="Type any keywords...">
+                        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Breadcumb Area Start ##### -->
+    <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb3.jpg);">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="breadcumb-text text-center">
+                        <h2>판매 상품 수정</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Breadcumb Area End ##### -->
+    <!-- Receipe Content Area -->
+    <div class="receipe-content-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading text-left">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <form th:object="${product}" action="/updateProductAction" method="post"
+                        enctype="multipart/form-data">
+                        <div class="contact-form-area">
+                            <table class="regitTable">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row"><label for="name" class="regitTable-label">상품명</label></th>
+                                        <td>
+                                            <input type="text" class="form-control" name="name"
+                                                th:value="${product.name}">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"><label for="" class="regitTable-label">카테고리</label></th>
+                                        <td>
+                                            <select class="dropdown1" name=>
+                                                <option value="과일">과일</option>
+                                                <option value="채소">채소</option>
+                                                <option value="가공식품">가공식품</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"><label for="price" class="regitTable-label">판매가</label></th>
+                                        <td>
+                                            <input type="number" class="form-control" name="price"
+                                                th:value="${product.price}">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"><label for="stockNumber" class="regitTable-label">재고수량</label>
+                                        </th>
+                                        <td>
+                                            <input type="number" class="form-control" name="stockNumber"
+                                                th:value="${product.productDetail.stockNumber}">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"><label class="regitTable-label">상품이미지</label></th>
+                                        <td>
+                                            <input type="file" name="files" 
+                                            >
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"><label for="description" class="regitTable-label">상세설명</label>
+                                        </th>
+                                        <td>
+                                            <textarea id="editor" name="description" 
+                                            
+                                            th:field="*{description}"
+                                            ></textarea>
+                                        </td>
+                                    </tr>
+                                    <input th:value = "${product.id}" name="productId" style="visibility:hidden;"> 
+                                </tbody>
+                            </table>
+                            <div class="btnCenter">
+                                <button class="btn delicious-btn mt-30" type="submit">수정</button>
+                                <button class="btn delicious-btn mt-30" type="submit"
+                                formaction="/deleteProductAction" formmethod="POST">삭제</button>
+                            </div>
+                            
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- footer -->
+    <th:block th:include="fragments/common/footer"></th:block>
+    <th:block th:include="fragments/common/script"></th:block>
+    <th:block th:include="fragments/common/editor"></th:block>
+</body>
+
+</html>

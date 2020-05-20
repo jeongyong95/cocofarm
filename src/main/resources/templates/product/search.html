@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+  <th:block th:include="fragments/common/head"></th:block>
+
+  <title>상품검색 - 코코팜</title>
+</head>
+
+<body>
+  <!-- header -->
+  <th:block th:include="fragments/common/header"></th:block>
+
+  <section class="best-receipe-area">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="section-heading">
+            <br>
+            <h2>상품검색</h2>
+            <br>
+            <h4 th:text="${searchKeyword}+' 검색결과'"></h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <th:block th:each="product : ${productList}">
+          <!-- Single Best Receipe Area -->
+          <div class="col-12 col-sm-6 col-lg-4">
+            <div class="single-best-receipe-area mb-30">
+              <img th:src=${product.imageUrl}>
+              <div class="receipe-content">
+                <a th:href="@{/product/productDetailView/{productId}(productId=${product.id})}">
+                  <h5 th:text="${product.name}"></h5>
+                </a>
+                <div>
+                  <span th:text="${product.price}"></span><span class="product-won">원</span>
+                </div>
+                <p th:text="${product.description}"></p>
+              </div>
+            </div>
+          </div>
+        </th:block>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- footer -->
+  <th:block th:include="fragments/common/footer"></th:block>
+  <th:block th:include="fragments/common/script"></th:block>
+</body>
+
+</html>

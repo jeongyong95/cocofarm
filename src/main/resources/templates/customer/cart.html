@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <th:block th:include="fragments/common/head"></th:block>
+    <title>장바구니 - 코코팜</title>
+</head>
+
+<body>
+    <!-- header -->
+    <th:block th:include="fragments/common/header"></th:block>
+
+    <!-- content -->
+
+    <section class="elements-area section-padding-80-0">
+        <div class="container">
+
+
+
+            <div id="collapseOne" class="accordion-content collapse show">
+                <h5>장바구니 목록</h5>
+                <div class="row">
+                    <div class="col-12">
+
+                        <div class="row align-items-center mt-90">
+                            <!-- Single Cool Fact -->
+                            <div class="col-12 col-sm-6 col-lg-3">
+                                <div class="single-cool-fact">
+                                    <h6>상품이름</h6>
+                                </div>
+                            </div>
+
+                            <!-- Single Cool Fact -->
+                            <div class="col-12 col-sm-6 col-lg-3">
+                                <div class="single-cool-fact">
+                                    <h6>판매가</h6>
+                                </div>
+                            </div>
+
+                            <!-- Single Cool Fact -->
+                            <div class="col-12 col-sm-6 col-lg-3">
+                                <div class="single-cool-fact">
+                                    <h6>수량</h6>
+                                </div>
+                            </div>
+
+                            <!-- Single Cool Fact -->
+                            <div class="col-12 col-sm-6 col-lg-3">
+                                <div class="single-cool-fact">
+                                    <h6>가격</h6>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="row align-items-center mt-90">
+
+                            <th:block th:each="cartDto : ${cartDtoList}">
+<div>
+    <!-- Single Cool Fact -->
+    <div class="col-12 col-sm-6 col-lg-3">
+        <div class="single-cool-fact">
+            <td th:text="${basket.getProductDetail().getProduct().getName()}"> </td>
+        </div>
+    </div>
+
+    <!-- Single Cool Fact -->
+    <div class="col-12 col-sm-6 col-lg-3">
+        <div class="single-cool-fact">
+            <td th:text="${basket.getProductDetail().getProduct().getPrice()}"> </td>
+        </div>
+    </div>
+
+    <!-- Single Cool Fact -->
+    <div class="col-12 col-sm-6 col-lg-3">
+        <div class="single-cool-fact">
+            <td th:text="${basket.getCount()}"> </td>
+        </div>
+    </div>
+
+    <!-- Single Cool Fact -->
+    <div class="col-12 col-sm-6 col-lg-3">
+        <div class="single-cool-fact">
+            <td
+                th:text="${basket.getProductDetail().getProduct().getPrice() * basket.getCount()}">
+            </td>
+
+        </div>
+    </div>
+</div>
+                            </th:block>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="container">
+
+                    <div class="row">
+
+                        <div class="col-12 col-lg-6">
+
+                        </div>
+
+                        <div class="col-12 col-lg-3">
+                            <div class="single-cool-fact">
+                                <h6>총 가격</h6>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-3">
+                            <div class="single-cool-fact">
+                                <h6 th:text="${totalPrice}"></h6>
+
+                            </div>
+                        </div>
+
+
+                        <div class="col-12 align-items-center">
+                            <div class="align-items-center">
+                                <button class="btn delicious-btn mt-30" type="submit">구매하기</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <th:block th:include="fragments/common/footer"></th:block>
+    </div>
+    <th:block th:include="fragments/common/script"></th:block>
+</body>
+
+</html>

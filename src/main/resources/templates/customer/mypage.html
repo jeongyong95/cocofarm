@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <th:block th:include="fragments/common/head"></th:block>
+
+    <title>마이페이지 - 코코팜</title>
+
+    <style>
+        th {
+            text-align: center;
+        }
+
+        .middle{
+            margin: 0 auto;
+        }
+
+        .nav-tabs-col {
+            /* box-sizing: border-box; */
+            display: inline-block;
+            width: 100%;
+        }
+
+        .accordions-col {
+            /* box-sizing: border-box; */
+            display: inline-block;
+            flex: 0 0 20%;
+        }
+
+        .tab-contents {
+            flex: 0 0 80%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- header -->
+    <th:block th:include="fragments/common/header"></th:block>
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12">
+                <div class="breadcumb-text text-center">
+                    <h2 class="mt-30 mb-30">마이페이지</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+
+            <!-- ##### Accordians ##### -->
+            <div class="col-12 row">
+                <div class="accordions mb-80 accordions-col" id="accordion" role="tablist" aria-multiselectable="true">
+
+                    <!-- 마이페이지 사이드 탭 Accordian Area -->
+                    <!-- ##### Tabs start ##### -->
+                    <div class="delicious-tabs-content">
+                        <ul class="nav nav-tabs nav-tabs-col" id="myTab" role="tablist">
+                            <!-- 01 주문/배송조회 -->
+                            <li class="nav-item">
+                                <a class="nav-link" id="tab--01" data-toggle="tab" href="#tab01" role="tab"
+                                    aria-controls="tab1" aria-selected="false">주문/배송조회</a>
+                            </li>
+                            <!-- 02 취소/반품/교환 신청 -->
+                            <li class="nav-item">
+                                <a class="nav-link" id="tab--02" data-toggle="tab" href="#tab02" role="tab"
+                                    aria-controls="tab2" aria-selected="false">취소/반품/교환 신청</a>
+                            </li>
+                            <!-- 03 취소/반품/교환 현황 -->
+                            <li class="nav-item">
+                                <a class="nav-link" id="tab--03" data-toggle="tab" href="#tab03" role="tab"
+                                    aria-controls="tab3" aria-selected="false">취소/반품/교환 현황</a>
+                            </li>
+                            <!-- 04 환불/입금내역 -->
+                            <li class="nav-item">
+                                <a class="nav-link" id="tab--04" data-toggle="tab" href="#tab04" role="tab"
+                                    aria-controls="tab4" aria-selected="false">환불/입금내역</a>
+                            </li>
+                            <!-- 05 상품평 -->
+                            <li class="nav-item">
+                                <a class="nav-link" id="tab--05" data-toggle="tab" href="#tab05" role="tab"
+                                    aria-controls="tab5" aria-selected="false">상품평</a>
+                            </li>
+                            <!-- 06 회원정보 변경/탈퇴 -->
+                            <li class="nav-item">
+                                <a class="nav-link" id="tab--06" data-toggle="tab" href="#tab06" role="tab"
+                                    aria-controls="tab6" aria-selected="false">회원정보 변경/탈퇴</a>
+                            </li>
+                            <!-- 07 배송지 관리 -->
+                            <li class="nav-item">
+                                <a class="nav-link" id="tab--07" data-toggle="tab" href="#tab07" role="tab"
+                                    aria-controls="tab7" aria-selected="false">배송지 관리</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- ##### Tabs end ##### -->
+                </div>
+                <!-- ##### Tab - Contents ##### -->
+                <div class="delicious-tabs-content tab-contents">
+                    <div class="tab-content mb-80" id="myTabContent">
+                        <!-- 01 주문/배송조회 -->
+                        <div class="tab-pane fade show" id="tab01" role="tabpanel" aria-labelledby="tab--01">
+                            <div class="delicious-tab-content">
+
+                            </div>
+                        </div>
+                        <!-- 02 취소/반품/교환 신청 -->
+                        <div class="tab-pane fade show" id="tab02" role="tabpanel" aria-labelledby="tab--02">
+                            <div class="delicious-tab-content">
+
+                            </div>
+                        </div>
+                        <!-- 03 취소/반품/교환 현황 -->
+                        <div class="tab-pane fade show" id="tab03" role="tabpanel" aria-labelledby="tab--03">
+                            <div class="delicious-tab-content">
+
+                            </div>
+                        </div>
+                        <!-- 04 환불/입금내역 -->
+                        <div class="tab-pane fade show" id="tab04" role="tabpanel" aria-labelledby="tab--04">
+                            <div class="delicious-tab-content">
+
+                            </div>
+                        </div>
+                        <!-- 05 상품평 -->
+                        <div class="tab-pane fade show" id="tab05" role="tabpanel" aria-labelledby="tab--05">
+                            <div class="delicious-tab-content">
+
+                            </div>
+                        </div>
+                        <!-- 06 회원정보 변경/탈퇴 -->
+                        <div class="tab-pane fade show" id="tab06" role="tabpanel" aria-labelledby="tab--06">
+                            <div class="delicious-tab-content">
+                                <div class="col-12">
+                                    <div class="contact-form-area">
+                                        <form th:action="@{reloginAction}" method="post">
+                                            <div class="row">
+                                                <p class="middle mt-30">회원님의 개인정보를 안전하게 보호하기 위해
+                                                    인증 후 변경이 가능합니다.</p>
+                                                <div class="col-12 ">
+                                                    <p class="form-control" th:text="${session.user.getEmail()}" name="email"></p>
+                                                </div>
+            
+                                                <div class="col-12 ">
+                                                    <input type="password" class="form-control" name="password" placeholder="Password">
+                                                </div>
+            
+                                                
+                                                <div class="col-12 col-lg-3 middle">
+                                                    <button class="btn delicious-btn mt-30" type="submit">로그인</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 07 배송지 관리 -->
+                        <div class="tab-pane fade show" id="tab07" role="tabpanel" aria-labelledby="tab--07">
+                            <div class="delicious-tab-content">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+
+    <!-- footer -->
+    <th:block th:include="fragments/common/footer"></th:block>
+    <th:block th:include="fragments/common/script"></th:block>
+</body>
+
+</html>

@@ -1,5 +1,12 @@
 # 기존 properties를 yml파일로 변경
 spring:
+  mvc:
+    static-path-pattern: /static/**
+  resources:
+    static-locations:
+    - classpath:/static/
+    cache:
+      period: 0
 
   # Spring dataSource setting
   datasource:
@@ -35,22 +42,3 @@ spring:
 logging:
   level:
     org.springframework.security: debug
-
-# Spring Cloud setting
-# cloud:
-#   aws:
-#     # 자격증명
-#     credentials:
-#       access-key: 
-#       secret-key: 
-
-#     # 버킷 설정
-    
-
-#     # 리전 설정 : 서울
-#     region:
-#       static: ap-northeast-2
-
-#     stack:
-#       auto: false
-    

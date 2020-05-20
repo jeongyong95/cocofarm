@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <th:block th:include="fragments/common/head"></th:block>
+
+    <title>판매자 회원가입 - 코코팜</title>
+</head>
+</head>
+
+<body>
+    <!-- Header -->
+    <th:block th:include="fragments/common/header"></th:block>
+
+    <!-- Content Wrapper. Contains page content -->
+    <!-- ##### Breadcumb Area Start ##### -->
+    <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb3.jpg);">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="breadcumb-text text-center">
+                        <h2>판매자 회원가입</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Breadcumb Area End ##### -->
+
+    <!-- Receipe Content Area -->
+    <div class="receipe-content-area">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading text-left">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="contact-form-area">
+                        <form th:action="@{/seller/joinAction}" method="post">
+                            <div class="row">
+
+                                <div class="col-12 ">
+                                    <input type="text" class="form-control" name="sellerCode" placeholder="사업자 번호">
+                                </div>
+
+                                <div class="col-12 ">
+                                    <input type="password" class="form-control" name="password" placeholder="비밀번호">
+                                </div>
+
+                                <div class="col-12 ">
+                                    <input type="text" class="form-control" name="name" placeholder="이름">
+                                </div>
+
+                                <div class="col-12">
+                                    <input type="text" class="form-control" name="account" placeholder="계좌번호">
+                                </div>
+
+
+
+                            </div>
+
+                            <div class="col-12">
+                                <button class="btn delicious-btn mt-30" type="submit">Join</button>
+                            </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- /.content-wrapper -->
+
+    <th:block th:include="fragments/common/footer"></th:block>
+
+    </!DOCTYPE>
+    <!-- ./wrapper -->
+
+    <th:block th:include="fragments/common/script"></th:block>
+</body>
+
+
+</html>

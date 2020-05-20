@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+
+<html
+    lang="ko"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+    <head>
+        <th:block th:include="fragments/common/head"></th:block>
+
+        <title>판매자 관리 - 코코팜</title>
+        <style>
+            th {
+                text-align: center;
+            }
+
+            .nav-tabs-col {
+                /* box-sizing: border-box; */
+                display: inline-block;
+                width: 100%;
+            }
+
+            .accordions-col {
+                /* box-sizing: border-box; */
+                display: inline-block;
+                flex: 0 0 20%;
+            }
+
+            .tab-contents {
+                flex: 0 0 80%;
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- ##### Breadcumb Area Start ##### -->
+        <div
+            class="breadcumb-area bg-img bg-overlay"
+            style="background-image: url(img/bg-img/breadcumb5.jpg);"
+        >
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <div class="col-12">
+                        <div class="breadcumb-text text-center">
+                            <h2>판매자 센터</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ##### Breadcumb Area End ##### -->
+
+        <!-- ##### Elements Area Start ##### -->
+        <section class="elements-area section-padding-80-0">
+            <div class="container">
+                <div class="row">
+                    <!-- ##### Accordians ##### -->
+                    <div class="col-12 row">
+                        <div
+                            class="accordions mb-80 accordions-col"
+                            id="accordion"
+                            role="tablist"
+                            aria-multiselectable="true"
+                        >
+                            <!-- 01 상품관리 Accordian Area -->
+                            <div class="panel single-accordion">
+                                <h6>
+                                    <a
+                                        role="button"
+                                        class="collapsed"
+                                        aria-expanded="true"
+                                        aria-controls="collapseOne"
+                                        data-toggle="collapse"
+                                        data-parent="#accordion"
+                                        href="#collapseOne"
+                                        >상품관리
+                                        <span class="accor-open"
+                                            ><i
+                                                class="fa fa-plus"
+                                                aria-hidden="true"
+                                            ></i
+                                        ></span>
+                                        <span class="accor-close"
+                                            ><i
+                                                class="fa fa-minus"
+                                                aria-hidden="true"
+                                            ></i
+                                        ></span>
+                                    </a>
+                                </h6>
+                                <div
+                                    id="collapseOne"
+                                    class="accordion-content collapse"
+                                >
+                                    <!-- ##### Tabs start ##### -->
+                                    <div class="delicious-tabs-content">
+                                        <ul
+                                            class="nav nav-tabs nav-tabs-col"
+                                            id="myTab"
+                                            role="tablist"
+                                        >
+                                            <li class="nav-item">
+                                                <a
+                                                    class="nav-link"
+                                                    id="tab--11"
+                                                    data-toggle="tab"
+                                                    href="#tab11"
+                                                    role="tab"
+                                                    aria-controls="tab1"
+                                                    aria-selected="false"
+                                                    >상품 조회/수정</a
+                                                >
+                                            </li>
+                                            <li class="nav-item">
+                                                <a
+                                                    class="nav-link"
+                                                    id="tab--12"
+                                                    data-toggle="tab"
+                                                    href="#tab12"
+                                                    role="tab"
+                                                    aria-controls="tab2"
+                                                    aria-selected="false"
+                                                    >상품 등록</a
+                                                >
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- ##### Tabs end ##### -->
+                                </div>
+                            </div>
+
+                            <!-- 02 판매관리 Accordian Area -->
+                            <div class="panel single-accordion">
+                                <h6>
+                                    <a
+                                        role="button"
+                                        class="collapsed"
+                                        aria-expanded="true"
+                                        aria-controls="collapseTwo"
+                                        data-parent="#accordion"
+                                        data-toggle="collapse"
+                                        href="#collapseTwo"
+                                        >판매관리
+                                        <span class="accor-open"
+                                            ><i
+                                                class="fa fa-plus"
+                                                aria-hidden="true"
+                                            ></i
+                                        ></span>
+                                        <span class="accor-close"
+                                            ><i
+                                                class="fa fa-minus"
+                                                aria-hidden="true"
+                                            ></i
+                                        ></span>
+                                    </a>
+                                </h6>
+                                <div
+                                    id="collapseTwo"
+                                    class="accordion-content collapse"
+                                >
+                                    <!-- ##### Tabs start ##### -->
+                                    <div class="delicious-tabs-content">
+                                        <ul
+                                            class="nav nav-tabs nav-tabs-col"
+                                            id="myTab"
+                                            role="tablist"
+                                        >
+                                            <li class="nav-item">
+                                                <a
+                                                    class="nav-link"
+                                                    id="tab--21"
+                                                    data-toggle="tab"
+                                                    href="#tab21"
+                                                    role="tab"
+                                                    aria-controls="tab1"
+                                                    aria-selected="false"
+                                                    >주문 조회</a
+                                                >
+                                            </li>
+                                            <li class="nav-item">
+                                                <a
+                                                    class="nav-link"
+                                                    id="tab--22"
+                                                    data-toggle="tab"
+                                                    href="#tab22"
+                                                    role="tab"
+                                                    aria-controls="tab2"
+                                                    aria-selected="false"
+                                                    >미결제 확인</a
+                                                >
+                                            </li>
+                                            <li class="nav-item">
+                                                <a
+                                                    class="nav-link"
+                                                    id="tab--23"
+                                                    data-toggle="tab"
+                                                    href="#tab23"
+                                                    role="tab"
+                                                    aria-controls="tab2"
+                                                    aria-selected="false"
+                                                    >발주/발송 관리</a
+                                                >
+                                            </li>
+                                            <li class="nav-item">
+                                                <a
+                                                    class="nav-link"
+                                                    id="tab--24"
+                                                    data-toggle="tab"
+                                                    href="#tab24"
+                                                    role="tab"
+                                                    aria-controls="tab2"
+                                                    aria-selected="false"
+                                                    >배송현황 관리</a
+                                                >
+                                            </li>
+                                            <li class="nav-item">
+                                                <a
+                                                    class="nav-link"
+                                                    id="tab--25"
+                                                    data-toggle="tab"
+                                                    href="#tab25"
+                                                    role="tab"
+                                                    aria-controls="tab2"
+                                                    aria-selected="false"
+                                                    >구매확정 내역</a
+                                                >
+                                            </li>
+                                            <li class="nav-item">
+                                                <a
+                                                    class="nav-link"
+                                                    id="tab--26"
+                                                    data-toggle="tab"
+                                                    href="#tab26"
+                                                    role="tab"
+                                                    aria-controls="tab2"
+                                                    aria-selected="false"
+                                                    >취소 관리</a
+                                                >
+                                            </li>
+                                            <li class="nav-item">
+                                                <a
+                                                    class="nav-link"
+                                                    id="tab--27"
+                                                    data-toggle="tab"
+                                                    href="#tab27"
+                                                    role="tab"
+                                                    aria-controls="tab2"
+                                                    aria-selected="false"
+                                                    >반품 관리</a
+                                                >
+                                            </li>
+                                            <li class="nav-item">
+                                                <a
+                                                    class="nav-link"
+                                                    id="tab--28"
+                                                    data-toggle="tab"
+                                                    href="#tab28"
+                                                    role="tab"
+                                                    aria-controls="tab2"
+                                                    aria-selected="false"
+                                                    >교환 관리</a
+                                                >
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- ##### Tabs end ##### -->
+                                </div>
+                            </div>
+
+                            <!-- 03 정산관리 Accordian Area -->
+                            <div class="panel single-accordion">
+                                <h6>
+                                    <a
+                                        role="button"
+                                        aria-expanded="true"
+                                        aria-controls="collapseThree"
+                                        class="collapsed"
+                                        data-parent="#accordion"
+                                        data-toggle="collapse"
+                                        href="#collapseThree"
+                                        >정산관리
+                                        <span class="accor-open"
+                                            ><i
+                                                class="fa fa-plus"
+                                                aria-hidden="true"
+                                            ></i
+                                        ></span>
+                                        <span class="accor-close"
+                                            ><i
+                                                class="fa fa-minus"
+                                                aria-hidden="true"
+                                            ></i
+                                        ></span>
+                                    </a>
+                                </h6>
+                                <div
+                                    id="collapseThree"
+                                    class="accordion-content collapse"
+                                >
+                                    <!-- ##### Tabs start ##### -->
+                                    <div class="delicious-tabs-content">
+                                        <ul
+                                            class="nav nav-tabs nav-tabs-col"
+                                            id="myTab"
+                                            role="tablist"
+                                        >
+                                            <li class="nav-item">
+                                                <a
+                                                    class="nav-link"
+                                                    id="tab--31"
+                                                    data-toggle="tab"
+                                                    href="#tab31"
+                                                    role="tab"
+                                                    aria-controls="tab1"
+                                                    aria-selected="false"
+                                                    >정산 내역</a
+                                                >
+                                            </li>
+                                            <li class="nav-item">
+                                                <a
+                                                    class="nav-link"
+                                                    id="tab--32"
+                                                    data-toggle="tab"
+                                                    href="#tab32"
+                                                    role="tab"
+                                                    aria-controls="tab2"
+                                                    aria-selected="false"
+                                                    >정산 내역 상세</a
+                                                >
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- ##### Tabs end ##### -->
+                                </div>
+                            </div>
+
+                            <!-- 04 문의/리뷰관리 Accordian Area -->
+                            <div class="panel single-accordion">
+                                <h6>
+                                    <a
+                                        role="button"
+                                        aria-expanded="true"
+                                        aria-controls="collapseFour"
+                                        class="collapsed"
+                                        data-parent="#accordion"
+                                        data-toggle="collapse"
+                                        href="#collapseFour"
+                                        >문의/리뷰관리
+                                        <span class="accor-open"
+                                            ><i
+                                                class="fa fa-plus"
+                                                aria-hidden="true"
+                                            ></i
+                                        ></span>
+                                        <span class="accor-close"
+                                            ><i
+                                                class="fa fa-minus"
+                                                aria-hidden="true"
+                                            ></i
+                                        ></span>
+                                    </a>
+                                </h6>
+                                <div
+                                    id="collapseFour"
+                                    class="accordion-content collapse"
+                                >
+                                    <!-- ##### Tabs start ##### -->
+                                    <div class="delicious-tabs-content">
+                                        <ul
+                                            class="nav nav-tabs nav-tabs-col"
+                                            id="myTab"
+                                            role="tablist"
+                                        >
+                                            <li class="nav-item">
+                                                <a
+                                                    class="nav-link"
+                                                    id="tab--41"
+                                                    data-toggle="tab"
+                                                    href="#tab41"
+                                                    role="tab"
+                                                    aria-controls="tab1"
+                                                    aria-selected="false"
+                                                    >문의 관리</a
+                                                >
+                                            </li>
+                                            <li class="nav-item">
+                                                <a
+                                                    class="nav-link"
+                                                    id="tab--42"
+                                                    data-toggle="tab"
+                                                    href="#tab42"
+                                                    role="tab"
+                                                    aria-controls="tab2"
+                                                    aria-selected="false"
+                                                    >리뷰 관리</a
+                                                >
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- ##### Tabs end ##### -->
+                                </div>
+                            </div>
+
+                            <!-- 05 판매자정보 Accordian Area -->
+                            <div class="panel single-accordion">
+                                <h6>
+                                    <a
+                                        role="button"
+                                        aria-expanded="true"
+                                        aria-controls="collapseFive"
+                                        class="collapsed"
+                                        data-parent="#accordion"
+                                        data-toggle="collapse"
+                                        href="#collapseFive"
+                                        >판매자정보
+                                        <span class="accor-open"
+                                            ><i
+                                                class="fa fa-plus"
+                                                aria-hidden="true"
+                                            ></i
+                                        ></span>
+                                        <span class="accor-close"
+                                            ><i
+                                                class="fa fa-minus"
+                                                aria-hidden="true"
+                                            ></i
+                                        ></span>
+                                    </a>
+                                </h6>
+                                <div
+                                    id="collapseFive"
+                                    class="accordion-content collapse"
+                                >
+                                    <!-- ##### Tabs start ##### -->
+                                    <div class="delicious-tabs-content">
+                                        <ul
+                                            class="nav nav-tabs nav-tabs-col"
+                                            id="myTab"
+                                            role="tablist"
+                                        >
+                                            <li class="nav-item">
+                                                <a
+                                                    class="nav-link"
+                                                    id="tab--51"
+                                                    data-toggle="tab"
+                                                    href="#tab51"
+                                                    role="tab"
+                                                    aria-controls="tab1"
+                                                    aria-selected="false"
+                                                    >판매자 정보</a
+                                                >
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- ##### Tabs end ##### -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ##### Tab - Contents ##### -->
+                        <div class="delicious-tabs-content tab-contents">
+                            <div class="tab-content mb-80" id="myTabContent">
+                                <!-- 01 상품관리 -->
+                                <div
+                                    class="tab-pane fade show"
+                                    id="tab11"
+                                    role="tabpanel"
+                                    aria-labelledby="tab--11"
+                                >
+                                    <div class="delicious-tab-content">
+                                        <div class="col-12">
+                                            <h4>상품 조회/수정</h4>
+                                            <table border="1" class="col">
+                                                <thead>
+                                                    <tr>
+                                                        <th
+                                                            scope="col"
+                                                            colspan="1"
+                                                        >
+                                                            상품명
+                                                        </th>
+                                                        <th
+                                                            scope="col"
+                                                            colspan="1"
+                                                        >
+                                                            상세설명
+                                                        </th>
+                                                        <th
+                                                            scope="col"
+                                                            colspan="1"
+                                                        >
+                                                            판매가
+                                                        </th>
+                                                        <th
+                                                            scope="col"
+                                                            colspan="1"
+                                                        >
+                                                            재고수량
+                                                        </th>
+                                                        <th
+                                                            scope="col"
+                                                            colspan="1"
+                                                        >
+                                                            카테고리
+                                                        </th>
+                                                        <th
+                                                            scope="col"
+                                                            colspan="1"
+                                                        >
+                                                            상품등록일
+                                                        </th>
+                                                        <th
+                                                            scope="col"
+                                                            colspan="1"
+                                                        >
+                                                            최종수정일
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <th:block
+                                                        th:each="product : ${productList}"
+                                                    >
+                                                        <tr>
+                                                            <td
+                                                                rowspan="1"
+                                                                th:text="${product.name}"
+                                                            ></td>
+                                                            <td
+                                                                th:text="${product.description}"
+                                                            ></td>
+                                                            <td
+                                                                th:text="${product.price}"
+                                                            ></td>
+                                                            <td
+                                                                th:text="${product.productDetail.stock}"
+                                                            ></td>
+                                                            <td
+                                                                th:text="${product.category.toString()}"
+                                                            ></td>
+                                                            <td
+                                                                th:text="${product.createdTimestamp}"
+                                                            ></td>
+                                                            <!-- .format(DateTimeFormatter.ofPattern("yyyy년 M월 d일 a h시 m분")) -->
+                                                            <td
+                                                                th:text="${product.updatedTimestamp}"
+                                                            ></td>
+                                                        </tr>
+                                                    </th:block>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    class="tab-pane fade show"
+                                    id="tab12"
+                                    role="tabpanel"
+                                    aria-labelledby="tab--12"
+                                >
+                                    <div class="delicious-tab-content">
+                                        <a
+                                            class="btn delicious-btn mt-30"
+                                            th:href="@{/seller/salesManagement/registerProduct}"
+                                            >상품 등록</a
+                                        >
+                                    </div>
+                                </div>
+                                <!-- 02 판매관리 -->
+                                <div
+                                    class="tab-pane fade show"
+                                    id="tab21"
+                                    role="tabpanel"
+                                    aria-labelledby="tab--21"
+                                >
+                                    <div class="delicious-tab-content">
+                                        주문 조회
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- footer -->
+        <th:block th:include="fragments/common/footer"></th:block>
+        <th:block th:include="fragments/common/script"></th:block>
+    </body>
+</html>
