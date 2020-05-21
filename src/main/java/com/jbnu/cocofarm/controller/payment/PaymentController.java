@@ -34,6 +34,8 @@ public class PaymentController {
         productRegisterDtoList.add(productRegisterDto);
         productService.updateStock(productRegisterDto.getQuantity(), productRegisterDto.getProductId());
         orderService.registerOrder(totalRegisterDto, productRegisterDtoList, sessionDto.getId());
+
+        // modelAndView.setViewName("결제완료 페이지"); 결제완료 페이지가 필요합니다.
         return modelAndView;
     }
 

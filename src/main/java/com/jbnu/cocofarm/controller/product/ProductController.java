@@ -19,7 +19,7 @@ public class ProductController {
     public ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("displayDtoList", productService.findAll());
-        modelAndView.setViewName("/product/index");
+        modelAndView.setViewName("product/index");
         return modelAndView;
     }
 

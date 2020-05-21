@@ -27,7 +27,7 @@ public class CustomerController {
     @GetMapping(value = "/customer/login")
     public ModelAndView login() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/customer/login");
+        modelAndView.setViewName("customer/login");
         return modelAndView;
     }
 
@@ -35,13 +35,24 @@ public class CustomerController {
     public ModelAndView join() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("registerDto", new CustomerRegisterDto());
-        modelAndView.setViewName("/customer/join");
+        modelAndView.setViewName("customer/join");
         return modelAndView;
     }
 
     @GetMapping(value = "/customer/mypage")
     public String mypage() {
-        return "/customer/mypage";
+        return "customer/mypage";
+    }
+
+    @GetMapping(value = "/customer/cart")
+    public ModelAndView cart(HttpSession session) {
+        ModelAndView modelAndView = new ModelAndView();
+        CustomerSessionDto sessionDto = (CustomerSessionDto) session.getAttribute("customer");
+
+        // cartDisplayDtoList를 담아서 보내야 함
+        // modelAndView.addObject(attributeName, attributeValue)
+        modelAndView.setViewName("customer/cart");
+        return modelAndView;
     }
 
     @PostMapping(value = "/customer/loginAction")
@@ -67,7 +78,7 @@ public class CustomerController {
     public ModelAndView joinAction(@Valid CustomerRegisterDto registerDto, Errors errors) {
         ModelAndView modelAndView = new ModelAndView();
         if (errors.hasErrors()) {
-            modelAndView.setViewName("/customer/join");
+            modelAndView.setViewName("customer/join");
             return modelAndView;
         }
 
@@ -88,6 +99,15 @@ public class CustomerController {
         modelAndView.addObject("productRegisterDto", productRegisterDto);
         modelAndView.addObject("totalRegisterDto", new OrderTotalRegisterDto());
         modelAndView.setViewName("customer/order");
+        return modelAndView;
+    }
+
+    @PostMapping(value = "/customer/addToCart")
+    public ModelAndView addToCart() {
+        ModelAndView modelAndView = new ModelAndView();
+
+        // 장바구니에 담는 로직 구현하기
+        modelAndView.setViewName("redirect:/customer/cart");
         return modelAndView;
     }
 }

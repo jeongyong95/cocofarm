@@ -28,21 +28,21 @@ public class SellerController {
     public ModelAndView saleManagement() {
         ModelAndView modelAndView = new ModelAndView();
 
-        modelAndView.setViewName("/seller/salesManagement");
+        modelAndView.setViewName("seller/salesManagement");
         return modelAndView;
     }
 
     @GetMapping(value = "/seller/login")
     public ModelAndView login() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/seller/login");
+        modelAndView.setViewName("seller/login");
         return modelAndView;
     }
 
     @GetMapping(value = "/seller/join")
     public ModelAndView join() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/seller/join");
+        modelAndView.setViewName("seller/join");
         return modelAndView;
     }
 
@@ -74,7 +74,7 @@ public class SellerController {
     public ModelAndView registerProduct() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("productRegisterDto", new ProductRegisterDto());
-        modelAndView.setViewName("/seller/registerProduct");
+        modelAndView.setViewName("seller/registerProduct");
         return modelAndView;
     }
 
