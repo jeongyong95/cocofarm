@@ -1,7 +1,10 @@
 package com.jbnu.cocofarm.controller.seller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
+import com.jbnu.cocofarm.domain.order.dto.OrderProductDto.OrderProductDisplayDto;
 import com.jbnu.cocofarm.domain.product.dto.ProductDetailDto.DetailRegisterDto;
 import com.jbnu.cocofarm.domain.product.dto.ProductDto.ProductRegisterDto;
 import com.jbnu.cocofarm.domain.seller.SellerDto.SellerLoginDto;
@@ -29,6 +32,20 @@ public class SellerController {
         ModelAndView modelAndView = new ModelAndView();
 
         modelAndView.setViewName("seller/salesManagement");
+        return modelAndView;
+    }
+
+    @GetMapping(value = "/seller/salesManagement/saleList")
+    public ModelAndView saleList(HttpSession session) {
+        ModelAndView modelAndView = new ModelAndView();
+
+        SellerSessionDto sellerSessionDto = (SellerSessionDto) session.getAttribute("seller"); 
+
+        List<OrderProductDisplayDto> saleList = sellerService.getSaleList(sellerSessionDto);   
+      
+        modelAndView.addObject("saleList", saleList);
+
+        modelAndView.setViewName("seller/saleList");
         return modelAndView;
     }
 
