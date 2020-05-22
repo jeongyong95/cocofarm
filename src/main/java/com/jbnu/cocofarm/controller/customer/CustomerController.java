@@ -1,13 +1,19 @@
 package com.jbnu.cocofarm.controller.customer;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import com.jbnu.cocofarm.domain.cart.CartDto.CartDisplayDto;
+import com.jbnu.cocofarm.domain.cart.CartDto.CartRegisterDto;
 import com.jbnu.cocofarm.domain.customer.CustomerDto.CustomerLoginDto;
 import com.jbnu.cocofarm.domain.customer.CustomerDto.CustomerRegisterDto;
 import com.jbnu.cocofarm.domain.customer.CustomerDto.CustomerSessionDto;
+import com.jbnu.cocofarm.domain.order.dto.OrderProductDto.OrderProductDisplayDto;
 import com.jbnu.cocofarm.domain.order.dto.OrderProductDto.OrderProductRegisterDto;
 import com.jbnu.cocofarm.domain.order.dto.OrderTotalDto.OrderTotalRegisterDto;
+import com.jbnu.cocofarm.service.cart.CartService;
 import com.jbnu.cocofarm.service.customer.CustomerService;
 
 import org.springframework.stereotype.Controller;
@@ -23,6 +29,7 @@ import lombok.AllArgsConstructor;
 public class CustomerController {
 
     private CustomerService customerService;
+    private CartService cartService;
 
     @GetMapping(value = "/customer/login")
     public ModelAndView login() {
@@ -44,13 +51,32 @@ public class CustomerController {
         return "customer/mypage";
     }
 
+    @GetMapping(value = "/customer/mypage/purchaseList")
+    public ModelAndView purhaselist(HttpSession session) {
+        ModelAndView modelAndView = new ModelAndView();
+
+        CustomerSessionDto sessionDto = (CustomerSessionDto) session.getAttribute("customer");
+
+        List<OrderProductDisplayDto> purchaseList = customerService.getPurchaseList(sessionDto);
+
+        modelAndView.addObject("purchaseList", purchaseList);
+        modelAndView.setViewName("customer/purchaseList");
+        return modelAndView;
+    }
+
     @GetMapping(value = "/customer/cart")
     public ModelAndView cart(HttpSession session) {
         ModelAndView modelAndView = new ModelAndView();
         CustomerSessionDto sessionDto = (CustomerSessionDto) session.getAttribute("customer");
+        List<CartDisplayDto> displayList = cartService.findByCustomer(sessionDto.getId());
 
-        // cartDisplayDtoList를 담아서 보내야 함
-        // modelAndView.addObject(attributeName, attributeValue)
+        int totalPrice = 0;
+        for (int i = 0; i < displayList.size(); i++) {
+            totalPrice += displayList.get(i).getProductTotalPrice();
+        }
+
+        modelAndView.addObject("displayList", displayList);
+        modelAndView.addObject("totalPrice", totalPrice);
         modelAndView.setViewName("customer/cart");
         return modelAndView;
     }
@@ -103,10 +129,12 @@ public class CustomerController {
     }
 
     @PostMapping(value = "/customer/addToCart")
-    public ModelAndView addToCart() {
+    public ModelAndView addToCart(HttpSession session, CartRegisterDto registerDto) {
         ModelAndView modelAndView = new ModelAndView();
-
+        CustomerSessionDto sessionDto = (CustomerSessionDto) session.getAttribute("customer");
         // 장바구니에 담는 로직 구현하기
+        cartService.registerCart(registerDto, sessionDto.getId());
+
         modelAndView.setViewName("redirect:/customer/cart");
         return modelAndView;
     }

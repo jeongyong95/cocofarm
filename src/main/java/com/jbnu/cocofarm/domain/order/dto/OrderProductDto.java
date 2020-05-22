@@ -1,5 +1,7 @@
 package com.jbnu.cocofarm.domain.order.dto;
 
+import java.time.LocalDateTime;
+
 import com.jbnu.cocofarm.domain.order.OrderProduct;
 import com.jbnu.cocofarm.domain.order.OrderTotal;
 import com.jbnu.cocofarm.domain.product.Product;
@@ -36,5 +38,6 @@ public class OrderProductDto {
         private int quantity;
         private int price;
         private int ProductTotalPrice;
+        private LocalDateTime createdTimestamp;
     }
 }

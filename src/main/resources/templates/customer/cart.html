@@ -15,15 +15,12 @@
 
     <section class="elements-area section-padding-80-0">
         <div class="container">
-
-
-
             <div id="collapseOne" class="accordion-content collapse show">
                 <h5>장바구니 목록</h5>
                 <div class="row">
                     <div class="col-12">
-
                         <div class="row align-items-center mt-90">
+
                             <!-- Single Cool Fact -->
                             <div class="col-12 col-sm-6 col-lg-3">
                                 <div class="single-cool-fact">
@@ -52,55 +49,45 @@
                                 </div>
                             </div>
 
-
                         </div>
+                        <div class="row align-items-center mt-90" th:each="displayDto : ${displayList}">
+                            <th:block th:object="${displayDto}">
+                                <!-- Single Cool Fact -->
+                                <div class="col-12 col-sm-6 col-lg-3">
+                                    <div class="single-cool-fact">
+                                        <td th:text="*{productName}"> </td>
+                                    </div>
+                                </div>
 
-                        <div class="row align-items-center mt-90">
+                                <!-- Single Cool Fact -->
+                                <div class="col-12 col-sm-6 col-lg-3">
+                                    <div class="single-cool-fact">
+                                        <td th:text="*{price}"> </td>
+                                    </div>
+                                </div>
 
-                            <th:block th:each="cartDto : ${cartDtoList}">
-<div>
-    <!-- Single Cool Fact -->
-    <div class="col-12 col-sm-6 col-lg-3">
-        <div class="single-cool-fact">
-            <td th:text="${basket.getProductDetail().getProduct().getName()}"> </td>
-        </div>
-    </div>
+                                <!-- Single Cool Fact -->
+                                <div class="col-12 col-sm-6 col-lg-3">
+                                    <div class="single-cool-fact">
+                                        <td th:text="*{quantity}"> </td>
+                                    </div>
+                                </div>
 
-    <!-- Single Cool Fact -->
-    <div class="col-12 col-sm-6 col-lg-3">
-        <div class="single-cool-fact">
-            <td th:text="${basket.getProductDetail().getProduct().getPrice()}"> </td>
-        </div>
-    </div>
-
-    <!-- Single Cool Fact -->
-    <div class="col-12 col-sm-6 col-lg-3">
-        <div class="single-cool-fact">
-            <td th:text="${basket.getCount()}"> </td>
-        </div>
-    </div>
-
-    <!-- Single Cool Fact -->
-    <div class="col-12 col-sm-6 col-lg-3">
-        <div class="single-cool-fact">
-            <td
-                th:text="${basket.getProductDetail().getProduct().getPrice() * basket.getCount()}">
-            </td>
-
-        </div>
-    </div>
-</div>
+                                <!-- Single Cool Fact -->
+                                <div class="col-12 col-sm-6 col-lg-3">
+                                    <div class="single-cool-fact">
+                                        <td
+                                            th:text="*{productTotalPrice}">
+                                        </td>
+                                    </div>
+                                </div>
                             </th:block>
                         </div>
-
-
                     </div>
                 </div>
 
                 <div class="container">
-
                     <div class="row">
-
                         <div class="col-12 col-lg-6">
 
                         </div>

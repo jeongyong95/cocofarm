@@ -48,7 +48,7 @@
                 <div class="col-12 col-sm-6">
                     <div class="top-social-info text-right">
                         <div class="classynav">
-                            <ul th:if="${session.customer} != null">
+                            <ul th:if="${session.customer}">
                                 <li>
                                     <a th:href="@{/customer/logout}"
                                         >로그아웃</a
@@ -65,16 +65,14 @@
                                     >
                                 </li>
                                 <li>
-                                    <a th:href="@{/customer/basket}"
-                                        >장바구니</a
-                                    >
+                                    <a th:href="@{/customer/cart}">장바구니</a>
                                 </li>
                                 <li><a href="/support">고객센터</a></li>
                                 <li>
                                     <a th:href="@{/seller/login}">판매자센터</a>
                                 </li>
                             </ul>
-                            <ul th:unless="${session.customer} != null">
+                            <ul th:unless="${session.customer}">
                                 <li>
                                     <a th:href="@{/customer/login}">로그인</a>
                                 </li>
@@ -87,9 +85,7 @@
                                     >
                                 </li>
                                 <li>
-                                    <a th:href="@{/customer/basket}"
-                                        >장바구니</a
-                                    >
+                                    <a th:href="@{/customer/cart}">장바구니</a>
                                 </li>
                                 <li><a href="/support">고객센터</a></li>
                                 <li>

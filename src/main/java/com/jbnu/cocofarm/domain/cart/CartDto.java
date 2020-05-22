@@ -12,6 +12,9 @@ public class CartDto {
     @NoArgsConstructor
     public static class CartRegisterDto {
 
+        private Long productId;
+        private int price;
+        private int productTotalPrice;
         private int quantity;
         private Customer customer;
         private ProductDetail productDetail;
@@ -24,8 +27,11 @@ public class CartDto {
     @Data
     @NoArgsConstructor
     public static class CartDisplayDto {
+
         private Long id;
         private String productName;
+        private int price;
+        private int productTotalPrice;
         private int quantity;
     }
 }

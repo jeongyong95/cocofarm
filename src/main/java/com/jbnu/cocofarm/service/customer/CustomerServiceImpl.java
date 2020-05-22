@@ -1,13 +1,21 @@
 package com.jbnu.cocofarm.service.customer;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import com.jbnu.cocofarm.domain.customer.Customer;
 import com.jbnu.cocofarm.domain.customer.CustomerRepository;
+import com.jbnu.cocofarm.domain.order.OrderTotal;
+import com.jbnu.cocofarm.domain.order.dto.OrderProductDto.OrderProductDisplayDto;
+import com.jbnu.cocofarm.domain.order.repository.OrderProductRepository;
+import com.jbnu.cocofarm.domain.order.repository.OrderTotalRepository;
 import com.jbnu.cocofarm.domain.customer.CustomerDto.CustomerLoginDto;
 import com.jbnu.cocofarm.domain.customer.CustomerDto.CustomerRegisterDto;
 import com.jbnu.cocofarm.domain.customer.CustomerDto.CustomerSessionDto;
 
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -21,6 +29,8 @@ import lombok.AllArgsConstructor;
 public class CustomerServiceImpl implements CustomerService, UserDetailsService {
 
     private CustomerRepository customerRepo;
+    private OrderTotalRepository orderTotalRepo;
+    private OrderProductRepository orderProductRepo;
     private PasswordEncoder passwordEncoder;
 
     @Override
@@ -59,4 +69,22 @@ public class CustomerServiceImpl implements CustomerService, UserDetailsService 
         return null;
     }
 
+    @Override
+    public List<OrderProductDisplayDto> getPurchaseList(CustomerSessionDto sessionDto) {
+
+        ModelMapper modelMapper = new ModelMapper();
+        Customer customer = customerRepo.findById(sessionDto.getId()).get();
+        List<OrderTotal> orderTotalList = orderTotalRepo.findByCustomer(customer);
+        List<OrderProductDisplayDto> orderProductList = new ArrayList<OrderProductDisplayDto>();
+
+        for (int i = 0; i < orderTotalList.size(); i++) {
+            List<OrderProductDisplayDto> orderProduct = modelMapper.map(
+                    orderProductRepo.findByOrderTotal(orderTotalList.get(i)),
+                    new TypeToken<List<OrderProductDisplayDto>>() {
+                    }.getType());
+
+            orderProductList.addAll(orderProduct);
+        }
+        return orderProductList;
+    }
 }
