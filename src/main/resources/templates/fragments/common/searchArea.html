@@ -1,0 +1,45 @@
+<!-- 검색창 영역-->
+<style>
+    .form-search {
+        display: inline-block;
+        width: 100%;
+        float: left;
+        height: calc(1.5em + .75rem + 2px);
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #fff;
+        border-radius: .25rem 0rem 0rem .25rem;
+        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+
+    .search-area {
+        padding: 3rem 0rem;
+        background-color: #40ba37;
+    }
+</style>
+
+<div class="search-area">
+    <div class="container">
+        <form action="/product/searchProduct" method="GET">
+                <div style="max-width: 500px; margin: 0 auto;">
+                    <input type="text" name="searchKeyword" class="form-search">
+                </div>
+                <button type="submit" class="btn btn-outline-light" style="border-radius: 0rem .25rem .25rem 0rem">
+                    <svg class="bi bi-search" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z"
+                            clip-rule="evenodd" />
+                        <path fill-rule="evenodd"
+                            d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </button>
+        </form>
+    </div>
+</div>

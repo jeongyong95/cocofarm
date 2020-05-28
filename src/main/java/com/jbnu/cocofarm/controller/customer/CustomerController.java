@@ -51,16 +51,16 @@ public class CustomerController {
         return "customer/mypage";
     }
 
-    @GetMapping(value = "/customer/mypage/purchaseList")
+    @GetMapping(value = "/customer/mypage/orderList")
     public ModelAndView purhaselist(HttpSession session) {
         ModelAndView modelAndView = new ModelAndView();
 
         CustomerSessionDto sessionDto = (CustomerSessionDto) session.getAttribute("customer");
 
-        List<OrderProductDisplayDto> purchaseList = customerService.getPurchaseList(sessionDto);
+        List<OrderProductDisplayDto> orderList = customerService.getPurchaseList(sessionDto);
 
-        modelAndView.addObject("purchaseList", purchaseList);
-        modelAndView.setViewName("customer/purchaseList");
+        modelAndView.addObject("orderList", orderList);
+        modelAndView.setViewName("customer/orderList");
         return modelAndView;
     }
 

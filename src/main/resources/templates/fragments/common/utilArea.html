@@ -1,0 +1,103 @@
+<!-- 유틸리티 영역 -->
+<nav class="navbar bg-white navbar-light navbar-expand-sm">
+    <div class="container">
+        <!-- 로고 -->
+        <a th:href="@{/index}" class="navbar-brand">COCOFARM</a>
+
+        <!-- 모바일 상태일 경우 메뉴를 펼치는 버튼 -->
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navMenu"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- 메뉴 : 모바일일 경우 메뉴를 접은 상태로 시작한다 -->
+        <div class="collapse navbar-collapse" id="navMenu">
+            <!-- 로그인 안한 상태 -->
+            <ul th:if="${session.customer} == null" class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a th:href="@{/customer/login}" class="nav-link">로그인</a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/customer/join}" class="nav-link">회원가입</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a
+                        th:href="@{/customer/mypage}"
+                        class="nav-link dropdown-toggle"
+                        id="dropdownMenuButton"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        >마이페이지</a
+                    >
+                    <div
+                        class="dropdown-menu"
+                        aria-labelledby="dropdownMenuButton"
+                    >
+                        <a
+                            th:href="@{/customer/orderList}"
+                            class="dropdown-item"
+                            >주문배송조회</a
+                        >
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/customer/cart}" class="nav-link">장바구니</a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/seller/login}" class="nav-link"
+                        >판매자센터</a
+                    >
+                </li>
+            </ul>
+
+            <!-- 로그인 한 상태 -->
+            <ul th:if="${session.customer} != null" class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a th:href="@{/customer/logout}" class="nav-link"
+                        >로그아웃</a
+                    >
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/}" class="nav-link">회원정보</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a
+                        th:href="@{/customer/orderList}"
+                        class="nav-link dropdown-toggle"
+                        id="dropdownMenuButton"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        >마이페이지</a
+                    >
+                    <div
+                        class="dropdown-menu"
+                        aria-labelledby="dropdownMenuButton"
+                    >
+                        <a
+                            th:href="@{/customer/orderList}"
+                            class="dropdown-item"
+                            >주문배송조회</a
+                        >
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <!-- 장바구니 담긴 수량 뱃지로 표시 현재 임시 수량 부여 백엔드 로직 반영 필요함 -->
+                    <a th:href="@{/customer/cart}" class="nav-link"
+                        >장바구니<span class="badge badge-secondary">7</span></a
+                    >
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/seller/login}" class="nav-link"
+                        >판매자센터</a
+                    >
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
