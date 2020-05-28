@@ -39,5 +39,6 @@ public class OrderProductDto {
         private int price;
         private int ProductTotalPrice;
         private LocalDateTime createdTimestamp;
+        private OrderTotal orderTotal;
     }
 }

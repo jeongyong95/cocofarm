@@ -74,6 +74,7 @@ public class CustomerServiceImpl implements CustomerService, UserDetailsService 
 
         ModelMapper modelMapper = new ModelMapper();
         Customer customer = customerRepo.findById(sessionDto.getId()).get();
+        
         List<OrderTotal> orderTotalList = orderTotalRepo.findByCustomer(customer);
         List<OrderProductDisplayDto> orderProductList = new ArrayList<OrderProductDisplayDto>();
 
