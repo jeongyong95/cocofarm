@@ -3,6 +3,7 @@ package com.jbnu.cocofarm.service.order;
 import java.util.List;
 
 import com.jbnu.cocofarm.domain.customer.CustomerRepository;
+import com.jbnu.cocofarm.domain.order.OrderProduct;
 import com.jbnu.cocofarm.domain.order.OrderTotal;
 import com.jbnu.cocofarm.domain.order.dto.OrderProductDto.OrderProductRegisterDto;
 import com.jbnu.cocofarm.domain.order.dto.OrderTotalDto.OrderTotalRegisterDto;
@@ -33,6 +34,16 @@ public class OrderServiceImpl implements OrderService {
             productRegisterDtoList.get(i).setProduct(productRepo.getOne(productRegisterDtoList.get(i).getProductId()));
             orderProductRepo.save(productRegisterDtoList.get(i).toEntity());
         }
+    }
+
+    @Override
+    public OrderProduct getOrderProduct(Long orderProductId) {
+        return orderProductRepo.getOne(orderProductId);
+    }
+
+    @Override
+    public OrderTotal getOrderTotal(Long orderTotalId) {
+        return orderTotalRepo.getOne(orderTotalId);
     }
 
     @Override

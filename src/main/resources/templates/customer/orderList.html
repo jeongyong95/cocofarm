@@ -23,13 +23,61 @@
             .mt-10 {
                 margin-top: 10px;
             }
+
             .mt-20 {
                 margin-top: 20px;
             }
+
             .mt-30 {
                 margin-top: 30px;
             }
         </style>
+
+        <script type="text/javascript">
+            function trackingUrl() {
+                var a = document.getElementById("courierCode");
+                var b = document.getElementById("trackingNumber");
+
+                var url =
+                    "https://tracker.delivery/#/" +
+                    a.innerText +
+                    "/" +
+                    b.innerText;
+
+                window.open(
+                    url,
+                    "배송 추적",
+                    "width=600, height=800, location=no"
+                );
+            }
+        </script>
+
+        <script type="text/javascript">
+            function checkDelivered() {
+                var a = document.getElementById("courierCode");
+                var b = document.getElementById("trackingNumber");
+
+                var link =
+                    "https://apis.tracker.delivery/carriers/" +
+                    a.innerText +
+                    "/tracks/" +
+                    b.innerText;
+
+                $.getJSON(
+                    "https://apis.tracker.delivery/carriers/kr.cjlogistics/tracks/356415897924",
+                    function (data) {
+                        if (data.state.id == "delivered") {
+                            var html = [];
+                            html.push('<div class="badge"> 배송 완료 </div>');
+                            html.push(
+                                '<div><button type="button" class="badge badge-primary" th:onclick="#"> 구매 확정 </button></div>'
+                            );
+                            $("#delivered").html(html.join(""));
+                        }
+                    }
+                );
+            }
+        </script>
     </head>
 
     <body>
@@ -166,13 +214,13 @@
                                         scope="col"
                                         style="text-align: center; width: 15%;"
                                     >
-                                    주문금액
+                                        주문금액
                                     </th>
                                     <th
                                         scope="col"
                                         style="text-align: center; width: 15%;"
                                     >
-                                    상태
+                                        상태
                                     </th>
                                 </tr>
                             </thead>
@@ -184,7 +232,8 @@
                                             text-align: center;
                                             vertical-align: middle;
                                         "
-                                     th:text="*{#temporals.format(createdTimestamp, 'yyyy년 mm월 dd일')}"></td>
+                                        th:text="*{#temporals.format(createdTimestamp, 'yyyy년 MM월 dd일')}"
+                                    ></td>
 
                                     <!-- 주문번호 -->
                                     <td
@@ -196,8 +245,8 @@
                                         <a
                                             th:href="@{/customer/orderDatailInfo}"
                                             style="color: #212529;"
-                                             th:text="주문번호"></a
-                                        >
+                                            th:text="주문번호"
+                                        ></a>
                                     </td>
 
                                     <!-- 상품정보 -->
@@ -211,24 +260,50 @@
                                             text-align: right;
                                             vertical-align: middle;
                                         "
-                                     th:text="*{productTotalPrice}"</td>
+                                        th:text="*{productTotalPrice}"
+                                    ></td>
+
+                                    <td
+                                        th:if="${orderDisplayDto.delivery}"
+                                        id="courierCode"
+                                        th:text="*{delivery.courierCode}"
+                                        hidden
+                                    ></td>
+                                    <td
+                                        th:if="${orderDisplayDto.delivery}"
+                                        id="trackingNumber"
+                                        th:text="*{delivery.trackingNumber}"
+                                        hidden
+                                    ></td>
 
                                     <!-- 상태 -->
+
                                     <td
                                         style="
                                             text-align: center;
                                             vertical-align: middle;
                                         "
                                     >
-                                        <span>
-                                            구매확정
-                                        </span>
-                                        <a href="">
-                                            <span class="badge badge-primary"
-                                                >배송조회</span
+                                        <div
+                                            th:if="${orderDisplayDto.delivery}"
+                                        >
+                                            <button
+                                                type="button"
+                                                class="badge badge-primary"
+                                                th:onclick="|javascript:trackingUrl()|"
                                             >
-                                        </a>
-                                        <a href="">
+                                                배송조회
+                                            </button>
+                                        </div>
+
+                                        <script>
+                                            checkDelivered();
+                                        </script>
+                                        <div id="delivered"></div>
+
+                                        <a
+                                            th:href="@{/product/productDetailView/{productId}(productId=*{productId})}"
+                                        >
                                             <span class="badge badge-primary"
                                                 >리뷰작성</span
                                             >

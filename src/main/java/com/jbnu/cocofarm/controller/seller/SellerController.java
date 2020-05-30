@@ -4,12 +4,14 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import com.jbnu.cocofarm.domain.delivery.DeliveryDto.DeliveryRegisterDto;
 import com.jbnu.cocofarm.domain.order.dto.OrderProductDto.OrderProductDisplayDto;
 import com.jbnu.cocofarm.domain.product.dto.ProductDetailDto.DetailRegisterDto;
 import com.jbnu.cocofarm.domain.product.dto.ProductDto.ProductRegisterDto;
 import com.jbnu.cocofarm.domain.seller.SellerDto.SellerLoginDto;
 import com.jbnu.cocofarm.domain.seller.SellerDto.SellerRegisterDto;
 import com.jbnu.cocofarm.domain.seller.SellerDto.SellerSessionDto;
+import com.jbnu.cocofarm.service.delivery.DeliveryService;
 import com.jbnu.cocofarm.service.product.ProductService;
 import com.jbnu.cocofarm.service.seller.SellerService;
 
@@ -26,6 +28,7 @@ public class SellerController {
 
     private SellerService sellerService;
     private ProductService productService;
+    private DeliveryService deliveryService;
 
     @GetMapping(value = "/seller/salesManagement")
     public ModelAndView saleManagement() {
@@ -39,12 +42,10 @@ public class SellerController {
     public ModelAndView saleList(HttpSession session) {
         ModelAndView modelAndView = new ModelAndView();
 
-        SellerSessionDto sellerSessionDto = (SellerSessionDto) session.getAttribute("seller"); 
+        SellerSessionDto sellerSessionDto = (SellerSessionDto) session.getAttribute("seller");
+        List<OrderProductDisplayDto> saleList = sellerService.getSaleList(sellerSessionDto);
 
-        List<OrderProductDisplayDto> saleList = sellerService.getSaleList(sellerSessionDto);   
-      
         modelAndView.addObject("saleList", saleList);
-
         modelAndView.setViewName("seller/saleList");
         return modelAndView;
     }
@@ -101,6 +102,25 @@ public class SellerController {
         SellerSessionDto sessionDto = (SellerSessionDto) session.getAttribute("seller");
         registerDto.setSeller(sellerService.getSeller(sessionDto.getId()));
         productService.registerProduct(registerDto, detailDto);
+        return "redirect:/seller/salesManagement";
+    }
+
+    @GetMapping(value = "/seller/registerDelivery")
+    public ModelAndView registerDelivery(Long orderProductId) {
+        ModelAndView modelAndView = new ModelAndView();
+
+        modelAndView.addObject("orderProductId", orderProductId);
+
+        // deliveryRegisterDto를 보내줘야 함
+        modelAndView.addObject("deliveryRegisterDto", new DeliveryRegisterDto());
+
+        modelAndView.setViewName("seller/registerDelivery");
+        return modelAndView;
+    }
+
+    @PostMapping(value = "/seller/registerDeliveryAction")
+    public String registerDeliveryAction(DeliveryRegisterDto deliveryRegisterDto, Long orderProductId) {
+        deliveryService.registerDelivery(deliveryRegisterDto, orderProductId);
         return "redirect:/seller/salesManagement";
     }
 }

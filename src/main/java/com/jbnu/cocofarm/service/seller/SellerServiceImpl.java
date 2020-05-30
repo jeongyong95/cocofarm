@@ -67,18 +67,14 @@ public class SellerServiceImpl implements SellerService {
     public List<OrderProductDisplayDto> getSaleList(SellerSessionDto sellerSessionDto) {
 
         ModelMapper modelMapper = new ModelMapper();
-
         Seller seller = sellerRepo.findById(sellerSessionDto.getId()).get();
-
         List<Product> productList = productRepo.findBySeller(seller);
-
         List<OrderProductDisplayDto> saleProductList = new ArrayList<OrderProductDisplayDto>();
 
         for (int i = 0; i < productList.size(); i++) {
 
             List<OrderProductDisplayDto> saleProduct = modelMapper.map(
-                    orderproductRepo.findByProduct(productList.get(i)),
-                    new TypeToken<List<OrderProductDisplayDto>>() {
+                    orderproductRepo.findByProduct(productList.get(i)), new TypeToken<List<OrderProductDisplayDto>>() {
                     }.getType());
 
             saleProductList.addAll(saleProduct);

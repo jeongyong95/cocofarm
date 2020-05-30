@@ -3,99 +3,165 @@
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
-    <th:block th:include="fragments/common/head"></th:block>
-    <title>판매내역 - 코코팜</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <title>판매/배송조회 - 코코팜</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <style>
+        .mt-10 {
+            margin-top: 10px;
+        }
+
+        .mt-20 {
+            margin-top: 20px;
+        }
+
+        .mt-30 {
+            margin-top: 30px;
+        }
+    </style>
 </head>
 
 <body>
-    <!-- header -->
-    <th:block th:include="fragments/common/header"></th:block>
+    <!-- 유틸리티 -->
+    <th:block th:include="fragments/common/utilArea"></th:block>
 
-    <!-- content -->
+    <!-- 검색창 -->
+    <th:block th:include="fragments/common/searchArea"></th:block>
 
-    <section class="elements-area section-padding-80-0">
-        <div class="container">
-            <div id="collapseOne" class="accordion-content collapse show">
-                <h5>구매내역</h5>
-                <div class="row">
-                    <div class="col-12">
+    <!-- GNB -->
+    <th:block th:include="fragments/common/gnbArea"></th:block>
 
-                        <div class="row align-items-center mt-90">
-                            <!-- Single Cool Fact -->
-                            <div class="col-12 col-sm-6 col-lg-3">
-                                <div class="single-cool-fact">
-                                    <h6>상품이름</h6>
-                                </div>
+    <!-- 콘텐츠 -->
+    <div class="container">
+        <div class="row">
+            <!-- 사이바 영역 -->
+            <div class="col-sm-2">
+                <div style="
+                            width: 100%;
+                            height: 100%;
+                            background-color: blue;
+                            color: white;
+                        ">
+                    <span>사이드 바 구현중</span>
+                </div>
+            </div>
+            <!-- 콘텐츠 영역 -->
+            <div class="col-sm-10">
+                <!-- 브레드크럼 : 경로 -->
+                <div class="mt-10">
+                    <ol class="breadcrumb">
+
+                        <a th:href="@{/seller/salesManagement}">판매자센터</a>
+                        </li>
+                        >
+                        <li class="active">주문/배송 내역</li>
+                    </ol>
+                </div>
+
+                <h3>판매/배송 내역</h3>
+                <!-- 조회기간 쿼리 -->
+                <div class="mt-30" style="height: 70px;">
+                    <form action="" method="GET">
+                        <div class="input-group">
+                            <span class="btn">조회기간</span>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-secondary">
+                                    1주일
+                                </button>
+                                <button type="button" class="btn btn-secondary">
+                                    1개월
+                                </button>
+                                <button type="button" class="btn btn-secondary">
+                                    3개월
+                                </button>
+                                <button type="button" class="btn btn-secondary">
+                                    6개월
+                                </button>
                             </div>
-
-                            <!-- Single Cool Fact -->
-                            <div class="col-12 col-sm-6 col-lg-3">
-                                <div class="single-cool-fact">
-                                    <h6>판매가</h6>
-                                </div>
-                            </div>
-
-                            <!-- Single Cool Fact -->
-                            <div class="col-12 col-sm-6 col-lg-3">
-                                <div class="single-cool-fact">
-                                    <h6>수량</h6>
-                                </div>
-                            </div>
-
-                            <!-- Single Cool Fact -->
-                            <div class="col-12 col-sm-6 col-lg-3">
-                                <div class="single-cool-fact">
-                                    <h6>가격</h6>
-                                </div>
-                            </div>
+                            <input class="form-control" type="date" name="startDate" min="2000-01-01" />
+                            <input class="form-control" type="date" name="endDate" />
+                            <button type="button" class="btn btn-secondary">
+                                조회
+                                <svg class="bi bi-search" width="1em" height="1em" viewBox="0 0 16 16"
+                                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z"
+                                        clip-rule="evenodd" />
+                                    <path fill-rule="evenodd"
+                                        d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </button>
                         </div>
+                    </form>
+                </div>
 
-                        <div class="row align-items-center mt-90" th:each="orderProductDisplayDto : ${saleList}">
-                            <th:block th:object="${orderProductDisplayDto}">
-                                <div>
-                                    <!-- Single Cool Fact -->
-                                    <div class="col-12 col-sm-6 col-lg-3">
-                                        <div class="single-cool-fact">
-                                            <td th:text="*{productName}"> </td>
-                                        </div>
-                                    </div>
+                <h4>판매내역</h4>
+                <div class="mt-10">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col" style="text-align: center; width: 14%;">
+                                    판매일자
+                                </th>
+                                <th scope="col" style="text-align: center; width: 8%;">
+                                    주문번호
+                                </th>
+                                <th scope="col" style="text-align: center;">
+                                    상품정보
+                                </th>
+                                <th scope="col" style="text-align: center; width: 15%;">
+                                    주문금액
+                                </th>
+                                <th scope="col" style="text-align: center; width: 15%;">
+                                    상태
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody th:each="orderProductDisplayDto : ${saleList}">
+                            <tr th:object="${orderProductDisplayDto}">
+                                <!-- 주문일자 -->
+                                <td style="text-align: center; vertical-align: middle;" th:text="*{#temporals.format(createdTimestamp, 'yyyy년 MM월 dd일')}"></td>
 
-                                    <!-- Single Cool Fact -->
-                                    <div class="col-12 col-sm-6 col-lg-3">
-                                        <div class="single-cool-fact">
-                                            <td th:text="*{#temporals.format(createdTimestamp, 'yyyy년 mm월 dd일')}"> </td>
-                                        </div>
-                                    </div>
+                                    <!-- 주문번호 -->
+                                    <td style="text-align: center; vertical-align: middle;">
+                                        <a th:href="@{/customer/orderDatailInfo}" style="color: #212529;" th:text="*{id}"></a>
+                                    </td>
 
-                                    <!-- Single Cool Fact -->
-                                    <div class="col-12 col-sm-6 col-lg-3">
-                                        <div class="single-cool-fact">
-                                            <td th:text="*{quantity}"> </td>
-                                            
-                                        </div>
-                                    </div>
+                                    <!-- 상품정보 -->
+                                    <td style="vertical-align: middle;" th:text="*{productName}"></td>
 
-                                    <!-- Single Cool Fact -->
-                                    <div class="col-12 col-sm-6 col-lg-3">
-                                        <div class="single-cool-fact">
-                                            <td th:text="*{productTotalPrice}">
-                                            </td>
+                                    <!-- 상품금액 -->
+                                    <td style="text-align: right; vertical-align: middle;" th:text="*{productTotalPrice}"</td>
 
-                                        </div>
-                                    </div>
-                                </div>
-                            </th:block>
-                        </div>
+                                    <!-- 상태 -->
+                                    <td style="text-align: center; vertical-align: middle;">
+                                        <form th:action="@{/seller/registerDelivery}" method="GET">
+                                            <input type="hidden" name="orderProductId" th:value="*{id}">
+                                            <div>
+                                                <button type="submit" class="badge badge-primary" >배송입력</button>
+                                            </div>
+                                        </form>
+                                        
+                                        <a href="">
+                                            <span class="badge badge-primary">리뷰조회</span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- footer -->
-    <th:block th:include="fragments/common/footer"></th:block>
-    </div>
-    <th:block th:include="fragments/common/script"></th:block>
-</body>
+        <!-- 푸터 -->
+        <th:block th:include="fragments/common/footer"></th:block>
 
+        <th:block th:include="fragments/common/script"></th:block>
+    </body>
 </html>

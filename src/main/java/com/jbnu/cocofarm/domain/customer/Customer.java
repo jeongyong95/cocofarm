@@ -10,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.jbnu.cocofarm.domain.cart.Cart;
-import com.jbnu.cocofarm.domain.delivery.Delivery;
 import com.jbnu.cocofarm.domain.order.OrderTotal;
 import com.jbnu.cocofarm.domain.product.ProductQuestion;
 import com.jbnu.cocofarm.domain.product.ProductReview;
@@ -59,9 +58,6 @@ public class Customer extends BaseTime implements UserDetails {
 
     @OneToMany(mappedBy = "customer")
     List<OrderTotal> orderTotalList = new ArrayList<>();
-
-    @OneToMany(mappedBy = "customer")
-    List<Delivery> deliveryList = new ArrayList<>();
 
     @OneToMany(mappedBy = "customer")
     List<ProductQuestion> productQuestionList = new ArrayList<>();

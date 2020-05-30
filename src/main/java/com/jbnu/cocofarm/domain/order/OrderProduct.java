@@ -5,7 +5,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
+import com.jbnu.cocofarm.domain.delivery.Delivery;
 import com.jbnu.cocofarm.domain.product.Product;
 import com.jbnu.cocofarm.util.BaseTime;
 
@@ -18,7 +20,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class OrderProduct extends BaseTime {
-    // 이친구들 이미 결제완료된 거임
+
     @Id
     @GeneratedValue
     private Long id;
@@ -31,6 +33,9 @@ public class OrderProduct extends BaseTime {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private OrderTotal orderTotal;
+
+    @OneToOne(mappedBy = "orderProduct")
+    private Delivery delivery;
 
     @Builder
     public OrderProduct(int quantity, int productTotalPrice, boolean orderCheck, Product product,
