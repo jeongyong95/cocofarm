@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.jbnu.cocofarm.domain.product.Product;
+import com.jbnu.cocofarm.domain.product.ProductQuestion;
 import com.jbnu.cocofarm.util.BaseTime;
 
 import lombok.AccessLevel;
@@ -41,4 +42,8 @@ public class Seller extends BaseTime {
 
     @OneToMany(mappedBy = "seller")
     List<Product> productList = new ArrayList<>();
+
+    
+    @OneToMany(mappedBy = "seller")
+    List<ProductQuestion> productQuestionList = new ArrayList<>();
 }

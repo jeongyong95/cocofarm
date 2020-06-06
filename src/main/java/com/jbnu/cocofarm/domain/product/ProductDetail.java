@@ -41,8 +41,5 @@ public class ProductDetail {
     }
 
     @OneToMany(mappedBy = "productDetail")
-    List<ProductQuestion> productQuestionList = new ArrayList<>();
-
-    @OneToMany(mappedBy = "productDetail")
     List<ProductReview> productReviewList = new ArrayList<>();
 }

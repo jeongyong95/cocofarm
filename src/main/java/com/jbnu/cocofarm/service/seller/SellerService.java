@@ -3,6 +3,7 @@ package com.jbnu.cocofarm.service.seller;
 import java.util.List;
 
 import com.jbnu.cocofarm.domain.order.dto.OrderProductDto.OrderProductDisplayDto;
+import com.jbnu.cocofarm.domain.product.dto.ProductQuestionDto.QuestionDto;
 import com.jbnu.cocofarm.domain.seller.Seller;
 import com.jbnu.cocofarm.domain.seller.SellerDto.SellerLoginDto;
 import com.jbnu.cocofarm.domain.seller.SellerDto.SellerRegisterDto;
@@ -16,6 +17,9 @@ public interface SellerService {
 
     SellerSessionDto checkSeller(SellerLoginDto loginDto);
 
-	List<OrderProductDisplayDto> getSaleList(SellerSessionDto sellerSessionDto);
+    List<OrderProductDisplayDto> getSaleList(SellerSessionDto sellerSessionDto);
+    
+
+    
 
 }

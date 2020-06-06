@@ -47,12 +47,7 @@ public class CustomerController {
     }
 
     @GetMapping(value = "/customer/mypage")
-    public String mypage() {
-        return "customer/mypage";
-    }
-
-    @GetMapping(value = "/customer/mypage/orderList")
-    public ModelAndView purhaselist(HttpSession session) {
+    public ModelAndView mypage (HttpSession session) {
         ModelAndView modelAndView = new ModelAndView();
 
         CustomerSessionDto sessionDto = (CustomerSessionDto) session.getAttribute("customer");
@@ -60,8 +55,8 @@ public class CustomerController {
         List<OrderProductDisplayDto> orderList = customerService.getPurchaseList(sessionDto);
 
         modelAndView.addObject("orderList", orderList);
-        modelAndView.setViewName("customer/orderList");
-        return modelAndView;
+        modelAndView.setViewName("customer/mypage");
+        return modelAndView;    
     }
 
     @GetMapping(value = "/customer/cart")

@@ -8,6 +8,8 @@ import com.jbnu.cocofarm.domain.delivery.DeliveryDto.DeliveryRegisterDto;
 import com.jbnu.cocofarm.domain.order.dto.OrderProductDto.OrderProductDisplayDto;
 import com.jbnu.cocofarm.domain.product.dto.ProductDetailDto.DetailRegisterDto;
 import com.jbnu.cocofarm.domain.product.dto.ProductDto.ProductRegisterDto;
+import com.jbnu.cocofarm.domain.product.dto.ProductQuestionDto.AnswerQuestionDto;
+import com.jbnu.cocofarm.domain.product.dto.ProductQuestionDto.QuestionDto;
 import com.jbnu.cocofarm.domain.seller.SellerDto.SellerLoginDto;
 import com.jbnu.cocofarm.domain.seller.SellerDto.SellerRegisterDto;
 import com.jbnu.cocofarm.domain.seller.SellerDto.SellerSessionDto;
@@ -31,9 +33,13 @@ public class SellerController {
     private DeliveryService deliveryService;
 
     @GetMapping(value = "/seller/salesManagement")
-    public ModelAndView saleManagement() {
+    public ModelAndView saleManagement(HttpSession session) {
         ModelAndView modelAndView = new ModelAndView();
 
+        SellerSessionDto sellerSessionDto = (SellerSessionDto) session.getAttribute("seller");
+        List<QuestionDto> questionList = productService.getQuestion(sellerSessionDto);
+
+        modelAndView.addObject("questionList", questionList);
         modelAndView.setViewName("seller/salesManagement");
         return modelAndView;
     }
@@ -122,5 +128,18 @@ public class SellerController {
     public String registerDeliveryAction(DeliveryRegisterDto deliveryRegisterDto, Long orderProductId) {
         deliveryService.registerDelivery(deliveryRegisterDto, orderProductId);
         return "redirect:/seller/salesManagement";
+    }
+
+    @PostMapping(value = "/seller/questionAction")
+    public ModelAndView productQuestionAction(HttpSession session, AnswerQuestionDto answerDto) {        
+     
+        ModelAndView modelAndView = new ModelAndView();
+
+        SellerSessionDto sessionDto = (SellerSessionDto) session.getAttribute("seller");
+
+        productService.answerQuestion(answerDto, sessionDto.getId());
+                
+        modelAndView.setViewName("/seller/salesManagement");
+        return modelAndView;
     }
 }

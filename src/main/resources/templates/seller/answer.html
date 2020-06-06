@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <th:block th:include="fragments/common/head"></th:block>
+
+    <title>문의 답변 - 코코팜</title>
+</head>
+</head>
+
+<body>
+    <!-- Header -->
+    <th:block th:include="fragments/common/header"></th:block>
+
+    <!-- Content Wrapper. Contains page content -->
+    <!-- ##### Breadcumb Area Start ##### -->
+    <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb3.jpg);">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="breadcumb-text text-center">
+                        <h2>문의 답변</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Breadcumb Area End ##### -->
+
+    <!-- Receipe Content Area -->
+    <div class="receipe-content-area">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading text-left">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="contact-form-area" th:object="${questionDto}">
+                        <div class="row">
+
+                            <div class="col-6">
+                                <input type="text" class="form-control" id="title" th:value="*{title}" readonly>
+                            </div>
+                            <div class="col-3">
+                                <input type="text" class="form-control" style="text-align: center;" id="customer"
+                                    th:value="*{customer.name}" readonly>
+                            </div>
+                            <div class="col-3">
+                                <input type="text" class="form-control" style="text-align: center;" id="date" th:value="*{#temporals.format(createdTimestamp, 'yyyy년 MM월 dd일')}" readonly>
+                                </div>
+                                <div class="col-12">
+                                    <textarea name="message" class="form-control" id="content" cols="30" rows="10" th:text="*{content}" readonly> </textarea>
+                                </div>
+                                
+                                
+                                <div class="col-12">
+
+                                <form
+                                    th:action="@{/seller/questionAction}"
+                                    method="POST"
+                                    enctype="multipart/form-data"
+                                >
+                                <hr>
+                                <h1>답변 작성</h1>
+                               
+                                    
+                                   
+                            <table class="regitTable">
+                                <tbody>                                    
+                                    <tr class="mt-30">
+                                        <th scope="row" colspan="1" style = "text-align:center">
+                                            <label
+                                                for="title"
+                                                class="regitTable-label"
+                                                >제목</label
+                                            >
+                                        </th>
+                                        <td>
+                                            <input
+                                                class="form-control mt-30"
+                                                type="text"
+                                                name="title"
+                                               
+                                            />
+                                        </td>
+                                    </tr>
+                                    <tr class="mt-30">
+                                        <th scope="row"  style = "text-align:center">
+                                            <label
+                                                for="content"
+                                                class="regitTable-label"
+                                                >답변 내용</label
+                                            >
+                                        </th>
+                                        <td  rowspan="3">
+                                            <textarea cols="30" rows="10"
+                                                name="content"
+                                                id="editor"
+                                               
+                                                placeholder="답변 내용을 입력하세요."
+                                            ></textarea>
+                                        </td>
+                                    </tr>
+                                   
+                                    <tr>
+                                    <input type="text" class="form-control" name="groupNumber" th:value="*{id}" hidden>
+                                    <input type="text" class="form-control" name="productId" th:value="*{productId}" hidden>
+
+                                </tr>
+                                </tbody>
+                            </table>   
+                            <div class="btnCenter">
+                                <button
+                                    class="btn delicious-btn mt-30"
+                                    type="submit"
+                                >
+                                    등록
+                                </button>
+                            </div>
+                                </form>
+                            </div>                                
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- /.content-wrapper -->
+
+    <th:block th:include="fragments/common/footer"></th:block>
+    <th:block th:include="fragments/common/editor"></th:block>
+
+    </!DOCTYPE>
+    <!-- ./wrapper -->
+
+    <th:block th:include="fragments/common/script"></th:block>
+</body>
+
+
+</html>

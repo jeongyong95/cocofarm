@@ -4,6 +4,7 @@
 
 <head>
     <th:block th:include="fragments/common/head"></th:block>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
     <title>마이페이지 - 코코팜</title>
 
@@ -12,7 +13,7 @@
             text-align: center;
         }
 
-        .middle{
+        .middle {
             margin: 0 auto;
         }
 
@@ -56,45 +57,47 @@
 
                     <!-- 마이페이지 사이드 탭 Accordian Area -->
                     <!-- ##### Tabs start ##### -->
-                    <div class="delicious-tabs-content">
-                        <ul class="nav nav-tabs nav-tabs-col" id="myTab" role="tablist">
-                            <!-- 01 주문/배송조회 -->
-                            <li class="nav-item">
-                                <a class="nav-link" id="tab--01" data-toggle="tab" href="#tab01" role="tab"
-                                    aria-controls="tab1" aria-selected="false">주문/배송조회</a>
-                            </li>
-                            <!-- 02 취소/반품/교환 신청 -->
-                            <li class="nav-item">
-                                <a class="nav-link" id="tab--02" data-toggle="tab" href="#tab02" role="tab"
-                                    aria-controls="tab2" aria-selected="false">취소/반품/교환 신청</a>
-                            </li>
-                            <!-- 03 취소/반품/교환 현황 -->
-                            <li class="nav-item">
-                                <a class="nav-link" id="tab--03" data-toggle="tab" href="#tab03" role="tab"
-                                    aria-controls="tab3" aria-selected="false">취소/반품/교환 현황</a>
-                            </li>
-                            <!-- 04 환불/입금내역 -->
-                            <li class="nav-item">
-                                <a class="nav-link" id="tab--04" data-toggle="tab" href="#tab04" role="tab"
-                                    aria-controls="tab4" aria-selected="false">환불/입금내역</a>
-                            </li>
-                            <!-- 05 상품평 -->
-                            <li class="nav-item">
-                                <a class="nav-link" id="tab--05" data-toggle="tab" href="#tab05" role="tab"
-                                    aria-controls="tab5" aria-selected="false">상품평</a>
-                            </li>
-                            <!-- 06 회원정보 변경/탈퇴 -->
-                            <li class="nav-item">
-                                <a class="nav-link" id="tab--06" data-toggle="tab" href="#tab06" role="tab"
-                                    aria-controls="tab6" aria-selected="false">회원정보 변경/탈퇴</a>
-                            </li>
-                            <!-- 07 배송지 관리 -->
-                            <li class="nav-item">
-                                <a class="nav-link" id="tab--07" data-toggle="tab" href="#tab07" role="tab"
-                                    aria-controls="tab7" aria-selected="false">배송지 관리</a>
-                            </li>
-                        </ul>
-                    </div>
+                    <form action="${pageContext.request.contextPath}/test" method="post">
+                        <div class="delicious-tabs-content">
+                            <ul class="nav nav-tabs nav-tabs-col" id="myTab" role="tablist">
+                                <!-- 01 주문/배송조회 -->
+                                <li class="nav-item">
+                                    <a class="nav-link" id="tab--01" data-toggle="tab" href="#tab01" role="tab"
+                                        aria-controls="tab1" aria-selected="false" >주문/배송조회</a>
+                                </li>
+                                <!-- 02 취소/반품/교환 신청 -->
+                                <li class="nav-item">
+                                    <a class="nav-link" id="tab--02" data-toggle="tab" href="#tab02" role="tab"
+                                        aria-controls="tab2" aria-selected="false">취소/반품/교환 신청</a>
+                                </li>
+                                <!-- 03 취소/반품/교환 현황 -->
+                                <li class="nav-item">
+                                    <a class="nav-link" id="tab--03" data-toggle="tab" href="#tab03" role="tab"
+                                        aria-controls="tab3" aria-selected="false">취소/반품/교환 현황</a>
+                                </li>
+                                <!-- 04 환불/입금내역 -->
+                                <li class="nav-item">
+                                    <a class="nav-link" id="tab--04" data-toggle="tab" href="#tab04" role="tab"
+                                        aria-controls="tab4" aria-selected="false">환불/입금내역</a>
+                                </li>
+                                <!-- 05 상품평 -->
+                                <li class="nav-item">
+                                    <a class="nav-link" id="tab--05" data-toggle="tab" href="#tab05" role="tab"
+                                        aria-controls="tab5" aria-selected="false">상품평</a>
+                                </li>
+                                <!-- 06 회원정보 변경/탈퇴 -->
+                                <li class="nav-item">
+                                    <a class="nav-link" id="tab--06" data-toggle="tab" href="#tab06" role="tab"
+                                        aria-controls="tab6" aria-selected="false">회원정보 변경/탈퇴</a>
+                                </li>
+                                <!-- 07 배송지 관리 -->
+                                <li class="nav-item">
+                                    <a class="nav-link" id="tab--07" data-toggle="tab" href="#tab07" role="tab"
+                                        aria-controls="tab7" aria-selected="false">배송지 관리</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </form>
                     <!-- ##### Tabs end ##### -->
                 </div>
                 <!-- ##### Tab - Contents ##### -->
@@ -103,6 +106,9 @@
                         <!-- 01 주문/배송조회 -->
                         <div class="tab-pane fade show" id="tab01" role="tabpanel" aria-labelledby="tab--01">
                             <div class="delicious-tab-content">
+
+                                <th:block th:include="customer/orderList"></th:block>
+
 
                             </div>
                         </div>
@@ -140,14 +146,16 @@
                                                 <p class="middle mt-30">회원님의 개인정보를 안전하게 보호하기 위해
                                                     인증 후 변경이 가능합니다.</p>
                                                 <div class="col-12 ">
-                                                    <p class="form-control" th:text="${session.user.getEmail()}" name="email"></p>
+                                                    <p class="form-control" th:text="${session.customer.name}"
+                                                        name="name"></p>
                                                 </div>
-            
+
                                                 <div class="col-12 ">
-                                                    <input type="password" class="form-control" name="password" placeholder="Password">
+                                                    <input type="password" class="form-control" name="password"
+                                                        placeholder="Password">
                                                 </div>
-            
-                                                
+
+
                                                 <div class="col-12 col-lg-3 middle">
                                                     <button class="btn delicious-btn mt-30" type="submit">로그인</button>
                                                 </div>
