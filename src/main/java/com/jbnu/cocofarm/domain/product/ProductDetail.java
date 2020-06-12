@@ -3,6 +3,7 @@ package com.jbnu.cocofarm.domain.product;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -30,6 +31,9 @@ public class ProductDetail {
     @OneToOne(fetch = FetchType.LAZY)
     private Product product;
 
+    @OneToMany(mappedBy = "productDetail", cascade = CascadeType.ALL)
+    List<ProductReview> productReviewList = new ArrayList<>();
+
     @Builder
     public ProductDetail(int stock, Product product) {
         this.stock = stock;
@@ -40,6 +44,4 @@ public class ProductDetail {
         this.stock = updateDto.getStock();
     }
 
-    @OneToMany(mappedBy = "productDetail")
-    List<ProductReview> productReviewList = new ArrayList<>();
 }

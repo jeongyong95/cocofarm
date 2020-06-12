@@ -2,6 +2,7 @@ package com.jbnu.cocofarm.domain.product;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
@@ -35,7 +36,7 @@ public class Product extends BaseTime {
     private int price;
     private LocalDateTime deadline;
 
-    @OneToOne(mappedBy = "product", fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private ProductDetail productDetail;
 
     @ManyToOne(fetch = FetchType.LAZY)

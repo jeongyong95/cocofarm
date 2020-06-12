@@ -1,5 +1,6 @@
 package com.jbnu.cocofarm.domain.order;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -34,7 +35,7 @@ public class OrderProduct extends BaseTime {
     @ManyToOne(fetch = FetchType.LAZY)
     private OrderTotal orderTotal;
 
-    @OneToOne(mappedBy = "orderProduct")
+    @OneToOne(mappedBy = "orderProduct", cascade = CascadeType.ALL)
     private Delivery delivery;
 
     @Builder

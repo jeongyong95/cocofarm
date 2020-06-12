@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import com.jbnu.cocofarm.domain.delivery.DeliveryDto.DeliveryRegisterDto;
 import com.jbnu.cocofarm.domain.order.dto.OrderProductDto.OrderProductDisplayDto;
 import com.jbnu.cocofarm.domain.product.dto.ProductDetailDto.DetailRegisterDto;
+import com.jbnu.cocofarm.domain.product.dto.ProductDto.ProductDisplayDto;
 import com.jbnu.cocofarm.domain.product.dto.ProductDto.ProductRegisterDto;
 import com.jbnu.cocofarm.domain.product.dto.ProductQuestionDto.AnswerQuestionDto;
 import com.jbnu.cocofarm.domain.product.dto.ProductQuestionDto.QuestionDto;
@@ -35,10 +36,10 @@ public class SellerController {
     @GetMapping(value = "/seller/salesManagement")
     public ModelAndView saleManagement(HttpSession session) {
         ModelAndView modelAndView = new ModelAndView();
-
-        SellerSessionDto sellerSessionDto = (SellerSessionDto) session.getAttribute("seller");
-        List<QuestionDto> questionList = productService.getQuestion(sellerSessionDto);
-
+        SellerSessionDto sessionDto = (SellerSessionDto) session.getAttribute("seller");
+        List<QuestionDto> questionList = productService.getQuestion(sessionDto);
+        List<ProductDisplayDto> productList = productService.findBySeller(sellerService.getSeller(sessionDto.getId()));
+        modelAndView.addObject("productList", productList);
         modelAndView.addObject("questionList", questionList);
         modelAndView.setViewName("seller/salesManagement");
         return modelAndView;
@@ -47,7 +48,6 @@ public class SellerController {
     @GetMapping(value = "/seller/salesManagement/saleList")
     public ModelAndView saleList(HttpSession session) {
         ModelAndView modelAndView = new ModelAndView();
-
         SellerSessionDto sellerSessionDto = (SellerSessionDto) session.getAttribute("seller");
         List<OrderProductDisplayDto> saleList = sellerService.getSaleList(sellerSessionDto);
 
@@ -114,10 +114,7 @@ public class SellerController {
     @GetMapping(value = "/seller/registerDelivery")
     public ModelAndView registerDelivery(Long orderProductId) {
         ModelAndView modelAndView = new ModelAndView();
-
         modelAndView.addObject("orderProductId", orderProductId);
-
-        // deliveryRegisterDto를 보내줘야 함
         modelAndView.addObject("deliveryRegisterDto", new DeliveryRegisterDto());
 
         modelAndView.setViewName("seller/registerDelivery");
@@ -131,14 +128,11 @@ public class SellerController {
     }
 
     @PostMapping(value = "/seller/questionAction")
-    public ModelAndView productQuestionAction(HttpSession session, AnswerQuestionDto answerDto) {        
-     
+    public ModelAndView productQuestionAction(HttpSession session, AnswerQuestionDto answerDto) {
         ModelAndView modelAndView = new ModelAndView();
-
         SellerSessionDto sessionDto = (SellerSessionDto) session.getAttribute("seller");
-
         productService.answerQuestion(answerDto, sessionDto.getId());
-                
+
         modelAndView.setViewName("/seller/salesManagement");
         return modelAndView;
     }

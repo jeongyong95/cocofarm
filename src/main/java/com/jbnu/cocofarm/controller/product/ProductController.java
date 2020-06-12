@@ -74,7 +74,7 @@ public class ProductController {
         CustomerSessionDto sessionDto = (CustomerSessionDto) session.getAttribute("customer");
 
         productService.registerQuestion(questionDto, sessionDto.getId());
-        modelAndView.setViewName("redirect:product/index");
+        modelAndView.setViewName("redirect:/index");
         return modelAndView;
     }
 

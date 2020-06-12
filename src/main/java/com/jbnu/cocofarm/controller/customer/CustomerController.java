@@ -7,7 +7,6 @@ import javax.validation.Valid;
 
 import com.jbnu.cocofarm.domain.cart.CartDto.CartDisplayDto;
 import com.jbnu.cocofarm.domain.cart.CartDto.CartRegisterDto;
-import com.jbnu.cocofarm.domain.customer.Customer;
 import com.jbnu.cocofarm.domain.customer.CustomerDto.CustomerLoginDto;
 import com.jbnu.cocofarm.domain.customer.CustomerDto.CustomerRegisterDto;
 import com.jbnu.cocofarm.domain.customer.CustomerDto.CustomerSessionDto;
@@ -135,6 +134,19 @@ public class CustomerController {
         modelAndView.addObject("message", "이미 존재하는 계정입니다!");
         modelAndView.setViewName("redirect:/customer/join");
         return modelAndView;
+    }
+
+    @PostMapping(value = "/customer/mypage/deleteCustomer")
+    public String deleteCustomer() {
+        return "customer/deleteCustomer";
+    }
+
+    @PostMapping(value = "/customer/deleteAction")
+    public String deleteAction(HttpSession session) {
+        CustomerSessionDto sessionDto = (CustomerSessionDto) session.getAttribute("customer");
+        session.invalidate();
+        customerService.deleteCustomer(sessionDto.getId());
+        return "redirect:/index";
     }
 
     @PostMapping(value = "/customer/order/new")

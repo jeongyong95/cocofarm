@@ -15,6 +15,8 @@ public interface CustomerService {
 
     void updateCustomer(Long customerId, CustomerUpdateDto updateDto);
 
+    void deleteCustomer(Long customerId);
+
     Customer getCustomer(Long customerId);
 
     CustomerSessionDto checkCustomer(CustomerLoginDto loginDto);

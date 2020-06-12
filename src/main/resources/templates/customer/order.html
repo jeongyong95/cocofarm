@@ -35,13 +35,11 @@
                                     <tr>
                                         <th scope="col" colspan="4">상품정보</th>
                                         <th scope="col" colspan="2">수량</th>
-                                        <!-- <th scope="col" colspan="1">배송정보</th> -->
                                         <th scope="col" colspan="3">주문금액</th>
                                     </tr>
                                         <tr th:object="${productRegisterDto}">
                                             <td th:text="*{productName}" colspan="4"></td>
                                             <td th:text="*{quantity}" colspan="2"></td>
-                                            <!-- <td th:text="배송정보"></td> -->
                                             <td th:text="*{productTotalPrice}" colspan="3"></td>
 
                                             <input type="hidden" th:field="*{productId}" th:value="*{productId}">
