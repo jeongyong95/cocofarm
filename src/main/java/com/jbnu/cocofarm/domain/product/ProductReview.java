@@ -9,10 +9,13 @@ import javax.persistence.ManyToOne;
 import com.jbnu.cocofarm.domain.customer.Customer;
 import com.jbnu.cocofarm.util.BaseTime;
 
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class ProductReview extends BaseTime {
 

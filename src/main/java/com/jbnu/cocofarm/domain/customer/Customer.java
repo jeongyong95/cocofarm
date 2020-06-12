@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.jbnu.cocofarm.domain.cart.Cart;
+import com.jbnu.cocofarm.domain.customer.CustomerDto.CustomerUpdateDto;
 import com.jbnu.cocofarm.domain.order.OrderTotal;
 import com.jbnu.cocofarm.domain.product.ProductQuestion;
 import com.jbnu.cocofarm.domain.product.ProductReview;
@@ -28,6 +29,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class Customer extends BaseTime implements UserDetails {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue
@@ -51,6 +54,16 @@ public class Customer extends BaseTime implements UserDetails {
         this.postcode = postcode;
         this.address = address;
         this.detailAddress = detailAddress;
+    }
+
+    public void updateCustomer(CustomerUpdateDto updateDto) {
+        this.name = updateDto.getName();
+        this.password = updateDto.getPassword();
+        this.contact = updateDto.getContact();
+        this.postcode = updateDto.getPostcode();
+        this.address = updateDto.getAddress();
+        this.detailAddress = updateDto.getDetailAddress();
+
     }
 
     @OneToMany(mappedBy = "customer")

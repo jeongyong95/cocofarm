@@ -11,7 +11,7 @@ spring:
   # Spring dataSource setting
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://cocofarm.caqo8iirn0pz.ap-northeast-2.rds.amazonaws.com:3306/cocofarm
+    url: jdbc:mysql://cocofarm.caqo8iirn0pz.ap-northeast-2.rds.amazonaws.com:3306/cocofarm?autoReconnect=true
     username: jeongyong95
     password: vmfhgod11
 

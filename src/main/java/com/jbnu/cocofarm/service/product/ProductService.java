@@ -2,7 +2,7 @@ package com.jbnu.cocofarm.service.product;
 
 import java.util.List;
 
-import com.jbnu.cocofarm.domain.product.Product;
+import com.jbnu.cocofarm.domain.product.ProductDetail;
 import com.jbnu.cocofarm.domain.product.dto.ProductDetailDto.DetailRegisterDto;
 import com.jbnu.cocofarm.domain.product.dto.ProductDto.ProductDisplayDto;
 import com.jbnu.cocofarm.domain.product.dto.ProductDto.ProductRegisterDto;
@@ -32,8 +32,10 @@ public interface ProductService {
 
     void answerQuestion(AnswerQuestionDto answerDto, Long sellerId);
 
-    List<QuestionDisplayDto> getQuestionList(Long productId);   
+    List<QuestionDisplayDto> getQuestionList(Long productId);
 
+    ProductDetail getProductDetail(Long productId);
 
+    List<ProductDisplayDto> searchProductName(String searchKeyword);
 
 }

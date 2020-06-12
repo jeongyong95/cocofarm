@@ -2,13 +2,11 @@ package com.jbnu.cocofarm.service.product;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import com.jbnu.cocofarm.domain.customer.CustomerRepository;
 import com.jbnu.cocofarm.domain.product.Product;
 import com.jbnu.cocofarm.domain.product.ProductDetail;
 import com.jbnu.cocofarm.domain.product.ProductQuestion;
-import com.jbnu.cocofarm.domain.product.dto.ProductQuestionDto;
 import com.jbnu.cocofarm.domain.product.dto.ProductDetailDto.DetailRegisterDto;
 import com.jbnu.cocofarm.domain.product.dto.ProductDetailDto.DetailUpdateDto;
 import com.jbnu.cocofarm.domain.product.dto.ProductDto.ProductDisplayDto;
@@ -26,9 +24,11 @@ import com.jbnu.cocofarm.domain.seller.SellerDto.SellerSessionDto;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.AllArgsConstructor;
 
+@Transactional
 @AllArgsConstructor
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -145,6 +145,23 @@ public class ProductServiceImpl implements ProductService {
         }
 
         return questionList;
+    }
+
+    @Override
+    public ProductDetail getProductDetail(Long productId) {
+        return productRepo.getOne(productId).getProductDetail();
+    }
+
+    @Override
+    public List<ProductDisplayDto> searchProductName(String searchKeyword) {
+        List<ProductDisplayDto> displayDtoList = new ArrayList<>();
+        List<Product> productList = productRepo.findByNameContaining(searchKeyword);
+
+        for (int i = 0; i < productList.size(); i++) {
+            ProductDisplayDto displayDto = new ProductDisplayDto(productList.get(i));
+            displayDtoList.add(displayDto);
+        }
+        return displayDtoList;
     }
 
 }

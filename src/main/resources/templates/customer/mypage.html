@@ -70,30 +70,25 @@
                                     <a class="nav-link" id="tab--02" data-toggle="tab" href="#tab02" role="tab"
                                         aria-controls="tab2" aria-selected="false">취소/반품/교환 신청</a>
                                 </li>
-                                <!-- 03 취소/반품/교환 현황 -->
+                                <!-- 03 환불/입금내역 -->
                                 <li class="nav-item">
                                     <a class="nav-link" id="tab--03" data-toggle="tab" href="#tab03" role="tab"
-                                        aria-controls="tab3" aria-selected="false">취소/반품/교환 현황</a>
+                                        aria-controls="tab3" aria-selected="false">환불/입금내역</a>
                                 </li>
-                                <!-- 04 환불/입금내역 -->
+                                <!-- 04 상품평 -->
                                 <li class="nav-item">
                                     <a class="nav-link" id="tab--04" data-toggle="tab" href="#tab04" role="tab"
-                                        aria-controls="tab4" aria-selected="false">환불/입금내역</a>
+                                        aria-controls="tab4" aria-selected="false">상품평</a>
                                 </li>
-                                <!-- 05 상품평 -->
+                                <!-- 05 회원정보 변경/탈퇴 -->
                                 <li class="nav-item">
                                     <a class="nav-link" id="tab--05" data-toggle="tab" href="#tab05" role="tab"
-                                        aria-controls="tab5" aria-selected="false">상품평</a>
+                                        aria-controls="tab5" aria-selected="false">회원정보 변경/탈퇴</a>
                                 </li>
-                                <!-- 06 회원정보 변경/탈퇴 -->
+                                <!-- 06 배송지 관리 -->
                                 <li class="nav-item">
                                     <a class="nav-link" id="tab--06" data-toggle="tab" href="#tab06" role="tab"
-                                        aria-controls="tab6" aria-selected="false">회원정보 변경/탈퇴</a>
-                                </li>
-                                <!-- 07 배송지 관리 -->
-                                <li class="nav-item">
-                                    <a class="nav-link" id="tab--07" data-toggle="tab" href="#tab07" role="tab"
-                                        aria-controls="tab7" aria-selected="false">배송지 관리</a>
+                                        aria-controls="tab6" aria-selected="false">배송지 관리</a>
                                 </li>
                             </ul>
                         </div>
@@ -118,46 +113,33 @@
 
                             </div>
                         </div>
-                        <!-- 03 취소/반품/교환 현황 -->
+                        <!-- 03 환불/입금내역 -->
                         <div class="tab-pane fade show" id="tab03" role="tabpanel" aria-labelledby="tab--03">
                             <div class="delicious-tab-content">
 
                             </div>
                         </div>
-                        <!-- 04 환불/입금내역 -->
+                        <!-- 04 상품평 -->
                         <div class="tab-pane fade show" id="tab04" role="tabpanel" aria-labelledby="tab--04">
                             <div class="delicious-tab-content">
 
                             </div>
                         </div>
-                        <!-- 05 상품평 -->
+                        <!-- 05 회원정보 변경/탈퇴 -->
                         <div class="tab-pane fade show" id="tab05" role="tabpanel" aria-labelledby="tab--05">
-                            <div class="delicious-tab-content">
-
-                            </div>
-                        </div>
-                        <!-- 06 회원정보 변경/탈퇴 -->
-                        <div class="tab-pane fade show" id="tab06" role="tabpanel" aria-labelledby="tab--06">
                             <div class="delicious-tab-content">
                                 <div class="col-12">
                                     <div class="contact-form-area">
-                                        <form th:action="@{reloginAction}" method="post">
+                                        <form th:action="@{/customer/editInfo}" method="POST" th:align=center>
                                             <div class="row">
                                                 <p class="middle mt-30">회원님의 개인정보를 안전하게 보호하기 위해
                                                     인증 후 변경이 가능합니다.</p>
                                                 <div class="col-12 ">
-                                                    <p class="form-control" th:text="${session.customer.name}"
-                                                        name="name"></p>
-                                                </div>
-
-                                                <div class="col-12 ">
                                                     <input type="password" class="form-control" name="password"
                                                         placeholder="Password">
                                                 </div>
-
-
                                                 <div class="col-12 col-lg-3 middle">
-                                                    <button class="btn delicious-btn mt-30" type="submit">로그인</button>
+                                                    <button class="btn delicious-btn mt-30" type="submit">확인</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -165,8 +147,8 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- 07 배송지 관리 -->
-                        <div class="tab-pane fade show" id="tab07" role="tabpanel" aria-labelledby="tab--07">
+                        <!-- 06 배송지 관리 -->
+                        <div class="tab-pane fade show" id="tab06" role="tabpanel" aria-labelledby="tab--06">
                             <div class="delicious-tab-content">
 
                             </div>

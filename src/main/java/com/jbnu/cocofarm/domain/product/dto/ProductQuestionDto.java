@@ -4,10 +4,8 @@ import java.time.LocalDateTime;
 
 import com.jbnu.cocofarm.domain.customer.Customer;
 import com.jbnu.cocofarm.domain.product.Product;
-import com.jbnu.cocofarm.domain.product.ProductDetail;
 import com.jbnu.cocofarm.domain.product.ProductQuestion;
 import com.jbnu.cocofarm.domain.seller.Seller;
-
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -49,9 +47,8 @@ public class ProductQuestionDto {
         private int groupLevel;
         private LocalDateTime createdTimestamp;
 
+        public QuestionDisplayDto(ProductQuestion productQuestion) {
 
-        public QuestionDisplayDto(ProductQuestion productQuestion){
-            
             this.id = productQuestion.getId();
             this.productId = productQuestion.getProduct().getId();
             this.title = productQuestion.getTitle();
@@ -86,5 +83,4 @@ public class ProductQuestionDto {
 
     }
 
- 
 }

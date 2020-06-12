@@ -18,6 +18,18 @@ public class CustomerDto {
 
     @Data
     @NoArgsConstructor
+    public static class CustomerSessionDto {
+        private Long id;
+        private String name;
+
+        public CustomerSessionDto(Customer customer) {
+            this.id = customer.getId();
+            this.name = customer.getName();
+        }
+    }
+
+    @Data
+    @NoArgsConstructor
     public static class CustomerRegisterDto {
 
         @NotBlank(message = "이름을 입력하세요!")
@@ -32,7 +44,6 @@ public class CustomerDto {
         private String postcode;
         @NotBlank(message = "주소를 입력하세요!")
         private String address;
-
         private String detailAddress;
 
         public Customer toEntity() {
@@ -43,13 +54,21 @@ public class CustomerDto {
 
     @Data
     @NoArgsConstructor
-    public static class CustomerSessionDto {
-        private Long id;
+    public static class CustomerUpdateDto {
         private String name;
+        private String password;
+        private String contact;
+        private String postcode;
+        private String address;
+        private String detailAddress;
 
-        public CustomerSessionDto(Customer customer) {
-            this.id = customer.getId();
+        public CustomerUpdateDto(Customer customer) {
             this.name = customer.getName();
+            this.password = customer.getPassword();
+            this.contact = customer.getContact();
+            this.postcode = customer.getPostcode();
+            this.address = customer.getAddress();
+            this.detailAddress = customer.getDetailAddress();
         }
     }
 }

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html
+    lang="ko"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+    <head>
+        <th:block th:include="fragments/common/head"></th:block>
+
+        <title>코코팜</title>
+
+        <style>
+            .middle {
+                margin: 0 auto;
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- header -->
+        <th:block th:include="fragments/common/header"></th:block>
+
+        <!-- Receipe Content Area -->
+        <div class="receipe-content-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-heading text-left"></div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="contact-form-area" th:object="${updateDto}">
+                            <form
+                                th:action="@{/customer/mypage/editInfoAction}"
+                                method="POST"
+                            >
+                                <div class="row">
+                                    <div class="col-12">
+                                        <input
+                                            type="password"
+                                            class="form-control"
+                                            th:field="*{password}"
+                                            placeholder="Password"
+                                        />
+                                    </div>
+                                    <div class="col-12">
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            th:field="*{name}"
+                                            placeholder="Name"
+                                        />
+                                    </div>
+                                    <div class="col-12">
+                                        <input
+                                            type="number"
+                                            class="form-control"
+                                            th:field="*{contact}"
+                                            placeholder="PhoneNumber"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button
+                                        class="btn delicious-btn mt-30 middle"
+                                        type="submit"
+                                    >
+                                        수정
+                                    </button>
+                                    <button
+                                        class="btn delicious-btn mt-30 middle"
+                                        type="submit"
+                                        formaction="@{/customer/mypage/deleteCustomer}"
+                                        formmethod="POST"
+                                    >
+                                        탈퇴하기
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- footer -->
+        <th:block th:include="fragments/common/footer"></th:block>
+        <th:block th:include="fragments/common/script"></th:block>
+    </body>
+</html>

@@ -12,9 +12,11 @@ import com.jbnu.cocofarm.domain.order.repository.OrderTotalRepository;
 import com.jbnu.cocofarm.domain.product.repository.ProductRepository;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.AllArgsConstructor;
 
+@Transactional
 @AllArgsConstructor
 @Service
 public class OrderServiceImpl implements OrderService {

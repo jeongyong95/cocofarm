@@ -7,7 +7,6 @@ import java.util.Optional;
 import com.jbnu.cocofarm.domain.order.dto.OrderProductDto.OrderProductDisplayDto;
 import com.jbnu.cocofarm.domain.order.repository.OrderProductRepository;
 import com.jbnu.cocofarm.domain.product.Product;
-import com.jbnu.cocofarm.domain.product.dto.ProductQuestionDto.QuestionDto;
 import com.jbnu.cocofarm.domain.product.repository.ProductRepository;
 import com.jbnu.cocofarm.domain.seller.Seller;
 import com.jbnu.cocofarm.domain.seller.SellerRepository;
@@ -19,9 +18,11 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.AllArgsConstructor;
 
+@Transactional
 @AllArgsConstructor
 @Service
 public class SellerServiceImpl implements SellerService {
@@ -85,5 +86,4 @@ public class SellerServiceImpl implements SellerService {
         return saleProductList;
     }
 
-   
 }

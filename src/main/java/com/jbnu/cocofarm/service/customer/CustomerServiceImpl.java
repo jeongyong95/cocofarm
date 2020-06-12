@@ -13,6 +13,7 @@ import com.jbnu.cocofarm.domain.order.repository.OrderTotalRepository;
 import com.jbnu.cocofarm.domain.customer.CustomerDto.CustomerLoginDto;
 import com.jbnu.cocofarm.domain.customer.CustomerDto.CustomerRegisterDto;
 import com.jbnu.cocofarm.domain.customer.CustomerDto.CustomerSessionDto;
+import com.jbnu.cocofarm.domain.customer.CustomerDto.CustomerUpdateDto;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -21,9 +22,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.AllArgsConstructor;
 
+@Transactional
 @AllArgsConstructor
 @Service
 public class CustomerServiceImpl implements CustomerService, UserDetailsService {
@@ -70,11 +73,20 @@ public class CustomerServiceImpl implements CustomerService, UserDetailsService 
     }
 
     @Override
+    public boolean checkPassword(Long customerId, String password) {
+        Customer customer = customerRepo.getOne(customerId);
+        if (passwordEncoder.matches(password, customer.getPassword())) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     public List<OrderProductDisplayDto> getPurchaseList(CustomerSessionDto sessionDto) {
 
         ModelMapper modelMapper = new ModelMapper();
         Customer customer = customerRepo.findById(sessionDto.getId()).get();
-        
+
         List<OrderTotal> orderTotalList = orderTotalRepo.findByCustomer(customer);
         List<OrderProductDisplayDto> orderProductList = new ArrayList<OrderProductDisplayDto>();
 
@@ -88,4 +100,16 @@ public class CustomerServiceImpl implements CustomerService, UserDetailsService 
         }
         return orderProductList;
     }
+
+    @Override
+    public Customer getCustomer(Long customerId) {
+        return customerRepo.getOne(customerId);
+    }
+
+    @Override
+    public void updateCustomer(Long customerId, CustomerUpdateDto updateDto) {
+        updateDto.setPassword(passwordEncoder.encode(updateDto.getPassword()));
+        customerRepo.getOne(customerId).updateCustomer(updateDto);
+    }
+
 }

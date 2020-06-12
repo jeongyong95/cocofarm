@@ -10,4 +10,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
     List<Product> findBySeller(Seller seller);
+
+    List<Product> findByNameContaining(String searchKeyword);
 }

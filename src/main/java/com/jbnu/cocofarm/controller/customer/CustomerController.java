@@ -7,9 +7,11 @@ import javax.validation.Valid;
 
 import com.jbnu.cocofarm.domain.cart.CartDto.CartDisplayDto;
 import com.jbnu.cocofarm.domain.cart.CartDto.CartRegisterDto;
+import com.jbnu.cocofarm.domain.customer.Customer;
 import com.jbnu.cocofarm.domain.customer.CustomerDto.CustomerLoginDto;
 import com.jbnu.cocofarm.domain.customer.CustomerDto.CustomerRegisterDto;
 import com.jbnu.cocofarm.domain.customer.CustomerDto.CustomerSessionDto;
+import com.jbnu.cocofarm.domain.customer.CustomerDto.CustomerUpdateDto;
 import com.jbnu.cocofarm.domain.order.dto.OrderProductDto.OrderProductDisplayDto;
 import com.jbnu.cocofarm.domain.order.dto.OrderProductDto.OrderProductRegisterDto;
 import com.jbnu.cocofarm.domain.order.dto.OrderTotalDto.OrderTotalRegisterDto;
@@ -46,17 +48,40 @@ public class CustomerController {
         return modelAndView;
     }
 
-    @GetMapping(value = "/customer/mypage")
-    public ModelAndView mypage (HttpSession session) {
+    @GetMapping(value = { "/customer/mypage", "/customer/mypage/orderList" })
+    public ModelAndView mypage(HttpSession session) {
         ModelAndView modelAndView = new ModelAndView();
-
         CustomerSessionDto sessionDto = (CustomerSessionDto) session.getAttribute("customer");
-
         List<OrderProductDisplayDto> orderList = customerService.getPurchaseList(sessionDto);
 
         modelAndView.addObject("orderList", orderList);
         modelAndView.setViewName("customer/mypage");
-        return modelAndView;    
+        return modelAndView;
+    }
+
+    @PostMapping(value = "/customer/editInfo")
+    public ModelAndView editInfo(HttpSession session, String password) {
+        ModelAndView modelAndView = new ModelAndView();
+        CustomerSessionDto sessionDto = (CustomerSessionDto) session.getAttribute("customer");
+
+        if (customerService.checkPassword(sessionDto.getId(), password)) {
+            CustomerUpdateDto updateDto = new CustomerUpdateDto(customerService.getCustomer(sessionDto.getId()));
+            modelAndView.addObject("updateDto", updateDto);
+            modelAndView.setViewName("customer/editInfo");
+            return modelAndView;
+        }
+        modelAndView.setViewName("redirect:/customer/mypage");
+        return modelAndView;
+    }
+
+    @PostMapping(value = "/customer/mypage/editInfoAction")
+    public ModelAndView editInfoAction(HttpSession session, CustomerUpdateDto updateDto) {
+        ModelAndView modelAndView = new ModelAndView();
+        CustomerSessionDto sessionDto = (CustomerSessionDto) session.getAttribute("customer");
+        customerService.updateCustomer(sessionDto.getId(), updateDto);
+
+        modelAndView.setViewName("redirect:/customer/mypage");
+        return modelAndView;
     }
 
     @GetMapping(value = "/customer/cart")

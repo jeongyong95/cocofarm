@@ -1,249 +1,139 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html
+    lang="ko"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+    <head>
+        <th:block th:include="fragments/common/head"></th:block>
 
-<head>
-    <th:block th:include="fragments/common/head"></th:block>
+        <title>상품 세부정보 - 코코팜</title>
 
-    <title>상품 세부정보 - 코코팜</title>
+        <style>
+            .regitTable {
+                margin: 0 auto;
+            }
 
-    <style>
-        .regitTable {
-            margin: 0 auto;
-        }
+            .regitTable-label {
+                margin: 0 5rem;
+                text-align: center;
+            }
 
-        .regitTable-label {
-            margin: 0 5rem;
-            text-align: center;
-        }
+            .btnCenter {
+                text-align: center;
+            }
+        </style>
+    </head>
 
-        .btnCenter {
-            text-align: center;
-        }
-    </style>
-</head>
+    <body>
+        <!-- <th:block th:include="fragments/common/header"></th:block> -->
 
-<body>
-    <!-- <th:block th:include="fragments/common/header"></th:block> -->
-
-    <!-- ##### Blog Area Start ##### -->
-    <div class="blog-area section-padding-80">
-        <div class="container" th:object="${displayDto}">
-            <div class="col-12">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12 col-lg-6">
-                            <!-- Single Blog Area -->
-                            <div class="single-blog-area mb-80">
-                                <!-- Thumbnail -->
-                                <div class="blog-thumbnail">
-                                    <img th:src="*{imageUrl}" width="400px" height="400px" />
-                                </div>
-                            </div>
-                        </div>
-                        <form th:action=" @{/customer/order/new}" method="POST">
-                            <div class="col-lg-6">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="blog-content">
-                                                <h5>상품 이름 :</h5>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="blog-content">
-                                                <h5 th:text="*{name}"></h5>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="blog-content">
-                                                <h5>판매가 :</h5>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="blog-content">
-                                                <h5 th:text="*{price}"></h5>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="blog-content">
-                                                <h5>재고 :</h5>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="blog-content">
-                                                <h5 th:text="*{stock}"></h5>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="blog-content">
-                                                <h5>구매 수량 :</h5>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="blog-content">
-                                                <input type="hidden" name="productId" th:value="*{id}" />
-                                                <input type="hidden" name="productName" th:value="*{name}" />
-                                                <input type="number" name="quantity" max="*{stock}" />
-                                                <input type="hidden" name="price" th:value="*{price}" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <button class="btn delicious-btn mt-30" type="submit">
-                                                구매하기
-                                            </button>
-                                        </div>
-                                        <div class="col-6">
-                                            <button formaction="/customer/addToCart" formmethod="POST"
-                                                class="btn delicious-btn mt-30" type="submit">
-                                                장바구니
-                                            </button>
-                                        </div>
+        <!-- ##### Blog Area Start ##### -->
+        <div class="blog-area section-padding-80">
+            <div class="container" th:object="${displayDto}">
+                <div class="col-12">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 col-lg-6">
+                                <!-- Single Blog Area -->
+                                <div class="single-blog-area mb-80">
+                                    <!-- Thumbnail -->
+                                    <div class="blog-thumbnail">
+                                        <img
+                                            th:src="*{imageUrl}"
+                                            width="400px"
+                                            height="400px"
+                                        />
                                     </div>
                                 </div>
                             </div>
-                        </form>
-                    </div>
-                </div>
-
-                <!-- Buttons -->
-                <div class="accordions mb-80" id="accordion" role="tablist" aria-multiselectable="true">
-                    <!-- Single Accordian Area -->
-                    <div class="panel single-accordion">
-                        <h6>
-                            <a role="button" class="" aria-expanded="true" aria-controls="collapseOne"
-                                data-toggle="collapse" data-parent="#accordion" href="#collapseOne">상세 정보
-                                <span class="accor-open"><i class="fa fa-plus" aria-hidden="true"></i></span>
-                                <span class="accor-close"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                            </a>
-                        </h6>
-                        <div id="collapseOne" class="accordion-content collapse show">
-                            <p th:text="*{description}"></p>
-                        </div>
-                    </div>
-
-                    <!-- Single Accordian Area -->
-                    <div class="panel single-accordion">
-                        <h6>
-                            <a role="button" class="collapsed" aria-expanded="false" aria-controls="collapseTwo"
-                                data-parent="#accordion" data-toggle="collapse" href="#collapseTwo">구매 안내
-                                <span class="accor-open"><i class="fa fa-plus" aria-hidden="true"></i></span>
-                                <span class="accor-close"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                            </a>
-                        </h6>
-                        <div id="collapseTwo" class="accordion-content collapse">
-                            <p>구현해야함</p>
-                        </div>
-                    </div>
-
-                    <!-- Single Accordian Area -->
-                    <div class="panel single-accordion">
-                        <h6>
-                            <a role="button" aria-expanded="false" aria-controls="collapseThree" class="collapsed"
-                                data-parent="#accordion" data-toggle="collapse" href="#collapseThree">상품 후기
-                                <span class="accor-open"><i class="fa fa-plus" aria-hidden="true"></i></span>
-                                <span class="accor-close"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                            </a>
-                        </h6>
-                        <div id="collapseThree" class="accordion-content collapse">
-                            <div class="row">
-                                <div class="col-12 mt-30">
-                                    <h1>리뷰</h1>
-                                    <table class="regitTable">
-                                        <thead>
-                                            <tr>
-                                                <td>
-                                                    <label class="regitTable-label">제목</label>
-                                                </td>
-                                                <td>
-                                                    <label class="regitTable-label">별점</label>
-                                                </td>
-                                                <td>
-                                                    <label class="regitTable-label">작성자</label>
-                                                </td>
-                                                <td>
-                                                    <label class="regitTable-label">작성일자</label>
-                                                </td>
-                                                <td>
-                                                    <label class="regitTable-label">상품평</label>
-                                                </td>
-                                            </tr>
-                                        </thead>
-                                        <th:block th:each="review : ${reviewList}">
-                                            <tbody>
-                                                <tr>
-                                                    <td th:text="${review.getTitle()}">
-                                                        제목
-                                                    </td>
-                                                    <td th:text="${review.getStarPoint()}" align="center">
-                                                        별점
-                                                    </td>
-                                                    <td th:text="${review.getUser().getName()}" align="center">
-                                                        작성자
-                                                    </td>
-                                                    <td th:text="${review.getCreateDateTime()}" align="center">
-                                                        작성일자
-                                                    </td>
-                                                    <td th:text="${review.getContent()}">
-                                                        상품평
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </th:block>
-                                    </table>
-                                </div>
-                            </div>
-
-                            <hr>
-                            <form th:action="registerReviewAction" method="POST" enctype="multipart/form-data">
-                                <div class="contact-form-area">
-                                    <div class="row">
-                                        <div class="col-12 mt-30">
-                                            <h1>상품평 작성</h1>
-                                            <table class="regitTable">
-                                                <tbody>
-                                                    <tr class="mt-30">
-                                                        <th scope="row">
-                                                            <label for="starPoint" class="regitTable-label">별점</label>
-                                                        </th>
-                                                        <td>
-                                                            <select name="starPoint" id="">
-                                                                <option value="1">1</option>
-                                                                <option value="2">2</option>
-                                                                <option value="3">3</option>
-                                                                <option value="4">4</option>
-                                                                <option selected value="5">5</option>
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">
-                                                            <label for="title" class="regitTable-label">제목</label>
-                                                        </th>
-                                                        <td>
-                                                            <input class="form-control mt-30" type="text"
-                                                                name="title" />
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="mt-30">
-                                                        <th scope="row">
-                                                            <label for="content" class="regitTable-label">상품평</label>
-                                                        </th>
-                                                        <td>
-                                                            <textarea name="content" id="editor"
-                                                                placeholder="상품평을 입력하세요."></textarea>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                            <input type="hidden" name="productId" th:value="*{id}" />
-                                            <div class="btnCenter">
-                                                <button class="btn delicious-btn mt-30" type="submit">
-                                                    등록
+                            <form
+                                th:action=" @{/customer/order/new}"
+                                method="POST"
+                            >
+                                <div class="col-lg-6">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="blog-content">
+                                                    <h5>상품 이름 :</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="blog-content">
+                                                    <h5 th:text="*{name}"></h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="blog-content">
+                                                    <h5>판매가 :</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="blog-content">
+                                                    <h5 th:text="*{price}"></h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="blog-content">
+                                                    <h5>재고 :</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="blog-content">
+                                                    <h5 th:text="*{stock}"></h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="blog-content">
+                                                    <h5>구매 수량 :</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="blog-content">
+                                                    <input
+                                                        type="hidden"
+                                                        name="productId"
+                                                        th:value="*{id}"
+                                                    />
+                                                    <input
+                                                        type="hidden"
+                                                        name="productName"
+                                                        th:value="*{name}"
+                                                    />
+                                                    <input
+                                                        type="number"
+                                                        name="quantity"
+                                                        max="*{stock}"
+                                                    />
+                                                    <input
+                                                        type="hidden"
+                                                        name="price"
+                                                        th:value="*{price}"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <button
+                                                    class="btn delicious-btn mt-30"
+                                                    type="submit"
+                                                >
+                                                    구매하기
+                                                </button>
+                                            </div>
+                                            <div class="col-6">
+                                                <button
+                                                    formaction="/customer/addToCart"
+                                                    formmethod="POST"
+                                                    class="btn delicious-btn mt-30"
+                                                    type="submit"
+                                                >
+                                                    장바구니
                                                 </button>
                                             </div>
                                         </div>
@@ -253,84 +143,409 @@
                         </div>
                     </div>
 
-                    <!-- Single Accordian Area -->
+                    <!-- Buttons -->
+                    <div
+                        class="accordions mb-80"
+                        id="accordion"
+                        role="tablist"
+                        aria-multiselectable="true"
+                    >
+                        <!-- Single Accordian Area -->
+                        <div class="panel single-accordion">
+                            <h6>
+                                <a
+                                    role="button"
+                                    class=""
+                                    aria-expanded="true"
+                                    aria-controls="collapseOne"
+                                    data-toggle="collapse"
+                                    data-parent="#accordion"
+                                    href="#collapseOne"
+                                    >상세 정보
+                                    <span class="accor-open"
+                                        ><i
+                                            class="fa fa-plus"
+                                            aria-hidden="true"
+                                        ></i
+                                    ></span>
+                                    <span class="accor-close"
+                                        ><i
+                                            class="fa fa-minus"
+                                            aria-hidden="true"
+                                        ></i
+                                    ></span>
+                                </a>
+                            </h6>
+                            <div
+                                id="collapseOne"
+                                class="accordion-content collapse show"
+                            >
+                                <p th:text="*{description}"></p>
+                            </div>
+                        </div>
 
-                    <div class="panel single-accordion">
-                        <h6>
-                            <a role="button" aria-expanded="false" aria-controls="collapseThree" class="collapsed"
-                                data-parent="#accordion" data-toggle="collapse" href="#collapseFour">상품 문의
-                                <span class="accor-open"><i class="fa fa-plus" aria-hidden="true"></i></span>
-                                <span class="accor-close"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                            </a>
-                        </h6>
-                        <div id="collapseFour" class="accordion-content collapse">
-                            <div class="row">
-                                <div class="col-12 mt-3-">
-                                    <br>
-                                    <h1>문의</h1>
-                                    <table class="regitTable">
-                                        <thead>
-                                            <tr>
-                                                <td>
-                                                    <label class="regitTable-label">제목</label>
-                                                </td>
-                                                <td>
-                                                    <label class="regitTable-label">내용</label>
-                                                </td>
-                                                <td>
-                                                    <label class="regitTable-label">작성자</label>
-                                                </td>
-                                                <td>
-                                                    <label class="regitTable-label">작성일자</label>
-                                                </td>
+                        <!-- Single Accordian Area -->
+                        <div class="panel single-accordion">
+                            <h6>
+                                <a
+                                    role="button"
+                                    class="collapsed"
+                                    aria-expanded="false"
+                                    aria-controls="collapseTwo"
+                                    data-parent="#accordion"
+                                    data-toggle="collapse"
+                                    href="#collapseTwo"
+                                    >구매 안내
+                                    <span class="accor-open"
+                                        ><i
+                                            class="fa fa-plus"
+                                            aria-hidden="true"
+                                        ></i
+                                    ></span>
+                                    <span class="accor-close"
+                                        ><i
+                                            class="fa fa-minus"
+                                            aria-hidden="true"
+                                        ></i
+                                    ></span>
+                                </a>
+                            </h6>
+                            <div
+                                id="collapseTwo"
+                                class="accordion-content collapse"
+                            >
+                                <p>구현해야함</p>
+                            </div>
+                        </div>
 
-                                            </tr>
-                                            
-                                        </thead>
-                                        <th:block th:each="questionDisplayDto : ${questionList}">
-                                            <tbody th:object="${questionDisplayDto}">
-                                                <tr th:if="${questionDisplayDto.customer}">
-                                                    <td th:text="*{title}">
-                                                    </td>
-                                                    <td th:text="*{content}" align="center">
-                                                    </td>
-                                                    <td th:text="*{customer.name}" align="center">
-
-                                                    </td>
-                                                    <td th:text="*{#temporals.format(createdTimestamp, 'yyyy년 MM월 dd일')}"
-                                                            align="center"
-                                                        >                                                            
-                                                        </td>                                                        
-                                                    </tr>
-                                                    <tr th:if="${questionDisplayDto.seller}">
-                                                        <td
-                                                            th:text="'Re: ' + *{title}"
+                        <!-- Single Accordian Area -->
+                        <div class="panel single-accordion">
+                            <h6>
+                                <a
+                                    role="button"
+                                    aria-expanded="false"
+                                    aria-controls="collapseThree"
+                                    class="collapsed"
+                                    data-parent="#accordion"
+                                    data-toggle="collapse"
+                                    href="#collapseThree"
+                                    >상품 후기
+                                    <span class="accor-open"
+                                        ><i
+                                            class="fa fa-plus"
+                                            aria-hidden="true"
+                                        ></i
+                                    ></span>
+                                    <span class="accor-close"
+                                        ><i
+                                            class="fa fa-minus"
+                                            aria-hidden="true"
+                                        ></i
+                                    ></span>
+                                </a>
+                            </h6>
+                            <div
+                                id="collapseThree"
+                                class="accordion-content collapse"
+                            >
+                                <div class="row">
+                                    <div class="col-12 mt-30">
+                                        <h1>리뷰</h1>
+                                        <table class="regitTable">
+                                            <thead>
+                                                <tr>
+                                                    <td>
+                                                        <label
+                                                            class="regitTable-label"
+                                                            >제목</label
                                                         >
-                                                        </td>
+                                                    </td>
+                                                    <td>
+                                                        <label
+                                                            class="regitTable-label"
+                                                            >별점</label
+                                                        >
+                                                    </td>
+                                                    <td>
+                                                        <label
+                                                            class="regitTable-label"
+                                                            >작성자</label
+                                                        >
+                                                    </td>
+                                                    <td>
+                                                        <label
+                                                            class="regitTable-label"
+                                                            >작성일자</label
+                                                        >
+                                                    </td>
+                                                    <td>
+                                                        <label
+                                                            class="regitTable-label"
+                                                            >상품평</label
+                                                        >
+                                                    </td>
+                                                </tr>
+                                            </thead>
+                                            <tbody
+                                                th:each="review : ${reviewDisplayList}"
+                                            >
+                                                <tr>
+                                                    <td
+                                                        th:text="${review.title}"
+                                                    >
+                                                        제목
+                                                    </td>
+                                                    <td
+                                                        th:text="${review.starPoint}"
+                                                        align="center"
+                                                    >
+                                                        별점
+                                                    </td>
+                                                    <td
+                                                        th:text="${review.customerName}"
+                                                        align="center"
+                                                    >
+                                                        작성자
+                                                    </td>
+                                                    <td
+                                                        th:text="${review.createdTimestamp}"
+                                                        align="center"
+                                                    >
+                                                        작성일자
+                                                    </td>
+                                                    <td
+                                                        th:text="${review.content}"
+                                                    >
+                                                        상품평
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <hr />
+                                <form
+                                    th:action="@{/product/productDetailView/{id}/registerReviewAction(id = *{id})}"
+                                    method="POST"
+                                    enctype="multipart/form-data"
+                                >
+                                    <input
+                                        type="hidden"
+                                        name="productId"
+                                        th:value="*{id}"
+                                    />
+
+                                    <div
+                                        class="contact-form-area"
+                                        th:object="${reviewRegisterDto}"
+                                    >
+                                        <div class="row">
+                                            <div class="col-12 mt-30">
+                                                <h1>상품평 작성</h1>
+                                                <table class="regitTable">
+                                                    <tbody>
+                                                        <tr class="mt-30">
+                                                            <th scope="row">
+                                                                <label
+                                                                    for="starPoint"
+                                                                    class="regitTable-label"
+                                                                    >별점</label
+                                                                >
+                                                            </th>
+                                                            <td>
+                                                                <select
+                                                                    th:field="*{starPoint}"
+                                                                >
+                                                                    <option
+                                                                        value="1"
+                                                                        >1</option
+                                                                    >
+                                                                    <option
+                                                                        value="2"
+                                                                        >2</option
+                                                                    >
+                                                                    <option
+                                                                        value="3"
+                                                                        >3</option
+                                                                    >
+                                                                    <option
+                                                                        value="4"
+                                                                        >4</option
+                                                                    >
+                                                                    <option
+                                                                        selected
+                                                                        value="5"
+                                                                        >5</option
+                                                                    >
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">
+                                                                <label
+                                                                    for="title"
+                                                                    class="regitTable-label"
+                                                                    >제목</label
+                                                                >
+                                                            </th>
+                                                            <td>
+                                                                <input
+                                                                    class="form-control mt-30"
+                                                                    type="text"
+                                                                    th:field="*{title}"
+                                                                />
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="mt-30">
+                                                            <th scope="row">
+                                                                <label
+                                                                    for="content"
+                                                                    class="regitTable-label"
+                                                                    >상품평</label
+                                                                >
+                                                            </th>
+                                                            <td>
+                                                                <textarea
+                                                                    th:field="*{content}"
+                                                                    id="editor"
+                                                                    placeholder="상품평을 입력하세요."
+                                                                ></textarea>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+
+                                                <div class="btnCenter">
+                                                    <button
+                                                        class="btn delicious-btn mt-30"
+                                                        type="submit"
+                                                    >
+                                                        등록
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- Single Accordian Area -->
+
+                        <div class="panel single-accordion">
+                            <h6>
+                                <a
+                                    role="button"
+                                    aria-expanded="false"
+                                    aria-controls="collapseThree"
+                                    class="collapsed"
+                                    data-parent="#accordion"
+                                    data-toggle="collapse"
+                                    href="#collapseFour"
+                                    >상품 문의
+                                    <span class="accor-open"
+                                        ><i
+                                            class="fa fa-plus"
+                                            aria-hidden="true"
+                                        ></i
+                                    ></span>
+                                    <span class="accor-close"
+                                        ><i
+                                            class="fa fa-minus"
+                                            aria-hidden="true"
+                                        ></i
+                                    ></span>
+                                </a>
+                            </h6>
+                            <div
+                                id="collapseFour"
+                                class="accordion-content collapse"
+                            >
+                                <div class="row">
+                                    <div class="col-12 mt-3-">
+                                        <br />
+                                        <h1>문의</h1>
+                                        <table class="regitTable">
+                                            <thead>
+                                                <tr>
+                                                    <td>
+                                                        <label
+                                                            class="regitTable-label"
+                                                            >제목</label
+                                                        >
+                                                    </td>
+                                                    <td>
+                                                        <label
+                                                            class="regitTable-label"
+                                                            >내용</label
+                                                        >
+                                                    </td>
+                                                    <td>
+                                                        <label
+                                                            class="regitTable-label"
+                                                            >작성자</label
+                                                        >
+                                                    </td>
+                                                    <td>
+                                                        <label
+                                                            class="regitTable-label"
+                                                            >작성일자</label
+                                                        >
+                                                    </td>
+                                                </tr>
+                                            </thead>
+                                            <th:block
+                                                th:each="questionDisplayDto : ${questionList}"
+                                            >
+                                                <tbody
+                                                    th:object="${questionDisplayDto}"
+                                                >
+                                                    <tr
+                                                        th:if="${questionDisplayDto.customer}"
+                                                    >
+                                                        <td
+                                                            th:text="*{title}"
+                                                        ></td>
                                                         <td
                                                             th:text="*{content}"
                                                             align="center"
-                                                        >
-                                                        </td>
+                                                        ></td>
                                                         <td
-                                                            th:text="*{seller.name}"
+                                                            th:text="*{customer.name}"
                                                             align="center"
-                                                        >
-                                                            
-                                                        </td>
+                                                        ></td>
                                                         <td
                                                             th:text="*{#temporals.format(createdTimestamp, 'yyyy년 MM월 dd일')}"
                                                             align="center"
-                                                        >                                                            
-                                                        </td>                                                        
+                                                        ></td>
+                                                    </tr>
+                                                    <tr
+                                                        th:if="${questionDisplayDto.seller}"
+                                                    >
+                                                        <td
+                                                            th:text="'Re: ' + *{title}"
+                                                        ></td>
+                                                        <td
+                                                            th:text="*{content}"
+                                                            align="center"
+                                                        ></td>
+                                                        <td
+                                                            th:text="*{seller.name}"
+                                                            align="center"
+                                                        ></td>
+                                                        <td
+                                                            th:text="*{#temporals.format(createdTimestamp, 'yyyy년 MM월 dd일')}"
+                                                            align="center"
+                                                        ></td>
                                                     </tr>
                                                 </tbody>
                                             </th:block>
                                         </table>
                                     </div>
                                 </div>
-                                
-                                <hr>
+
+                                <hr />
                                 <form
                                     th:action="@{/product/productDetailView/question}"
                                     method="POST"
@@ -338,11 +553,10 @@
                                 >
                                     <div class="contact-form-area">
                                         <div class="row">
-                                            <div class="col-12 ">
+                                            <div class="col-12">
                                                 <h1>문의글 작성</h1>
                                                 <table class="regitTable">
                                                     <tbody>
-                                                        
                                                         <tr class="mt-30">
                                                             <th scope="row">
                                                                 <label
@@ -356,7 +570,6 @@
                                                                     class="form-control mt-30"
                                                                     type="text"
                                                                     name="title"
-                                                                   
                                                                 />
                                                             </td>
                                                         </tr>
@@ -365,14 +578,14 @@
                                                                 <label
                                                                     for="content"
                                                                     class="regitTable-label"
-                                                                    >문의 내용</label
+                                                                    >문의
+                                                                    내용</label
                                                                 >
                                                             </th>
                                                             <td>
                                                                 <textarea
                                                                     name="content"
                                                                     id="editor1"
-                                                                   
                                                                     placeholder="문의 내용을 입력하세요."
                                                                 ></textarea>
                                                             </td>
@@ -398,7 +611,6 @@
                                 </form>
                             </div>
                         </div>
-                       
                     </div>
                 </div>
             </div>
