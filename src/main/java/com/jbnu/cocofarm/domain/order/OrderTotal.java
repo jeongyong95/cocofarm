@@ -3,6 +3,7 @@ package com.jbnu.cocofarm.domain.order;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -39,6 +40,9 @@ public class OrderTotal extends BaseTime {
     @ManyToOne
     private Customer customer;
 
+    @OneToMany(mappedBy = "orderTotal", cascade = CascadeType.ALL)
+    List<OrderProduct> orderProductList = new ArrayList<>();
+
     @Builder
     public OrderTotal(int totalPrice, int deliveryPrice, String customerName, String recipientName, String contact,
             String postcode, String address, String detailAddress, String orderMessage, Customer customer) {
@@ -54,6 +58,4 @@ public class OrderTotal extends BaseTime {
         this.customer = customer;
     }
 
-    @OneToMany(mappedBy = "orderTotal")
-    List<OrderProduct> orderProductList = new ArrayList<>();
 }

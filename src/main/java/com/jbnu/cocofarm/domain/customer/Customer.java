@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -44,6 +45,18 @@ public class Customer extends BaseTime implements UserDetails {
     private String address;
     private String detailAddress;
 
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    List<Cart> cartList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    List<OrderTotal> orderTotalList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    List<ProductQuestion> productQuestionList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    List<ProductReview> productReviewList = new ArrayList<>();
+
     @Builder
     public Customer(String name, String email, String password, String contact, String postcode, String address,
             String detailAddress) {
@@ -63,20 +76,7 @@ public class Customer extends BaseTime implements UserDetails {
         this.postcode = updateDto.getPostcode();
         this.address = updateDto.getAddress();
         this.detailAddress = updateDto.getDetailAddress();
-
     }
-
-    @OneToMany(mappedBy = "customer")
-    List<Cart> cartList = new ArrayList<>();
-
-    @OneToMany(mappedBy = "customer")
-    List<OrderTotal> orderTotalList = new ArrayList<>();
-
-    @OneToMany(mappedBy = "customer")
-    List<ProductQuestion> productQuestionList = new ArrayList<>();
-
-    @OneToMany(mappedBy = "customer")
-    List<ProductReview> productReviewList = new ArrayList<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -3,6 +3,7 @@ package com.jbnu.cocofarm.domain.seller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -31,6 +32,12 @@ public class Seller extends BaseTime {
     private String contact;
     private String account;
 
+    @OneToMany(mappedBy = "seller", cascade = CascadeType.ALL)
+    List<Product> productList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "seller", cascade = CascadeType.ALL)
+    List<ProductQuestion> productQuestionList = new ArrayList<>();
+
     @Builder
     public Seller(String sellerCode, String password, String name, String contact, String account) {
         this.sellerCode = sellerCode;
@@ -40,10 +47,4 @@ public class Seller extends BaseTime {
         this.account = account;
     }
 
-    @OneToMany(mappedBy = "seller")
-    List<Product> productList = new ArrayList<>();
-
-    
-    @OneToMany(mappedBy = "seller")
-    List<ProductQuestion> productQuestionList = new ArrayList<>();
 }

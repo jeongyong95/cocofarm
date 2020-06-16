@@ -56,6 +56,22 @@ public class CustomerServiceImpl implements CustomerService, UserDetailsService 
     }
 
     @Override
+    public void updateCustomer(Long customerId, CustomerUpdateDto updateDto) {
+        updateDto.setPassword(passwordEncoder.encode(updateDto.getPassword()));
+        customerRepo.getOne(customerId).updateCustomer(updateDto);
+    }
+
+    @Override
+    public void deleteCustomer(Long customerId) {
+        customerRepo.delete(customerRepo.getOne(customerId));
+    }
+
+    @Override
+    public Customer getCustomer(Long customerId) {
+        return customerRepo.getOne(customerId);
+    }
+
+    @Override
     public CustomerSessionDto checkCustomer(CustomerLoginDto loginDto) {
         Optional<Customer> customer = customerRepo.findByEmail(loginDto.getEmail());
         if (customer.isPresent()) {
@@ -100,16 +116,4 @@ public class CustomerServiceImpl implements CustomerService, UserDetailsService 
         }
         return orderProductList;
     }
-
-    @Override
-    public Customer getCustomer(Long customerId) {
-        return customerRepo.getOne(customerId);
-    }
-
-    @Override
-    public void updateCustomer(Long customerId, CustomerUpdateDto updateDto) {
-        updateDto.setPassword(passwordEncoder.encode(updateDto.getPassword()));
-        customerRepo.getOne(customerId).updateCustomer(updateDto);
-    }
-
 }

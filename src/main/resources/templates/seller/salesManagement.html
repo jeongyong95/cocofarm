@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-
+<html
+    lang="ko"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
     <head>
         <th:block th:include="fragments/common/head"></th:block>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
 
         <title>판매자 관리 - 코코팜</title>
         <style>
@@ -521,30 +523,33 @@
                                                     <th:block
                                                         th:each="product : ${productList}"
                                                     >
-                                                        <tr>
+                                                        <tr
+                                                            th:object="${product}"
+                                                            th:align="center"
+                                                        >
                                                             <td
                                                                 rowspan="1"
-                                                                th:text="${product.name}"
+                                                                th:text="*{name}"
                                                             ></td>
                                                             <td
-                                                                th:text="${product.description}"
+                                                                th:text="*{description}"
                                                             ></td>
                                                             <td
-                                                                th:text="${product.price}"
+                                                                th:text="*{price}"
                                                             ></td>
                                                             <td
-                                                                th:text="${product.productDetail.stock}"
+                                                                th:text="*{stock}"
                                                             ></td>
                                                             <td
-                                                                th:text="${product.category.toString()}"
+                                                                th:text="*{category.toString()}"
                                                             ></td>
-                                                            <td
-                                                                th:text="${product.createdTimestamp}"
+                                                            <!-- <td
+                                                                th:text="*{product.createdTimestamp}"
                                                             ></td>
-                                                            <!-- .format(DateTimeFormatter.ofPattern("yyyy년 M월 d일 a h시 m분")) -->
+                                                            .format(DateTimeFormatter.ofPattern("yyyy년 M월 d일 a h시 m분"))
                                                             <td
                                                                 th:text="${product.updatedTimestamp}"
-                                                            ></td>
+                                                            ></td> -->
                                                         </tr>
                                                     </th:block>
                                                 </tbody>
@@ -553,7 +558,7 @@
                                     </div>
                                 </div>
                                 <div
-                                    class="tab-pane fade "
+                                    class="tab-pane fade"
                                     id="tab12"
                                     role="tabpanel"
                                     aria-labelledby="tab--12"
@@ -568,7 +573,7 @@
                                 </div>
                                 <!-- 02 판매관리 -->
                                 <div
-                                    class="tab-pane fade "
+                                    class="tab-pane fade"
                                     id="tab21"
                                     role="tabpanel"
                                     aria-labelledby="tab--21"
@@ -578,21 +583,19 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="tab41" role="tabpanel" aria-labelledby="tab--41">
+                            <div
+                                class="tab-pane fade"
+                                id="tab41"
+                                role="tabpanel"
+                                aria-labelledby="tab--41"
+                            >
                                 <div class="delicious-tab-content">
-                            
-                                    <th:block th:include="seller/questionList"></th:block>
-                            
-                            
+                                    <th:block
+                                        th:include="seller/questionList"
+                                    ></th:block>
                                 </div>
-                            
                             </div>
-
-                    
                         </div>
-
-                        
-                           
                     </div>
                 </div>
             </div>

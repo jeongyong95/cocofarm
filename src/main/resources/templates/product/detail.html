@@ -286,44 +286,33 @@
                                                     </td>
                                                 </tr>
                                             </thead>
-                                            <tbody
-                                                th:each="review : ${reviewDisplayList}"
-                                            >
-                                                <tr>
+                                            <tbody th:align="center">
+                                                <tr
+                                                    th:each="review : ${reviewDisplayList}"
+                                                >
                                                     <td
                                                         th:text="${review.title}"
-                                                    >
-                                                        제목
-                                                    </td>
+                                                    ></td>
                                                     <td
                                                         th:text="${review.starPoint}"
                                                         align="center"
-                                                    >
-                                                        별점
-                                                    </td>
+                                                    ></td>
                                                     <td
                                                         th:text="${review.customerName}"
                                                         align="center"
-                                                    >
-                                                        작성자
-                                                    </td>
+                                                    ></td>
                                                     <td
                                                         th:text="${review.createdTimestamp}"
                                                         align="center"
-                                                    >
-                                                        작성일자
-                                                    </td>
+                                                    ></td>
                                                     <td
                                                         th:text="${review.content}"
-                                                    >
-                                                        상품평
-                                                    </td>
+                                                    ></td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
-
                                 <hr />
                                 <form
                                     th:action="@{/product/productDetailView/{id}/registerReviewAction(id = *{id})}"
@@ -500,6 +489,7 @@
                                             >
                                                 <tbody
                                                     th:object="${questionDisplayDto}"
+                                                    th:align="center"
                                                 >
                                                     <tr
                                                         th:if="${questionDisplayDto.customer}"
