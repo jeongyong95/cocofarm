@@ -28,6 +28,7 @@ public class PaymentController {
     public ModelAndView pay(HttpSession session, OrderTotalRegisterDto totalRegisterDto,
             OrderProductRegisterDto productRegisterDto) {
         ModelAndView modelAndView = new ModelAndView();
+
         CustomerSessionDto sessionDto = (CustomerSessionDto) session.getAttribute("customer");
         List<OrderProductRegisterDto> productRegisterDtoList = new ArrayList<>();
 

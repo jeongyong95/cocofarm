@@ -29,13 +29,16 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void registerOrder(OrderTotalRegisterDto totalRegisterDto,
             List<OrderProductRegisterDto> productRegisterDtoList, Long CustomerId) {
-        totalRegisterDto.setCustomer(customerRepo.getOne(CustomerId));
+        totalRegisterDto.setCustomer(customerRepo.getOne(CustomerId));    
+
         OrderTotal orderTotal = orderTotalRepo.save(totalRegisterDto.toEntity());
+
         for (int i = 0; i < productRegisterDtoList.size(); i++) {
             productRegisterDtoList.get(i).setOrderTotal(orderTotal);
             productRegisterDtoList.get(i).setProduct(productRepo.getOne(productRegisterDtoList.get(i).getProductId()));
             orderProductRepo.save(productRegisterDtoList.get(i).toEntity());
         }
+
     }
 
     @Override

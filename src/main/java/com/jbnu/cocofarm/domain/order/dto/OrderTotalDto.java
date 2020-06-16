@@ -1,5 +1,7 @@
 package com.jbnu.cocofarm.domain.order.dto;
 
+import java.time.LocalDateTime;
+
 import com.jbnu.cocofarm.domain.customer.Customer;
 import com.jbnu.cocofarm.domain.order.OrderTotal;
 
@@ -22,6 +24,7 @@ public class OrderTotalDto {
         private String detailAddress;
         private String orderMessage;
         private Customer customer;
+        private LocalDateTime createdTimestamp;
 
         public OrderTotal toEntity() {
             return OrderTotal.builder().customerName(customerName).recipientName(recipientName).contact(contact)

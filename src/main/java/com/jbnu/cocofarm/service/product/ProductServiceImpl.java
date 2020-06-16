@@ -71,7 +71,14 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void updateStock(int orderedQuantity, Long ProductId) {
+
+        System.out.println("테스트55555555555555555555555555수량" + orderedQuantity);
+        System.out.println("테스트55555555555555555555555555아이디" + ProductId);
+
+
         ProductDetail updatedDetail = productRepo.findById(ProductId).get().getProductDetail();
+
+
         DetailUpdateDto updateDto = new DetailUpdateDto(updatedDetail);
         updateDto.setStock(updateDto.getStock() - orderedQuantity);
         updatedDetail.updateDetail(updateDto);
@@ -164,4 +171,5 @@ public class ProductServiceImpl implements ProductService {
         return displayDtoList;
     }
 
+    
 }

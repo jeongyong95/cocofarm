@@ -14,7 +14,7 @@
     <!-- content -->
 
     <section class="elements-area section-padding-80-0">
-        <form th:action="@{/payment/pay}" method="post" th:object="${totalRegisterDto}">
+        <form th:action="@{/payment/kakaoPay}" method="post" th:object="${totalRegisterDto}">
             <!-- ##### About Area Start ##### -->
             <section class="about-area section-padding-80">
                 <div class="container">
@@ -132,7 +132,8 @@
                                 </div>
                                 <div>최종 결제 금액</div>
                                 <span th:text="${productRegisterDto.productTotalPrice} +' 원'"></span>
-                                <input type="hidden" th:field="*{totalPrice}" th:value="${productRegisterDto.productTotalPrice}">
+                                <input type="hidden" name="totalPrice" th:value="${productRegisterDto.productTotalPrice}" >
+
                                 <button type="submit">결제하기</button>
                             </div>
                         </div>

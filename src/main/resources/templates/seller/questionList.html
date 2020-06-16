@@ -63,7 +63,8 @@
                         </tr>
                     </thead>
                     <tbody th:each="questionDto : ${questionList}">
-                        <tr th:object="${questionDto}">
+                        <div th:object="${questionDto}">
+                        <tr th:if="${questionDto.customer}">
 
                             <a th:href="@{/order/details(id=3)}">
 
@@ -89,7 +90,8 @@
                                         ></td>
 
                             </a>
-                                </tr>
+                        </tr>
+                            </div>
                             </tbody>
                         </table>
                     </div>
