@@ -12,7 +12,6 @@
     <th:block th:include="fragments/common/header"></th:block>
 
     <!-- content -->
-
     <section class="elements-area section-padding-80-0">
         <div class="container">
             <div id="collapseOne" class="accordion-content collapse show">
@@ -20,65 +19,77 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="row align-items-center mt-90">
-
                             <!-- Single Cool Fact -->
-                            <div class="col-12 col-sm-6 col-lg-3">
+                            <div class="col-12 col-sm-6 col-lg-2">
                                 <div class="single-cool-fact">
                                     <h6>상품이름</h6>
                                 </div>
                             </div>
 
                             <!-- Single Cool Fact -->
-                            <div class="col-12 col-sm-6 col-lg-3">
+                            <div class="col-12 col-sm-6 col-lg-2">
                                 <div class="single-cool-fact">
                                     <h6>판매가</h6>
                                 </div>
                             </div>
 
                             <!-- Single Cool Fact -->
-                            <div class="col-12 col-sm-6 col-lg-3">
+                            <div class="col-12 col-sm-6 col-lg-2">
                                 <div class="single-cool-fact">
                                     <h6>수량</h6>
                                 </div>
                             </div>
 
                             <!-- Single Cool Fact -->
-                            <div class="col-12 col-sm-6 col-lg-3">
+                            <div class="col-12 col-sm-6 col-lg-2">
                                 <div class="single-cool-fact">
                                     <h6>가격</h6>
                                 </div>
                             </div>
-
+                            <!-- Single Cool Fact -->
+                            <div class="col-12 col-sm-6 col-lg-2">
+                                <div class="single-cool-fact">
+                                </div>
+                            </div>
                         </div>
-                        <div class="row align-items-center mt-90" th:each="displayDto : ${displayList}">
+
+                        <div class="row align-items-cer mt-90" th:each="displayDto : ${displayList}">
                             <th:block th:object="${displayDto}">
                                 <!-- Single Cool Fact -->
-                                <div class="col-12 col-sm-6 col-lg-3">
+                                <div class="col-12 col-sm-6 col-lg-2">
                                     <div class="single-cool-fact">
                                         <td th:text="*{productName}"> </td>
                                     </div>
                                 </div>
 
                                 <!-- Single Cool Fact -->
-                                <div class="col-12 col-sm-6 col-lg-3">
+                                <div class="col-12 col-sm-6 col-lg-2">
                                     <div class="single-cool-fact">
                                         <td th:text="*{price}"> </td>
                                     </div>
                                 </div>
 
                                 <!-- Single Cool Fact -->
-                                <div class="col-12 col-sm-6 col-lg-3">
+                                <div class="col-12 col-sm-6 col-lg-2">
                                     <div class="single-cool-fact">
                                         <td th:text="*{quantity}"> </td>
                                     </div>
                                 </div>
 
                                 <!-- Single Cool Fact -->
-                                <div class="col-12 col-sm-6 col-lg-3">
+                                <div class="col-12 col-sm-6 col-lg-2">
                                     <div class="single-cool-fact">
-                                        <td
-                                            th:text="*{productTotalPrice}">
+                                        <td th:text="*{productTotalPrice}">
                                         </td>
+                                    </div>
+                                </div>
+
+                                <!-- Single Cool Fact -->
+                                <div class="col-12 col-sm-6 col-lg-2">
+                                    <div class="single-cool-fact">
+                                        <input type="hidden" name="cartId" th:value="*{id}">
+                                        <button formaction="/customer/cart/deleteCartAction"
+                                            formmethod="POST">삭제하기</button>
                                     </div>
                                 </div>
                             </th:block>
@@ -101,22 +112,19 @@
                         <div class="col-12 col-lg-3">
                             <div class="single-cool-fact">
                                 <h6 th:text="${totalPrice}"></h6>
-
                             </div>
                         </div>
 
-
-                        <div class="col-12 align-items-center">
-                            <div class="align-items-center">
-                                <button class="btn delicious-btn mt-30" type="submit">구매하기</button>
+                        <form th:action="@{/customer/cart/orderFromCart}" method="POST">
+                            <div class="col-12 align-items-center">
+                                <div class="align-items-center">
+                                    <input type="hidden" name="cartIdList" th:value="${cartIdList}">
+                                    <button class="btn delicious-btn mt-30" type="submit">구매하기</button>
+                                </div>
                             </div>
-                        </div>
-
+                        </form>
                     </div>
                 </div>
-
-
-
             </div>
         </div>
     </section>

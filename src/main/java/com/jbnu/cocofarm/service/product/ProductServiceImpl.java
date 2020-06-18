@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.jbnu.cocofarm.domain.customer.CustomerRepository;
+import com.jbnu.cocofarm.domain.domainAssistance.Category;
 import com.jbnu.cocofarm.domain.product.Product;
 import com.jbnu.cocofarm.domain.product.ProductDetail;
 import com.jbnu.cocofarm.domain.product.ProductQuestion;
@@ -75,9 +76,7 @@ public class ProductServiceImpl implements ProductService {
         System.out.println("테스트55555555555555555555555555수량" + orderedQuantity);
         System.out.println("테스트55555555555555555555555555아이디" + ProductId);
 
-
         ProductDetail updatedDetail = productRepo.findById(ProductId).get().getProductDetail();
-
 
         DetailUpdateDto updateDto = new DetailUpdateDto(updatedDetail);
         updateDto.setStock(updateDto.getStock() - orderedQuantity);
@@ -171,5 +170,17 @@ public class ProductServiceImpl implements ProductService {
         return displayDtoList;
     }
 
-    
+    @Override
+    public List<ProductDisplayDto> searchCategory(Category category) {
+        List<ProductDisplayDto> displayDtoList = new ArrayList<>();
+        List<Product> productList = productRepo.findByCategory(category);
+
+        for (int i = 0; i < productList.size(); i++) {
+            ProductDisplayDto displayDto = new ProductDisplayDto(productList.get(i));
+            displayDtoList.add(displayDto);
+        }
+
+        return displayDtoList;
+    }
+
 }

@@ -1,10 +1,12 @@
 package com.jbnu.cocofarm.controller.customer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import com.jbnu.cocofarm.domain.cart.Cart;
 import com.jbnu.cocofarm.domain.cart.CartDto.CartDisplayDto;
 import com.jbnu.cocofarm.domain.cart.CartDto.CartRegisterDto;
 import com.jbnu.cocofarm.domain.customer.CustomerDto.CustomerLoginDto;
@@ -14,6 +16,7 @@ import com.jbnu.cocofarm.domain.customer.CustomerDto.CustomerUpdateDto;
 import com.jbnu.cocofarm.domain.order.dto.OrderProductDto.OrderProductDisplayDto;
 import com.jbnu.cocofarm.domain.order.dto.OrderProductDto.OrderProductRegisterDto;
 import com.jbnu.cocofarm.domain.order.dto.OrderTotalDto.OrderTotalRegisterDto;
+import com.jbnu.cocofarm.domain.product.Product;
 import com.jbnu.cocofarm.service.cart.CartService;
 import com.jbnu.cocofarm.service.customer.CustomerService;
 
@@ -83,23 +86,6 @@ public class CustomerController {
         return modelAndView;
     }
 
-    @GetMapping(value = "/customer/cart")
-    public ModelAndView cart(HttpSession session) {
-        ModelAndView modelAndView = new ModelAndView();
-        CustomerSessionDto sessionDto = (CustomerSessionDto) session.getAttribute("customer");
-        List<CartDisplayDto> displayList = cartService.findByCustomer(sessionDto.getId());
-
-        int totalPrice = 0;
-        for (int i = 0; i < displayList.size(); i++) {
-            totalPrice += displayList.get(i).getProductTotalPrice();
-        }
-
-        modelAndView.addObject("displayList", displayList);
-        modelAndView.addObject("totalPrice", totalPrice);
-        modelAndView.setViewName("customer/cart");
-        return modelAndView;
-    }
-
     @PostMapping(value = "/customer/loginAction")
     public ModelAndView loginAction(HttpSession session, CustomerLoginDto loginDto) {
         ModelAndView modelAndView = new ModelAndView();
@@ -149,6 +135,69 @@ public class CustomerController {
         return "redirect:/index";
     }
 
+    @PostMapping(value = "/customer/addToCart")
+    public ModelAndView addToCart(HttpSession session, CartRegisterDto registerDto) {
+        ModelAndView modelAndView = new ModelAndView();
+        CustomerSessionDto sessionDto = (CustomerSessionDto) session.getAttribute("customer");
+        cartService.registerCart(registerDto, sessionDto.getId());
+        modelAndView.setViewName("redirect:/customer/cart");
+        return modelAndView;
+    }
+
+    @GetMapping(value = "/customer/cart")
+    public ModelAndView cart(HttpSession session) {
+        ModelAndView modelAndView = new ModelAndView();
+        CustomerSessionDto sessionDto = (CustomerSessionDto) session.getAttribute("customer");
+        List<CartDisplayDto> displayList = cartService.findByCustomer(sessionDto.getId());
+        List<Long> cartIdList = new ArrayList<>();
+
+        int totalPrice = 0;
+        for (int i = 0; i < displayList.size(); i++) {
+            totalPrice += displayList.get(i).getProductTotalPrice();
+            cartIdList.add(displayList.get(i).getId());
+        }
+
+        modelAndView.addObject("displayList", displayList);
+        modelAndView.addObject("totalPrice", totalPrice);
+        modelAndView.addObject("cartIdList", cartIdList);
+        modelAndView.setViewName("customer/cart");
+        return modelAndView;
+    }
+
+    @PostMapping(path = "/customer/cart/deleteCartAction")
+    public ModelAndView deleteCartAction(Long cartId) {
+        ModelAndView modelAndView = new ModelAndView();
+        cartService.deleteCart(cartId);
+        modelAndView.setViewName("redirect:/customer/cart");
+        return modelAndView;
+    }
+
+    // 타임리프에서 리스트를 받아오도록 해야한다ㅠㅠ
+    @PostMapping(path = "/customer/cart/orderFromCart")
+    public ModelAndView orderFromCart(List<String> cartIdList) {
+        ModelAndView modelAndView = new ModelAndView();
+        List<OrderProductRegisterDto> productRegisterDtoList = new ArrayList<>();
+        for (int i = 0; i < cartIdList.size(); i++) {
+            Cart cart = cartService.getCart(Long.parseLong(cartIdList.get(i)));
+            Product cartProduct = cart.getProductDetail().getProduct();
+            OrderProductRegisterDto productRegisterDto = new OrderProductRegisterDto();
+            productRegisterDto.setProduct(cartProduct);
+            productRegisterDto.setQuantity(cart.getQuantity());
+            productRegisterDto.setPrice(cartProduct.getPrice());
+            productRegisterDto.setProductId(cartProduct.getId());
+            productRegisterDto.setProductName(cartProduct.getName());
+            productRegisterDto.setProductTotalPrice(productRegisterDto.getPrice() * productRegisterDto.getQuantity());
+            productRegisterDtoList.add(productRegisterDto);
+        }
+        // cardIdList에 있는 string type의 cart id를 가지고 상품별 주문 DTO를 생성한다.
+        // 생성한 상품별 주문 DTO를 productRegisterDtoList에 담는다
+
+        modelAndView.addObject("productRegisterDtoList", productRegisterDtoList);
+        modelAndView.addObject("totalRegisterDto", new OrderTotalRegisterDto());
+        modelAndView.setViewName("customer/orderFromCart");
+        return modelAndView;
+    }
+
     @PostMapping(value = "/customer/order/new")
     public ModelAndView orderNew(OrderProductRegisterDto productRegisterDto) {
         ModelAndView modelAndView = new ModelAndView();
@@ -157,17 +206,6 @@ public class CustomerController {
         modelAndView.addObject("productRegisterDto", productRegisterDto);
         modelAndView.addObject("totalRegisterDto", new OrderTotalRegisterDto());
         modelAndView.setViewName("customer/order");
-        return modelAndView;
-    }
-
-    @PostMapping(value = "/customer/addToCart")
-    public ModelAndView addToCart(HttpSession session, CartRegisterDto registerDto) {
-        ModelAndView modelAndView = new ModelAndView();
-        CustomerSessionDto sessionDto = (CustomerSessionDto) session.getAttribute("customer");
-        // 장바구니에 담는 로직 구현하기
-        cartService.registerCart(registerDto, sessionDto.getId());
-
-        modelAndView.setViewName("redirect:/customer/cart");
         return modelAndView;
     }
 }

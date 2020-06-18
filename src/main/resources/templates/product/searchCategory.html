@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+
+<head>
+  <th:block th:include="fragments/common/head"></th:block>
+  <title>코코팜</title>
+
+
+</head>
+
+<body>
+
+
+  <th:block th:include="fragments/common/header"></th:block>
+
+  <!-- ##### Best Receipe Area Start ##### -->
+  <section class="best-receipe-area">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="section-heading">
+            <h3 th:text="${categoryName}"></h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <!-- Single Best Receipe Area -->
+        <th:block th:each="displayDto : ${displayDtoList}" th:if="${+displayDtoStat.count < 7}">
+          <div th:align=center class="col-12 col-sm-6 col-lg-4">
+            <div class="single-best-receipe-area mb-30" th:object="${displayDto}">
+              <img th:src=*{imageUrl} width="200px" height="200px">
+              <div class="receipe-content">
+                <a th:href="@{/product/productDetailView/{productId}(productId=*{id})}">
+                  <td th:text="*{name}"> </td>
+                </a>
+                <div>
+                  <span class="product-price" th:text="*{price}"></span><span class="product-won">원</span>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+      </th:block>
+    </div>
+    </div>
+  </section>
+  <!-- ##### Best Receipe Area End ##### -->
+
+
+  <th:block th:include="fragments/common/footer"></th:block>
+  <th:block th:include="fragments/common/script"></th:block>
+</body>
+
+</html>

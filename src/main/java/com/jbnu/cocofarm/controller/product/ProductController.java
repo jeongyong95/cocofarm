@@ -3,6 +3,7 @@ package com.jbnu.cocofarm.controller.product;
 import javax.servlet.http.HttpSession;
 
 import com.jbnu.cocofarm.domain.customer.CustomerDto.CustomerSessionDto;
+import com.jbnu.cocofarm.domain.domainAssistance.Category;
 import com.jbnu.cocofarm.domain.product.dto.ProductQuestionDto.QuestionDto;
 import com.jbnu.cocofarm.domain.product.dto.ProductReviewDto.ReviewRegisterDto;
 import com.jbnu.cocofarm.service.customer.CustomerService;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import lombok.AllArgsConstructor;
@@ -84,6 +86,32 @@ public class ProductController {
         modelAndView.addObject("productDisplayList", productService.searchProductName(searchKeyword));
         modelAndView.addObject("searchKeyword", searchKeyword);
         modelAndView.setViewName("product/search");
+        return modelAndView;
+    }
+
+    @GetMapping(path = "/product")
+    public ModelAndView searchByCategory(@RequestParam int category) {
+        ModelAndView modelAndView = new ModelAndView();
+        switch (category) {
+            case 0:
+                modelAndView.addObject("categoryName", "농산물");
+                modelAndView.addObject("displayDtoList", productService.searchCategory(Category.AGRICULTURAL));
+                break;
+            case 1:
+                modelAndView.addObject("categoryName", "수산물");
+                modelAndView.addObject("displayDtoList", productService.searchCategory(Category.AQUATIC));
+                break;
+            case 2:
+                modelAndView.addObject("categoryName", "가공식품");
+                modelAndView.addObject("displayDtoList", productService.searchCategory(Category.INDUSTIRAL));
+                break;
+
+            default:
+                modelAndView.addObject("displayDtoList", null);
+                break;
+        }
+
+        modelAndView.setViewName("product/searchCategory");
         return modelAndView;
     }
 }

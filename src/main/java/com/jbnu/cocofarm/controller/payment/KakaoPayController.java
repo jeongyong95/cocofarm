@@ -8,7 +8,6 @@ import javax.servlet.http.HttpSession;
 import com.jbnu.cocofarm.domain.customer.CustomerDto.CustomerSessionDto;
 import com.jbnu.cocofarm.domain.order.dto.OrderProductDto.OrderProductRegisterDto;
 import com.jbnu.cocofarm.domain.order.dto.OrderTotalDto.OrderTotalRegisterDto;
-import com.jbnu.cocofarm.domain.product.dto.ProductDto.ProductRegisterDto;
 import com.jbnu.cocofarm.service.order.OrderService;
 import com.jbnu.cocofarm.service.payment.KakaoPay;
 import com.jbnu.cocofarm.service.product.ProductService;
@@ -24,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import lombok.AllArgsConstructor;
 import lombok.Setter;
-import lombok.extern.java.Log;
 
 @AllArgsConstructor
 @Controller
@@ -35,7 +33,6 @@ public class KakaoPayController {
 
     @Setter(onMethod_ = @Autowired)
     private KakaoPay kakaopay;
-
 
     @GetMapping("/payment/kakaoPay")
     public void kakaoPayGet() {
@@ -59,7 +56,7 @@ public class KakaoPayController {
 
     }
 
-    @RequestMapping(value = "/payment/kakaoPaySuccess" , method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/payment/kakaoPaySuccess", method = { RequestMethod.GET, RequestMethod.POST })
     public void kakaoPaySuccess(@RequestParam("pg_token") String pg_token, Model model, HttpSession session) {
 
         OrderTotalRegisterDto totalRegisterDto = (OrderTotalRegisterDto) session.getAttribute("totalRegisterTemp");

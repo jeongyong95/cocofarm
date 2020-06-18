@@ -13,11 +13,7 @@
         <div class="row">
             <div class="col-12">
                 <form th:action="@{/product/searchProduct}" method="GET">
-                    <input
-                        type="search"
-                        name="searchKeyword"
-                        placeholder="검색어를 입력하세요."
-                    />
+                    <input type="search" name="searchKeyword" placeholder="검색어를 입력하세요." />
                     <button type="submit">
                         <i class="fa fa-search" aria-hidden="true"></i>
                     </button>
@@ -50,19 +46,13 @@
                         <div class="classynav">
                             <ul th:if="${session.customer}">
                                 <li>
-                                    <a th:href="@{/customer/logout}"
-                                        >로그아웃</a
-                                    >
+                                    <a th:href="@{/customer/logout}">로그아웃</a>
                                 </li>
                                 <li>
-                                    <a th:href="@{/customer/mypage}"
-                                        >마이페이지</a
-                                    >
+                                    <a th:href="@{/customer/mypage}">마이페이지</a>
                                 </li>
                                 <li>
-                                    <a th:href="@{/customer/mypage/orderList}"
-                                        >주문배송조회</a
-                                    >
+                                    <a th:href="@{/customer/mypage/orderList}">주문배송조회</a>
                                 </li>
                                 <li>
                                     <a th:href="@{/customer/cart}">장바구니</a>
@@ -80,9 +70,7 @@
                                     <a th:href="@{/customer/join}">회원가입</a>
                                 </li>
                                 <li>
-                                    <a th:href="@{/customer/orders}"
-                                        >주문배송조회</a
-                                    >
+                                    <a th:href="@{/customer/mypage/orderList}">주문배송조회</a>
                                 </li>
                                 <li>
                                     <a th:href="@{/customer/cart}">장바구니</a>
@@ -104,18 +92,13 @@
         <div class="classy-nav-container breakpoint-off">
             <div class="container">
                 <!-- Menu -->
-                <nav
-                    class="classy-navbar justify-content-between"
-                    id="deliciousNav"
-                >
+                <nav class="classy-navbar justify-content-between" id="deliciousNav">
                     <!-- Logo -->
                     <a class="nav-brand" th:href="@{/index}">코코팜</a>
 
                     <!-- Navbar Toggler -->
                     <div class="classy-navbar-toggler">
-                        <span class="navbarToggler"
-                            ><span></span><span></span><span></span
-                        ></span>
+                        <span class="navbarToggler"><span></span><span></span><span></span></span>
                     </div>
 
                     <!-- Menu -->
@@ -123,8 +106,7 @@
                         <!-- close btn -->
                         <div class="classycloseIcon">
                             <div class="cross-wrap">
-                                <span class="top"></span
-                                ><span class="bottom"></span>
+                                <span class="top"></span><span class="bottom"></span>
                             </div>
                         </div>
 
@@ -132,16 +114,25 @@
                         <div class="classynav">
                             <ul>
                                 <li>
-                                    <a href="#">카테고리</a>
+                                    카테고리
                                     <ul class="dropdown">
                                         <li>
-                                            <a href="#">농산물</a>
+                                            <form th:action="@{/product(category=category)}">
+                                                <input type="hidden" th:name="category" th:value=0>
+                                                <input type="submit" value="농산물">
+                                            </form>
                                         </li>
                                         <li>
-                                            <a href="#">수산물</a>
+                                            <form th:action="@{/product(category=category)}">
+                                                <input type="hidden" th:name="category" th:value=1>
+                                                <input type="submit" value="수산물">
+                                            </form>
                                         </li>
                                         <li>
-                                            <a href="#">가공식품</a>
+                                            <form th:action="@{/product(category=category)}">
+                                                <input type="hidden" th:name="category" th:value=2>
+                                                <input type="submit" value="가공식품">
+                                            </form>
                                         </li>
                                     </ul>
                                 </li>

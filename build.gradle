@@ -27,6 +27,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
+	compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-aws'
 
 	compile group: 'org.modelmapper', name: 'modelmapper', version: '2.3.7'
 	compileOnly 'org.projectlombok:lombok'

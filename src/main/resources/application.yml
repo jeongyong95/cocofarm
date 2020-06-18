@@ -42,3 +42,15 @@ spring:
 logging:
   level:
     org.springframework.security: debug
+
+cloud:
+  aws:
+    credentials:
+      accessKey: YOUR_ACCESS_KEY
+      secretKey: YOUR_SECRET_KEY
+    s3:
+      bucket: YOUR_BUCKET_NAME
+    region:
+      static: ap-northeast-2
+    stack:
+      auto: false

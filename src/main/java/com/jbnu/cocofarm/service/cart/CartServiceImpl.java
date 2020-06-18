@@ -30,6 +30,16 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
+    public void deleteCart(Long cartId) {
+        cartRepo.deleteById(cartId);
+    }
+
+    @Override
+    public Cart getCart(Long cartId) {
+        return cartRepo.getOne(cartId);
+    }
+
+    @Override
     public List<CartDisplayDto> findByCustomer(Long customerId) {
         List<CartDisplayDto> cartDisplayDtoList = new ArrayList<>();
         List<Cart> customerCartList = cartRepo.findByCustomer(customerRepo.getOne(customerId));
@@ -46,4 +56,5 @@ public class CartServiceImpl implements CartService {
 
         return cartDisplayDtoList;
     }
+
 }

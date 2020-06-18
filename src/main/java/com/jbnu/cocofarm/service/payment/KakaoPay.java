@@ -16,10 +16,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
-import lombok.extern.java.Log;
-
 @Service
-@Log
 public class KakaoPay {
 
     private static final String HOST = "https://kapi.kakao.com";
@@ -95,8 +92,6 @@ public class KakaoPay {
         try {
             kakaoPayApprovalVO = restTemplate.postForObject(new URI(HOST + "/v1/payment/approve"), body,
                     KakaoPayApprovalVO.class);
-
-            
 
             return kakaoPayApprovalVO;
 

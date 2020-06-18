@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <th:block th:include="fragments/common/head"></th:block>
+    <title>주문결제 - 코코팜</title>
+</head>
+
+<body>
+    <!-- header -->
+    <th:block th:include="fragments/common/header"></th:block>
+
+    <!-- content -->
+
+    <section class="elements-area section-padding-80-0">
+        <form th:action="@{/payment/kakaoPay}" method="post" th:object="${totalRegisterDto}">
+            <!-- ##### About Area Start ##### -->
+            <section class="about-area section-padding-80">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="section-heading">
+                                <h3>주문결제</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <!-- 주문내역 -->
+                            <h5>주문 상품 확인</h5>
+                            <table border="2" class="col">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" colspan="4">상품정보</th>
+                                        <th scope="col" colspan="2">수량</th>
+                                        <th scope="col" colspan="3">주문금액</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="productRegisterDto : ${productRegisterDtoList}">
+                                        <th:block th:object="${productRegisterDto}">
+                                            <td th:text="*{productName}" colspan="4"></td>
+                                            <td th:text="*{quantity}" colspan="2"></td>
+                                            <td th:text="*{productTotalPrice}" colspan="3"></td>
+
+                                            <input type="hidden" th:field="*{productId}" th:value="*{productId}">
+                                            <input type="hidden" th:field="*{quantity}" th:value="*{quantity}">
+                                            <input type="hidden" th:field="*{productTotalPrice}"
+                                                th:value="*{productTotalPrice}">
+                                        </th:block>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+
+                            <!-- 배송지 입력 -->
+                            <h5>배송지 정보 </h5>
+                            <table border="2">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">주문하시는 분</th>
+                                        <td>
+                                            <input type="text" th:field="*{customerName}"
+                                                value="${session.customer.name}">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">받으시는 분</th>
+                                        <td>
+                                            <input type="text" th:field="*{recipientName}" title="받으시는 분">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">휴대폰 번호</th>
+                                        <td>
+                                            <input type="number" class="form-control" th:field="*{contact}"
+                                                placeholder="PhoneNumber">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">주소</th>
+                                        <td>
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <div class="col-12 col-lg-6">
+                                                        <input type="text" class="form-control" id="postcode"
+                                                            th:field="*{postcode}" placeholder="우편번호"
+                                                            onclick="searchDaumPostcode()" readonly>
+                                                    </div>
+                                                    <div class="col-12 col-lg-6">
+                                                        <input type="button" class="form-control"
+                                                            onclick="searchDaumPostcode()" value="우편번호 찾기">
+                                                    </div>
+                                                    <div class="col-12 col-lg-6">
+                                                        <input type="text" class="form-control" id="address"
+                                                            th:field="*{address}" placeholder="주소"
+                                                            onclick="searchDaumPostcode()" readonly>
+                                                    </div>
+                                                    <div class="col-12 col-lg-6">
+                                                        <input type="text" class="form-control" id="extraAddress"
+                                                            placeholder="참고항목" onclick="searchDaumPostcode()" readonly>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <input type="text" class="form-control" id="detailAddress"
+                                                            th:field="*{detailAddress}" placeholder="상세주소">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th scope="row">배송시요청사항</th>
+                                        <td>
+                                            <input type="text" class="form-control" th:field="*{orderMessage}"
+                                                placeholder="배송메시지를 입력하세요">
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+                            <h5>결제수단</h5>
+                            <div>
+                                <div>
+                                    <div>
+                                        <label for="kakaoPay">카카오페이</label>
+                                        <input type="radio" name="payment" id="kakaoPay" th:value="kakaoPay">
+
+                                        <label for="creditCard">신용/체크카드</label>
+                                        <input type="radio" name="payment" id="creditCard" th:value="creditCard">
+
+                                        <label for="bankTransfer">계좌이체</label>
+                                        <input type="radio" name="payment" id="bankTransfer" th:value="bankTransfer">
+                                    </div>
+                                </div>
+                                <div>최종 결제 금액</div>
+                                <span th:text="${productRegisterDto.productTotalPrice} +' 원'"></span>
+                                <input type="hidden" name="totalPrice"
+                                    th:value="${productRegisterDto.productTotalPrice}">
+
+                                <button type="submit">결제하기</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </form>
+    </section>
+
+    <!-- footer -->
+    <th:block th:include="fragments/common/footer"></th:block>
+    </div>
+    <th:block th:include="fragments/common/script"></th:block>
+</body>
+<th:block th:include="fragments/common/postCode"></th:block>
+
+</html>

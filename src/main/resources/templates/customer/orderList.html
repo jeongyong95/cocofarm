@@ -144,9 +144,9 @@
                                         "
                                     >
                                         <a
-                                            th:href="@{/customer/orderDatailInfo}"
+                                            th:href="@{/customer/orderDatailInfo(orderId=*{id})}"
                                             style="color: #212529;"
-                                            th:text="주문번호"
+                                            th:text="*{id}"
                                         ></a>
                                     </td>
 

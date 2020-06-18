@@ -2,6 +2,7 @@ package com.jbnu.cocofarm.service.product;
 
 import java.util.List;
 
+import com.jbnu.cocofarm.domain.domainAssistance.Category;
 import com.jbnu.cocofarm.domain.product.ProductDetail;
 import com.jbnu.cocofarm.domain.product.dto.ProductDetailDto.DetailRegisterDto;
 import com.jbnu.cocofarm.domain.product.dto.ProductDto.ProductDisplayDto;
@@ -37,5 +38,7 @@ public interface ProductService {
     ProductDetail getProductDetail(Long productId);
 
     List<ProductDisplayDto> searchProductName(String searchKeyword);
+
+    List<ProductDisplayDto> searchCategory(Category category);
 
 }

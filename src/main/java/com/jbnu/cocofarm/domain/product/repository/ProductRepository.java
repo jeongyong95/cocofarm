@@ -2,6 +2,7 @@ package com.jbnu.cocofarm.domain.product.repository;
 
 import java.util.List;
 
+import com.jbnu.cocofarm.domain.domainAssistance.Category;
 import com.jbnu.cocofarm.domain.product.Product;
 import com.jbnu.cocofarm.domain.seller.Seller;
 
@@ -12,4 +13,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findBySeller(Seller seller);
 
     List<Product> findByNameContaining(String searchKeyword);
+
+    List<Product> findByCategory(Category category);
 }
