@@ -44,5 +44,16 @@ public class OrderProductDto {
         private LocalDateTime createdTimestamp;
         private OrderTotal orderTotal;
         private Delivery delivery;
+
+        public OrderProductDisplayDto(OrderProduct orderProduct) {
+            
+            this.id = orderProduct.getId();
+            this.productId = orderProduct.getId();
+            this.productName = orderProduct.getProduct().getName();
+            this.quantity = orderProduct.getQuantity();
+            this.ProductTotalPrice = orderProduct.getProductTotalPrice();
+            this.orderTotal = orderProduct.getOrderTotal();
+            this.delivery = orderProduct.getDelivery();
+        }
     }
 }

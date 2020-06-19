@@ -19,10 +19,12 @@ import com.jbnu.cocofarm.domain.order.dto.OrderTotalDto.OrderTotalRegisterDto;
 import com.jbnu.cocofarm.domain.product.Product;
 import com.jbnu.cocofarm.service.cart.CartService;
 import com.jbnu.cocofarm.service.customer.CustomerService;
+import com.jbnu.cocofarm.service.order.OrderService;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -34,6 +36,7 @@ public class CustomerController {
 
     private CustomerService customerService;
     private CartService cartService;
+    private OrderService orderService;
 
     @GetMapping(value = "/customer/login")
     public ModelAndView login() {
@@ -60,6 +63,19 @@ public class CustomerController {
         modelAndView.setViewName("customer/mypage");
         return modelAndView;
     }
+
+    @GetMapping(value = "/customer/mypage/orderDetail/{orderProductId}")
+    public ModelAndView orderDetail(@PathVariable Long orderProductId) {
+        ModelAndView modelAndView = new ModelAndView();
+
+        System.out.println("테스트1111111111111111111111111111111111" + orderProductId);
+        modelAndView.addObject("orderProductDto", orderService.findByOrderProductId(orderProductId));
+        System.out.println("테스트2222222222222222222222222222222222" + orderService.findByOrderProductId(orderProductId));
+
+        modelAndView.setViewName("customer/orderDetail");
+        return modelAndView;
+    }
+
 
     @PostMapping(value = "/customer/editInfo")
     public ModelAndView editInfo(HttpSession session, String password) {

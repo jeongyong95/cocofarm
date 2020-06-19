@@ -5,7 +5,9 @@ import java.util.List;
 import com.jbnu.cocofarm.domain.customer.CustomerRepository;
 import com.jbnu.cocofarm.domain.order.OrderProduct;
 import com.jbnu.cocofarm.domain.order.OrderTotal;
+import com.jbnu.cocofarm.domain.order.dto.OrderProductDto.OrderProductDisplayDto;
 import com.jbnu.cocofarm.domain.order.dto.OrderProductDto.OrderProductRegisterDto;
+import com.jbnu.cocofarm.domain.order.dto.OrderTotalDto.OrderTotalDisplayDto;
 import com.jbnu.cocofarm.domain.order.dto.OrderTotalDto.OrderTotalRegisterDto;
 import com.jbnu.cocofarm.domain.order.repository.OrderProductRepository;
 import com.jbnu.cocofarm.domain.order.repository.OrderTotalRepository;
@@ -29,7 +31,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void registerOrder(OrderTotalRegisterDto totalRegisterDto,
             List<OrderProductRegisterDto> productRegisterDtoList, Long CustomerId) {
-        totalRegisterDto.setCustomer(customerRepo.getOne(CustomerId));    
+        totalRegisterDto.setCustomer(customerRepo.getOne(CustomerId));
 
         OrderTotal orderTotal = orderTotalRepo.save(totalRegisterDto.toEntity());
 
@@ -55,5 +57,12 @@ public class OrderServiceImpl implements OrderService {
     public void cancelOrder(Long id) {
 
     }
+
+    @Override
+    public OrderProductDisplayDto findByOrderProductId(Long orderProductId) {
+        return new OrderProductDisplayDto(orderProductRepo.findById(orderProductId).get());
+    }
+
+    
 
 }

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <th:block th:include="fragments/common/head"></th:block>
+    <title>주문상세 - 코코팜</title>
+</head>
+
+<body>
+    <!-- header -->
+    <th:block th:include="fragments/common/header"></th:block>
+
+    <!-- content -->
+
+    <section class="elements-area section-padding-80-0" th:object="${orderProductDto}">
+        <!-- ##### About Area Start ##### -->
+        <section class="about-area section-padding-80">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-heading">
+                            <h3>주문상세</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <!-- 주문내역 -->
+                        <h5>주문 상품 확인</h5>
+                        <table border="2" class="col">
+                            <thead>
+                                <tr>
+                                    <th scope="col" colspan="4">상품정보</th>
+                                    <th scope="col" colspan="2">수량</th>
+                                    <th scope="col" colspan="3">주문금액</th>
+                                </tr>
+                                <tr>
+                                    <td th:text="*{productName}" colspan="4"></td>
+                                    <td th:text="*{quantity}" colspan="2"></td>
+                                    <td th:text="*{productTotalPrice}" colspan="3"></td>                                  
+                                </tr>
+                            </thead>
+                        </table>
+
+
+                        <!-- 배송지 입력 -->
+                        <h5>배송지 정보 </h5>
+                        <table border="2">
+                            <tbody>
+                                <tr>
+                                    <th scope="row">주문하시는 분</th>
+                                    <td>
+                                        <h6 th:text="*{orderTotal.customerName}">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">받으시는 분</th>
+                                    <td>
+                                        <H6 th:text="*{orderTotal.recipientName}">
+                                        </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">휴대폰 번호</th>
+                                    <td>
+                                        <H6 th:text="*{orderTotal.contact}">
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">주소</th>
+                                    <td>
+                                        <div class="col-12">
+                                            <div class="row">
+                                                <div class="col-12 col-lg-6">
+                                                    <H6 th:text="*{orderTotal.postcode}">
+
+                                                </div>
+                                                <div class="col-12 col-lg-6">
+                                                    
+                                                </div>
+                                                <div class="col-12 col-lg-6">
+                                                    <H6 th:text="*{orderTotal.address}">
+
+                                                </div>
+                                                <div class="col-12 col-lg-6">
+
+                                                </div>
+                                                <div class="col-12">
+                                                    <H6 th:text="*{orderTotal.detailAddress}">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="row">배송시요청사항</th>
+                                    <td>
+                                        <H6 th:text="*{orderTotal.orderMessage}">
+
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+                        <div>
+                           
+                            <div>최종 결제 금액</div>
+                            <span th:text="*{productTotalPrice} +' 원'"></span>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- footer -->
+    <th:block th:include="fragments/common/footer"></th:block>
+    </div>
+    <th:block th:include="fragments/common/script"></th:block>
+</body>
+<th:block th:include="fragments/common/postCode"></th:block>
+
+</html>

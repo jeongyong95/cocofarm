@@ -4,7 +4,9 @@ import java.util.List;
 
 import com.jbnu.cocofarm.domain.order.OrderProduct;
 import com.jbnu.cocofarm.domain.order.OrderTotal;
+import com.jbnu.cocofarm.domain.order.dto.OrderProductDto.OrderProductDisplayDto;
 import com.jbnu.cocofarm.domain.order.dto.OrderProductDto.OrderProductRegisterDto;
+import com.jbnu.cocofarm.domain.order.dto.OrderTotalDto.OrderTotalDisplayDto;
 import com.jbnu.cocofarm.domain.order.dto.OrderTotalDto.OrderTotalRegisterDto;
 
 public interface OrderService {
@@ -17,4 +19,7 @@ public interface OrderService {
     OrderTotal getOrderTotal(Long orderTotalId);
 
     void cancelOrder(Long id);
+
+    OrderProductDisplayDto findByOrderProductId(Long orderProductId);
+
 }

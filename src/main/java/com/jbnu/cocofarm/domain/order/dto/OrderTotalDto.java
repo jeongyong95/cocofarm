@@ -46,5 +46,16 @@ public class OrderTotalDto {
         private String address;
         private String detailAddress;
 
+        public OrderTotalDisplayDto (OrderTotal orderTotal){
+
+            this.customerName = orderTotal.getCustomerName();
+            this.recipientName = orderTotal.getRecipientName();
+            this.totalPrice = orderTotal.getTotalPrice();
+            this.contact = orderTotal.getContact();
+            this.postcode = orderTotal.getPostcode();
+            this.address = orderTotal.getAddress();
+            this.detailAddress = orderTotal.getDetailAddress();
+        }
+
     }
 }
