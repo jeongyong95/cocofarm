@@ -117,22 +117,13 @@
                                     카테고리
                                     <ul class="dropdown">
                                         <li>
-                                            <form th:action="@{/product(category=category)}">
-                                                <input type="hidden" th:name="category" th:value=0>
-                                                <input type="submit" value="농산물">
-                                            </form>
+                                            <a th:href="@{/product{category}(category=0)}">농산물</a>
                                         </li>
                                         <li>
-                                            <form th:action="@{/product(category=category)}">
-                                                <input type="hidden" th:name="category" th:value=1>
-                                                <input type="submit" value="수산물">
-                                            </form>
+                                            <a th:href="@{/product{category}(category=1)}">수산물</a>
                                         </li>
                                         <li>
-                                            <form th:action="@{/product(category=category)}">
-                                                <input type="hidden" th:name="category" th:value=2>
-                                                <input type="submit" value="가공식품">
-                                            </form>
+                                            <a th:href="@{/product{category}(category=2)}">가공식품</a>
                                         </li>
                                     </ul>
                                 </li>

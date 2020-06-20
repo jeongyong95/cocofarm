@@ -89,8 +89,8 @@ public class ProductController {
         return modelAndView;
     }
 
-    @GetMapping(path = "/product")
-    public ModelAndView searchByCategory(@RequestParam int category) {
+    @GetMapping(path = "/product{category}")
+    public ModelAndView searchByCategory(@PathVariable int category) {
         ModelAndView modelAndView = new ModelAndView();
         switch (category) {
             case 0:

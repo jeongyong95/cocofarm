@@ -28,18 +28,16 @@ public class KakaoPay {
 
         RestTemplate restTemplate = new RestTemplate();
 
-        // 서버로 요청할 Header
         HttpHeaders headers = new HttpHeaders();
         headers.add("Authorization", "KakaoAK " + "447b3e953116a1d2308f0633b4d17563");
         headers.add("Accept", MediaType.APPLICATION_JSON_VALUE);
         headers.add("Content-Type", MediaType.APPLICATION_FORM_URLENCODED_VALUE + ";charset=UTF-8");
 
-        // 서버로 요청할 Body
         MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
         params.add("cid", "TC0ONETIME"); // cid = 가맹점 코드 , Test 코드는 TC0ONETIME
         params.add("partner_order_id", "1001"); // 결제건에 대한 가맹점의 주문번호
         params.add("partner_user_id", totalRegisterDto.getCustomerName()); // 가맹점에서 사용자를 구분할 수 있는 id
-        params.add("item_name", totalRegisterDto.getCustomerName());
+        params.add("item_name", "코코팜-상품");
         params.add("quantity", "10");
         params.add("total_amount", String.valueOf(totalRegisterDto.getTotalPrice()));
         params.add("tax_free_amount", "100");
@@ -47,12 +45,9 @@ public class KakaoPay {
         params.add("cancel_url", "http://localhost:8080/kakaoPayCancel");
         params.add("fail_url", "http://localhost:8080/kakaoPaySuccessFail");
 
-        // 헤더와 바디를 붙임
         HttpEntity<MultiValueMap<String, String>> body = new HttpEntity<MultiValueMap<String, String>>(params, headers);
 
-        try {
-            // RestTemplate을 이용해 카카오페이에 데이터를 보내는 방법, KakaoPayReadyVO.classs는 응답을 받는 객체를 설정한
-            // 것
+        try {            
             kakaoPayReadyVO = restTemplate.postForObject(new URI(HOST + "/v1/payment/ready"), body,
                     KakaoPayReadyVO.class);
 
@@ -72,13 +67,11 @@ public class KakaoPay {
 
         RestTemplate restTemplate = new RestTemplate();
 
-        // 서버로 요청할 Header
         HttpHeaders headers = new HttpHeaders();
         headers.add("Authorization", "KakaoAK " + "447b3e953116a1d2308f0633b4d17563");
         headers.add("Accept", MediaType.APPLICATION_JSON_VALUE);
         headers.add("Content-Type", MediaType.APPLICATION_FORM_URLENCODED_VALUE + ";charset=UTF-8");
 
-        // 서버로 요청할 Body
         MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
         params.add("cid", "TC0ONETIME");
         params.add("tid", kakaoPayReadyVO.getTid());

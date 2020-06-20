@@ -46,9 +46,6 @@ public class KakaoPayController {
         CustomerSessionDto sessionDto = (CustomerSessionDto) session.getAttribute("customer");
         totalRegisterDto.setCustomerName(sessionDto.getName());
 
-        System.out.println("테스트00000000000000000000000000" + totalRegisterDto);
-        System.out.println("테스트00000000000000000000000000" + productRegisterDto);
-
         session.setAttribute("totalRegisterTemp", totalRegisterDto);
         session.setAttribute("productRegisterTemp", productRegisterDto);
 
@@ -63,10 +60,6 @@ public class KakaoPayController {
         OrderProductRegisterDto productRegisterDto = (OrderProductRegisterDto) session
                 .getAttribute("productRegisterTemp");
         CustomerSessionDto sessionDto = (CustomerSessionDto) session.getAttribute("customer");
-
-        System.out.println("테스트11111111111111111111111111" + totalRegisterDto);
-        System.out.println("테스트22222222222222222222222222" + productRegisterDto);
-        System.out.println("테스트33333333333333333333333333" + sessionDto);
 
         List<OrderProductRegisterDto> productRegisterDtoList = new ArrayList<>();
 

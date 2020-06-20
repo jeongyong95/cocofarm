@@ -4,14 +4,51 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>결제 성공 - 코코팜</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>결제완료</title>
+
+    <th:block th:include="fragments/common/head"></th:block>
+
 </head>
 
 <body>
-    카카오페이 결제가 정상적으로 완료되었습니다. 결제일시:
-    [[${info.approved_at}]]<br />
-    주문번호: [[${info.partner_order_id}]]<br />
-    <h2>[[${info}]]</h2>
+
+    <th:block th:include="fragments/common/header"></th:block>
+
+    <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/breadcumb3.jpg);">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="breadcumb-text text-center">
+                        <h2>결제 완료</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+
+    <div th:align="center">
+        <h3>[[${info.partner_user_id}]] 님의 결제가 정상적으로 완료되었습니다.</h3>
+        <h5>결제 일시 : [[${info.approved_at}]]  </h5>
+        <h5>결제 금액 : [[${info.amount.total}]] </h5>
+    </div>
+
+    <div th:align="center">
+        <th:block>
+
+            <button class="btn delicious-btn mt-30" th:onclick="location.href='/index'">홈</button>
+            <button class="btn delicious-btn mt-30" th:onclick="location.href='/customer/mypage/orderList'">주문목록
+                보기</button>
+        </th:block>
+    </div>
+
+    <th:block th:include="fragments/common/footer"></th:block>
+    <th:block th:include="fragments/common/script"></th:block>
+
+
 </body>
 
 </html>
